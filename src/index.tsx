@@ -1,11 +1,12 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { registerServiceWorker } from "./utils/registerServiceWorker";
-import Placeholder from "./components/Placeholder";
+import {registerServiceWorker} from "./utils/registerServiceWorker";
+import App from "./components/App";
 
-registerServiceWorker();
+if (process.env.NODE_ENV == "production")
+  registerServiceWorker();
 
 ReactDOM.render(
-  <Placeholder/>,
+  <App/>,
   document.getElementById("react-container")
 );

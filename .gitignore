@@ -1,8 +1,20 @@
+
+# IDE/System
 *.pyc
 .DS_Store
+.idea
+
+# Node
 node_modules
 package-lock.json
-.idea
+
+# parcel bundler / output files
 dist
 .cache
+functions/lib
+
+
+# Firebase
 .firebase
+firebase-debug.log
+.runtimeconfig.json
