@@ -1,7 +1,7 @@
 import * as functions from "firebase-functions";
 import Axios from "axios";
 
-export const validateRecaptcha = async (token: string) => {
+export const validateRecaptcha = async (token: string): Promise<boolean> => {
   const {data} = await Axios.post(
     `https://recaptcha.google.com/recaptcha/api/siteverify?secret=${functions.config().recaptcha.secret}&response=${token}`,
     {},
@@ -11,5 +11,6 @@ export const validateRecaptcha = async (token: string) => {
       },
     });
   console.log("recaptcha result", data);
-  return data.success
+  if (data.success) return true;
+  else throw new Error("Gotcha robot!")
 };

@@ -1,6 +1,6 @@
 import * as functions from "firebase-functions"
 import Axios from "axios";
-import Mail from "./mails/mail";
+import Mail from "../mails/mail";
 
 export default async (mail: Mail) => {
   console.log(`Sending E-Mail to ${mail.name} <${mail.email}>`)
@@ -32,7 +32,6 @@ export default async (mail: Mail) => {
     });
   if (res.status == 200) {
     console.log(`Email sent! ${JSON.stringify(res.data)}`);
-    return
   } else
     throw Error(`Email could not been send, response: ${res.data}`)
 }
