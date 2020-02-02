@@ -18,3 +18,4 @@ functions/lib
 .firebase
 firebase-debug.log
 .runtimeconfig.json
+functions/keys
