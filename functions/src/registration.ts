@@ -10,9 +10,12 @@ export default (admin: admin.app.App) => async (req: Request, res: Response) => 
   const recaptchaToken = req.body.recaptchaToken;
   const name = req.body.name;
   const email = req.body.email;
+  console.log(`Called with: ${name}, ${email}, ${recaptchaToken}`);
   try {
     await validateRecaptcha(recaptchaToken); // throws if something is wrong
-    // TODO check if email already exists
+    const registeredMails = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).get();
+    if (registeredMails.size > 0)
+      throw new Error("Email is already registered!");
     const data = {
       [DB.CREATED]: new Date().toISOString(),
       [DB.NAME]: name,
@@ -23,12 +26,9 @@ export default (admin: admin.app.App) => async (req: Request, res: Response) => 
 
     const mail = new RegistrationCompleteMail(name, email, `${req.protocol}://${req.hostname}/verifyMail?token=${doc.id}`);
     await sendMail(mail);
-    res.status(200);
-    res.send()
+    res.status(200).send();
   } catch (e) {
     console.error(e.name, e.message);
-    res.status(400);
-    res.send(`Something went wrong. ${e.name}: ${e.message}`)
+    res.status(400).send(`Something went wrong. ${e.name}: ${e.message}`)
   }
-
 }
