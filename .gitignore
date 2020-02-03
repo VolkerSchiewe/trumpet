@@ -1,4 +1,3 @@
-
 # IDE/System
 *.pyc
 .DS_Store
@@ -7,6 +6,7 @@
 # Node
 node_modules
 package-lock.json
+yarn-error.log
 
 # parcel bundler / output files
 dist
@@ -19,3 +19,6 @@ functions/lib
 firebase-debug.log
 .runtimeconfig.json
 functions/keys
+
+# Tests
+.nyc_output
