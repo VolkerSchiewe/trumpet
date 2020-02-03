@@ -1,7 +1,7 @@
 import {Request} from "firebase-functions/lib/providers/https";
 import {Response} from "express";
 import RegistrationCompleteMail from "./mails/registrationComplete";
-import sendMail from "./helper/sendMail";
+import {sendMail} from "./helper/sendMail";
 import {validateRecaptcha} from "./helper/validateRecaptcha";
 import * as admin from "firebase-admin";
 import {DB} from "./utils/constants";
@@ -13,7 +13,7 @@ export default (admin: admin.app.App) => async (req: Request, res: Response) => 
   console.log(`Called with: ${name}, ${email}, ${recaptchaToken}`);
   try {
     await validateRecaptcha(recaptchaToken); // throws if something is wrong
-    const registeredMails = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).get();
+    const registeredMails = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).where(DB.EMAIL, "==", email).get();
     if (registeredMails.size > 0)
       throw new Error("Email is already registered!");
     const data = {
@@ -22,7 +22,7 @@ export default (admin: admin.app.App) => async (req: Request, res: Response) => 
       [DB.EMAIL]: email,
     };
     const doc = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).add(data);
-    console.log(`Stored document ${doc.id} with data: ${data}`);
+    console.log(`Stored document ${doc.id} with data: ${JSON.stringify(data)}`);
 
     const mail = new RegistrationCompleteMail(name, email, `${req.protocol}://${req.hostname}/verifyMail?token=${doc.id}`);
     await sendMail(mail);

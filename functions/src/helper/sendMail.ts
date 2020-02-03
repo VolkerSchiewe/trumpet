@@ -2,7 +2,7 @@ import * as functions from "firebase-functions"
 import Axios from "axios";
 import Mail from "../mails/mail";
 
-export default async (mail: Mail) => {
+export const sendMail = async (mail: Mail) => {
   console.log(`Sending E-Mail to ${mail.name} <${mail.email}>`);
   const res = await Axios.post("https://api.mailjet.com/v3.1/send",
     {
