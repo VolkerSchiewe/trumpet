@@ -25,7 +25,10 @@ export const sendMail = async (mail: Mail) => {
       ]
     },
     {
-      auth: {username: functions.config().mailjet.apikey, password: functions.config().mailjet.secret},
+      auth: {
+        username: functions.config().mailjet.apikey,
+        password: functions.config().mailjet.secret
+      },
       headers: {
         "Content-Type": "application/json",
       }
