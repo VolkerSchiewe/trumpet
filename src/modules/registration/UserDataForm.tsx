@@ -21,7 +21,7 @@ import {
   LAST_NAME,
   PHONE,
   PHOTO_AGREEMENT,
-  REGISTRATION_TYPE,
+  REGISTRATION_TYPE, requiredFields,
   SHIRT,
   Street_NUMBER,
   VOICE,
@@ -31,16 +31,18 @@ import TextInput from "../forms/TextInput";
 import {useTranslation} from "react-i18next";
 import {validateBirthday, validateEmail, validateStreetAndNumber, validateZipAndCity} from "./valdiations";
 import {
+  accommodationOptions,
   arrivalOptions,
   BEGINNER,
   congregationSuggestions,
-  departureOptions, dietSuggestions,
-  registrationOptions,
-  voiceOptions,
+  departureOptions, dietSuggestions, GUEST, NO_ACCOMMODATION,
+  registrationOptions, shirtOptions,
+  voiceOptions, YES,
   yesNoOptions
 } from "./choices";
 import SelectInput from "../forms/SelectInput";
 import RadioInput from "../forms/RadioInput";
+import Divider from "@material-ui/core/Divider";
 
 const REGISTRATION_URL = "/registration";
 
@@ -53,7 +55,11 @@ const useStyles = makeStyles({
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
-  const [data, setData] = useState({[PHOTO_AGREEMENT]: "yes"} as any);
+  const [data, setData] = useState({
+    [ACCOMMODATION]: NO_ACCOMMODATION,
+    [PHOTO_AGREEMENT]: YES,
+  } as any);
+  const [error, setError] = useState("");
 
   const setState = (key: string, value: string) => {
     setData({...data, [key]: value})
@@ -64,7 +70,15 @@ export default () => {
     if (!executeRecaptcha)
       return;
     const token = await executeRecaptcha("registration");
-    console.log(data);
+
+    // check if required fields are available
+    const missingFields = requiredFields.filter(item => !data[item]);
+    if (missingFields) {
+      setError(t("Please fill out the following fields correctly: ") + missingFields.map(i => t(i)).join(", "));
+      return
+    }
+
+    // send data to server
     try {
       await Axios.post(REGISTRATION_URL, {
           recaptchaToken: token,
@@ -76,10 +90,10 @@ export default () => {
           }
         });
     } catch (e) {
-      console.error(e.message)
+      console.error(e.message);
+      setError(t("Something went wrong. Try again later!"))
     }
   };
-
 
   const classes = useStyles();
   const {t} = useTranslation();
@@ -116,13 +130,19 @@ export default () => {
           </Grid>
 
           <Grid item xs={12}>
+            <Divider/>
+          </Grid>
+
+          <Grid item xs={12}>
             <TextInput field={CONGREGATION} setState={setState} suggestions={congregationSuggestions}/>
           </Grid>
           <Grid item sm={6} xs={12}>
-            <SelectInput field={VOICE} setState={setState} choices={voiceOptions}/>
+            <SelectInput field={REGISTRATION_TYPE} setState={setState} choices={registrationOptions}/>
           </Grid>
           <Grid item sm={6} xs={12}>
-            <SelectInput field={REGISTRATION_TYPE} setState={setState} choices={registrationOptions}/>
+            {data[REGISTRATION_TYPE] !== GUEST && (
+              <SelectInput field={VOICE} setState={setState} choices={voiceOptions}/>
+            )}
           </Grid>
           {data[REGISTRATION_TYPE] == BEGINNER && (
             <Grid item xs={12}>
@@ -136,21 +156,24 @@ export default () => {
             <SelectInput field={DEPARTURE} setState={setState} choices={departureOptions}/>
           </Grid>
 
-          {/*TODO add information about accommodation*/}
-          <Grid item sm={6} xs={12}>
-            <TextInput field={ACCOMMODATION} setState={setState}/>
+          <Grid item xs={12}>
+            <RadioInput field={ACCOMMODATION} setState={setState} choices={accommodationOptions}/>
           </Grid>
-          <Grid item sm={6} xs={12}>
-            <TextInput field={ACCOMMODATION_WITH} setState={setState} required={false}/>
-          </Grid>
-
-          <Grid item sm={6} xs={12}>
-            {/* TODO dropdown*/}
-            <TextInput field={SHIRT} setState={setState} required={false}/>
-
-          </Grid>
+          {data[ACCOMMODATION] !== NO_ACCOMMODATION && (
+            <Grid item xs={12}>
+              <TextInput field={ACCOMMODATION_WITH} setState={setState} required={false}/>
+            </Grid>
+          )}
 
           <Grid item xs={12}>
+            <Divider/>
+          </Grid>
+
+          <Grid item sm={3} xs={12}>
+            <SelectInput field={SHIRT} setState={setState} choices={shirtOptions} required={false}/>
+          </Grid>
+
+          <Grid item sm={9} xs={12}>
             <TextInput field={DIETS} setState={setState} required={false} suggestions={dietSuggestions}/>
           </Grid>
 
@@ -159,7 +182,7 @@ export default () => {
               Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur Dokumentation und auf
               Internetseiten veröffentlicht werden.
             </Typography>
-            <RadioInput field={PHOTO_AGREEMENT} setState={setState} choices={yesNoOptions} noLabel
+            <RadioInput field={PHOTO_AGREEMENT} setState={setState} choices={yesNoOptions} noLabel row
                         helpText={"This agreement can always be revoked at the organization of the brass festival."}/>
           </Grid>
 
@@ -167,8 +190,13 @@ export default () => {
             <TextInput field={COMMENTS} setState={setState} required={false} multiline rows={2}/>
           </Grid>
 
+          {error && (
+            <Grid item xs={12}>
+              <Typography color={"error"}>{error}</Typography>
+            </Grid>
+          )}
           <Grid item xs={12}>
-            <Button variant={"outlined"} type={"submit"}> Submit </Button>
+            <Button variant={"outlined"} type={"submit"}> {t("Submit")} </Button>
           </Grid>
         </Grid>
       </form>

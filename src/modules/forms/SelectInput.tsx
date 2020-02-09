@@ -7,10 +7,10 @@ interface Props {
   field: string
   choices: string[]
   setState: (key: string, value: string) => void,
-
+  required?: boolean
 }
 
-export default ({field, choices, setState}: Props) => {
+export default ({field, choices, setState, required}: Props) => {
   const {t} = useTranslation();
   return (
     <TextField
@@ -20,6 +20,7 @@ export default ({field, choices, setState}: Props) => {
       defaultValue={""}
       label={t(field)}
       onChange={e => setState(field, e.target.value)}
+      required={required == undefined ? true : required}
     >
       {choices.map(item => (
         <MenuItem key={item} value={item}>

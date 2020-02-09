@@ -29,11 +29,9 @@ export const MONDAY = "Monday, 24.05.2021";
 export const arrivalOptions = [
   FRIDAY,
   SATURDAY,
-  SUNDAY,
 ];
 
 export const departureOptions = [
-  SATURDAY,
   SUNDAY,
   MONDAY,
 ];
@@ -60,6 +58,34 @@ export const congregationSuggestions = [
   "Christiansfeld",
 ];
 
+// ---------- Accommodation ----------------------
+export const NO_ACCOMMODATION = "no accommodation";
+export const GROUP_ACCOMMODATION = "group accommodation";
+export const DOUBLE_BEDROOM_WITH_BUNK_BED = "double bedroom with bunk bed";
+export const DOUBLE_BEDROOM = "double bedroom";
+export const FAMILY_BEDROOM = "family bedroom";
+
+export const accommodationOptions = [
+  NO_ACCOMMODATION,
+  GROUP_ACCOMMODATION,
+  DOUBLE_BEDROOM,
+  DOUBLE_BEDROOM_WITH_BUNK_BED,
+  FAMILY_BEDROOM
+];
+
+// ---------- Shirt ----------------------
+export const NONE = "None";
+export const shirtOptions = [
+  NONE,
+  "XL",
+  "L",
+  "M",
+  "S",
+  "XS",
+];
+
+
+// ---------- Diets ----------------------
 export const VEGAN = "vegan";
 export const VEGETARIAN = "vegetarian";
 export const GLUTEN_FREE = "gluten free";

@@ -13,23 +13,30 @@ interface Props {
   setState: (key: string, value: string) => void
   helpText?: string
   noLabel?: boolean
+  row?: boolean
 }
 
-export default ({field, choices, setState, helpText, noLabel}: Props) => {
+export default ({field, choices, setState, helpText, noLabel, row}: Props) => {
   const {t} = useTranslation();
   return (
     <FormControl component="fieldset">
       {!noLabel && (
         <FormLabel component="legend">{t(field)}</FormLabel>
       )}
-      <RadioGroup aria-label={t(field)} name={field} defaultValue={choices[0]}
-                  onChange={e => setState(field, e.target.value)}>
+      <RadioGroup
+        row={row}
+        aria-label={t(field)}
+        name={field}
+        defaultValue={choices[0]}
+        onChange={e => setState(field, e.target.value)}>
         {choices.map(item => (
             <FormControlLabel key={item} value={item} control={<Radio/>} label={t(item)}/>
           )
         )}
       </RadioGroup>
-      <FormHelperText>{helpText && t(helpText)}</FormHelperText>
+      {helpText && (
+        <FormHelperText>{t(helpText)}</FormHelperText>
+      )}
     </FormControl>
   )
 }

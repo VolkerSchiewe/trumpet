@@ -36,9 +36,9 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
     // select suggestions
     if (suggestions && value)
       if (suggestions.find(i => value === i))
-        setSuggestions([])
+        setSuggestions([]);
       else
-        setSuggestions(suggestions.filter(i => i.toLowerCase().indexOf(value.toLowerCase()) >= 0));
+        setSuggestions(suggestions.filter(i => i.toLowerCase().indexOf(value.toLowerCase()) >= 0).slice(0,5));
     else if (value === "") {
       setSuggestions([])
     }
@@ -70,9 +70,10 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
         {otherProps.children}
       </TextField>
       {suggestions && (
-        <div style={{margin: 5}}>
+        <div>
           {suggestionsSorted.map((item, key) => (
             <Chip
+              style={{margin: 3}}
               key={key}
               label={t(item)}
               onClick={() => onSuggestionClick(t(item))}

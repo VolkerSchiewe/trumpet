@@ -22,9 +22,9 @@ import {
 import {
   ALTO,
   BASS,
-  BEGINNER,
-  FRIDAY, GLUTEN_FREE,
-  GUEST, LACTOSE_FREE, MONDAY, NO,
+  BEGINNER, DOUBLE_BEDROOM, DOUBLE_BEDROOM_WITH_BUNK_BED, FAMILY_BEDROOM,
+  FRIDAY, GLUTEN_FREE, GROUP_ACCOMMODATION,
+  GUEST, LACTOSE_FREE, MONDAY, NO, NO_ACCOMMODATION, NONE,
   PARTICIPANT,
   SATURDAY,
   SOPRANO, SUNDAY,
@@ -40,7 +40,7 @@ export default {
   [Street_NUMBER]: "Straße & Hausnummer",
   [ZIP_CITY]: "PLZ & Stadt",
   [BIRTHDAY]: "Geburtstag",
-  [DIETS]: "Essensbesonderheiten (Vegetarisch, Vegan, Allergien, etc.)",
+  [DIETS]: "Essensbesonderheiten (Vegetarisch, Allergien, etc.)",
   [REGISTRATION_TYPE]: "Ich bin",
   [CONGREGATION]: "Gemeinde/Bereich",
   [VOICE]: "Stimme",
@@ -75,11 +75,23 @@ export default {
   [GLUTEN_FREE]: "Gluten frei",
   [LACTOSE_FREE]: "Lactose frei",
 
+  [NONE]: "Keins",
+
+  [NO_ACCOMMODATION]: "Ich brauche keine Unterkunft",
+  [GROUP_ACCOMMODATION]: "Massenquartier (6 od. 8 Bettzimmer)",
+  [DOUBLE_BEDROOM_WITH_BUNK_BED]: "Doppelzimmer Etagenbetten",
+  [DOUBLE_BEDROOM]: "Doppelzimmer",
+  [FAMILY_BEDROOM]: "Familenzimmer (Doppelbett u. Etagenbett)",
+
   "This agreement can always be revoked at the organization of the brass festival.": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
+  "Submit": "Abschicken",
 
   // Errors
   [errorEmail]: "Bitte gib eine korrekte Email Adresse ein",
   [errorBirthday]: "Bitte gib ein richtiges Geburtsdatum ein",
   [errorStreetAndNumber]: "Bitte gib Straße und Hausnummer richtig ein",
-  [errorZipAndCity]: "Bitte gib PLZ und Stadt richtig ein"
+  [errorZipAndCity]: "Bitte gib PLZ und Stadt richtig ein",
+
+  "Something went wrong. Try again later!": "Etwas ist schiefgelaufen. Versuche es später noch mal!",
+  "Please fill out the following fields correctly: ": "Bitte fülle die folgenden Felder korrect aus: ",
 }
