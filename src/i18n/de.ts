@@ -19,6 +19,7 @@ import {
   VOICE,
   ZIP_CITY
 } from "../utils/database";
+import {ALTO, BASS, BEGINNER, GUEST, PARTICIPANT, SOPRANO, TENOR} from "../modules/registration/choices";
 
 export default {
   [FIRST_NAME]: "Vorname",
@@ -40,4 +41,18 @@ export default {
   [PHOTO_AGREEMENT]: "Einverständsnis für Fotos",
   [SHIRT]: "T-Shirt",
   [COMMENTS]: "Weiteres/Bemerkungen",
+
+  [PARTICIPANT]: "Bläser*in",
+  [BEGINNER]: "Jungbläser*in",
+  [GUEST]: "Gast",
+
+  [SOPRANO]: "Sopran",
+  [ALTO]: "Alt",
+  [TENOR]: "Tenor",
+  [BASS]: "Bass",
+  // Errors
+  "Please enter a valid email": "Bitte gib eine korrekte Email Adresse ein",
+  "Please enter a valid birth date": "Bitte gib ein richtiges Geburtsdatum ein",
+  "Please enter a valid street name and number": "Bitte gib Straße und Hausnummer richtig ein",
+  "Please enter a valid ZIP code and city": "Bitte gib PLZ und Stadt richtig ein"
 }
