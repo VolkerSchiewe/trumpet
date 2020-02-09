@@ -19,7 +19,18 @@ import {
   VOICE,
   ZIP_CITY
 } from "../utils/database";
-import {ALTO, BASS, BEGINNER, GUEST, PARTICIPANT, SOPRANO, TENOR} from "../modules/registration/choices";
+import {
+  ALTO,
+  BASS,
+  BEGINNER,
+  FRIDAY,
+  GUEST, MONDAY, NO,
+  PARTICIPANT,
+  SATURDAY,
+  SOPRANO, SUNDAY,
+  TENOR, YES
+} from "../modules/registration/choices";
+import {errorBirthday, errorEmail, errorStreetAndNumber, errorZipAndCity} from "../modules/registration/valdiations";
 
 export default {
   [FIRST_NAME]: "Vorname",
@@ -50,9 +61,20 @@ export default {
   [ALTO]: "Alt",
   [TENOR]: "Tenor",
   [BASS]: "Bass",
+
+  [FRIDAY]: "Freitag 21.05.2021",
+  [SATURDAY]: "Samstag 22.05.2021",
+  [SUNDAY]: "Sonntag 23.05.2021",
+  [MONDAY]: "Montag 24.05.2021",
+
+  [YES]: "Ja",
+  [NO]: "Nein",
+
+  "This agreement can always be revoked at the organization of the brass festival.": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
+
   // Errors
-  "Please enter a valid email": "Bitte gib eine korrekte Email Adresse ein",
-  "Please enter a valid birth date": "Bitte gib ein richtiges Geburtsdatum ein",
-  "Please enter a valid street name and number": "Bitte gib Straße und Hausnummer richtig ein",
-  "Please enter a valid ZIP code and city": "Bitte gib PLZ und Stadt richtig ein"
+  [errorEmail]: "Bitte gib eine korrekte Email Adresse ein",
+  [errorBirthday]: "Bitte gib ein richtiges Geburtsdatum ein",
+  [errorStreetAndNumber]: "Bitte gib Straße und Hausnummer richtig ein",
+  [errorZipAndCity]: "Bitte gib PLZ und Stadt richtig ein"
 }

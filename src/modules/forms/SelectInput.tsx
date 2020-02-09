@@ -13,7 +13,14 @@ interface Props {
 export default ({field, choices, setState}: Props) => {
   const {t} = useTranslation();
   return (
-    <TextField variant={"outlined"} fullWidth select label={t(field)} onChange={e => setState(field, e.target.value)}>
+    <TextField
+      variant={"outlined"}
+      fullWidth
+      select
+      defaultValue={""}
+      label={t(field)}
+      onChange={e => setState(field, e.target.value)}
+    >
       {choices.map(item => (
         <MenuItem key={item} value={item}>
           {t(item)}

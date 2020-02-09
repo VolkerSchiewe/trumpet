@@ -27,12 +27,12 @@ import {
   VOICE,
   ZIP_CITY
 } from "../../utils/database";
-import TextInput from "./TextInput";
-import MenuItem from "@material-ui/core/MenuItem";
+import TextInput from "../forms/TextInput";
 import {useTranslation} from "react-i18next";
 import {validateBirthday, validateEmail, validateStreetAndNumber, validateZipAndCity} from "./valdiations";
-import {BEGINNER, registrationOptions, voiceOptions} from "./choices";
-import SelectInput from "./SelectInput";
+import {arrivalOptions, BEGINNER, departureOptions, registrationOptions, voiceOptions, yesNoOptions} from "./choices";
+import SelectInput from "../forms/SelectInput";
+import RadioInput from "../forms/RadioInput";
 
 const REGISTRATION_URL = "/registration";
 
@@ -98,7 +98,8 @@ export default () => {
             <TextInput field={PHONE} setState={setState} type={"tel"} required={false}/>
           </Grid>
           <Grid item sm={6} xs={12}>
-            <TextInput field={BIRTHDAY} setState={setState} validation={validateBirthday} placeholder={"dd.mm.yyyy"}/>
+            <TextInput field={BIRTHDAY} setState={setState} validation={validateBirthday} placeholder={"dd.mm.yyyy"}
+                       inputProps={{inputMode: 'numeric'}}/>
           </Grid>
 
           <Grid item xs={12}>
@@ -124,11 +125,12 @@ export default () => {
             </Grid>
           )}
           <Grid item sm={6} xs={12}>
-            <TextInput field={ARRIVAL} setState={setState}/>
+            <SelectInput field={ARRIVAL} setState={setState} choices={arrivalOptions}/>
           </Grid>
           <Grid item sm={6} xs={12}>
-            <TextInput field={DEPARTURE} setState={setState}/>
+            <SelectInput field={DEPARTURE} setState={setState} choices={departureOptions}/>
           </Grid>
+
           {/*TODO add information about accommodation*/}
           <Grid item sm={6} xs={12}>
             <TextInput field={ACCOMMODATION} setState={setState}/>
@@ -148,7 +150,11 @@ export default () => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextInput field={PHOTO_AGREEMENT} setState={setState}/>
+            <Typography>
+              Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur Dokumentation und auf Internetseiten veröffentlicht werden.
+            </Typography>
+            <RadioInput field={PHOTO_AGREEMENT} setState={setState} choices={yesNoOptions} noLabel
+                        helpText={"This agreement can always be revoked at the organization of the brass festival."}/>
           </Grid>
 
           <Grid item xs={12}>

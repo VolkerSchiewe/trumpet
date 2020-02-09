@@ -16,6 +16,8 @@ export default () => i18n
     },
     lng: "de",
     fallbackLng: "de",
+    keySeparator: false,
+    nsSeparator: false,
 
     interpolation: {
       escapeValue: false
