@@ -38,6 +38,39 @@ export const departureOptions = [
   MONDAY,
 ];
 
+// ---------- Congregations ----------------------
+export const congregationSuggestions = [
+  "Dresden",
+  "Bautzen-Kleinwelka",
+  "Herrnhut",
+  "Niesky",
+  "Saalburg-Ebersdorf",
+  "Zwickau",
+  "Berlin",
+  "Hamburg",
+  "Nordrhein Westfalen (NRW)",
+  "Gnadau",
+  "Neugnadenfeld",
+  "Neuwied",
+  "Rhein-Main",
+  "Bad Boll",
+  "Königsfeld",
+  "Neudietendorf",
+  "Zeist",
+  "Christiansfeld",
+];
+
+export const VEGAN = "vegan";
+export const VEGETARIAN = "vegetarian";
+export const GLUTEN_FREE = "gluten free";
+export const LACTOSE_FREE = "lactose free";
+export const dietSuggestions = [
+  VEGAN,
+  VEGETARIAN,
+  GLUTEN_FREE,
+  LACTOSE_FREE
+];
+
 // ---------- Generic ----------------------
 export const YES = "yes";
 export const NO = "no";

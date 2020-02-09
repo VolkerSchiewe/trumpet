@@ -30,7 +30,15 @@ import {
 import TextInput from "../forms/TextInput";
 import {useTranslation} from "react-i18next";
 import {validateBirthday, validateEmail, validateStreetAndNumber, validateZipAndCity} from "./valdiations";
-import {arrivalOptions, BEGINNER, departureOptions, registrationOptions, voiceOptions, yesNoOptions} from "./choices";
+import {
+  arrivalOptions,
+  BEGINNER,
+  congregationSuggestions,
+  departureOptions, dietSuggestions,
+  registrationOptions,
+  voiceOptions,
+  yesNoOptions
+} from "./choices";
 import SelectInput from "../forms/SelectInput";
 import RadioInput from "../forms/RadioInput";
 
@@ -45,7 +53,7 @@ const useStyles = makeStyles({
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
-  const [data, setData] = useState({} as any);
+  const [data, setData] = useState({[PHOTO_AGREEMENT]: "yes"} as any);
 
   const setState = (key: string, value: string) => {
     setData({...data, [key]: value})
@@ -57,8 +65,6 @@ export default () => {
       return;
     const token = await executeRecaptcha("registration");
     console.log(data);
-    // TODO check if required fields are present
-    return
     try {
       await Axios.post(REGISTRATION_URL, {
           recaptchaToken: token,
@@ -110,8 +116,7 @@ export default () => {
           </Grid>
 
           <Grid item xs={12}>
-            {/*TODO suggestions view*/}
-            <TextInput field={CONGREGATION} setState={setState}/>
+            <TextInput field={CONGREGATION} setState={setState} suggestions={congregationSuggestions}/>
           </Grid>
           <Grid item sm={6} xs={12}>
             <SelectInput field={VOICE} setState={setState} choices={voiceOptions}/>
@@ -146,19 +151,20 @@ export default () => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextInput field={DIETS} setState={setState} required={false}/>
+            <TextInput field={DIETS} setState={setState} required={false} suggestions={dietSuggestions}/>
           </Grid>
 
           <Grid item xs={12}>
             <Typography>
-              Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur Dokumentation und auf Internetseiten veröffentlicht werden.
+              Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur Dokumentation und auf
+              Internetseiten veröffentlicht werden.
             </Typography>
             <RadioInput field={PHOTO_AGREEMENT} setState={setState} choices={yesNoOptions} noLabel
                         helpText={"This agreement can always be revoked at the organization of the brass festival."}/>
           </Grid>
 
           <Grid item xs={12}>
-            <TextInput field={COMMENTS} setState={setState} required={false}/>
+            <TextInput field={COMMENTS} setState={setState} required={false} multiline rows={2}/>
           </Grid>
 
           <Grid item xs={12}>

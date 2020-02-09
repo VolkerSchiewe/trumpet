@@ -1,20 +1,27 @@
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
 import * as React from "react";
-import {useState} from "react";
+import {useRef, useState} from "react";
 import {useTranslation} from "react-i18next";
+import Chip from "@material-ui/core/Chip";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
   field: string,
   setState: (key: string, value: string) => void,
   validation?: (value: string) => string
   required?: boolean
+  suggestions?: string[]
 }
 
-export default ({field, setState, validation, required, ...otherProps}: Props) => {
+export default ({field, setState, validation, required, suggestions, ...otherProps}: Props) => {
   const {t} = useTranslation();
   const [error, setError] = useState("");
-  const onChange = (e: any) => {
+  const [suggestionsSorted, setSuggestions] = useState([] as string[]);
+  const inputRef = useRef<OutlinedTextFieldProps>(null);
+
+  const validate = (e: any) => {
     const value: string = e.target.value;
+
+    // validate
     const error = value && validation ? validation(value) : "";
     if (!error)
       setState(field, value);
@@ -22,20 +29,59 @@ export default ({field, setState, validation, required, ...otherProps}: Props) =
       setState(field, "");
     setError(error);
   };
+
+  const onChange = (e: any) => {
+    const value: string = e.target.value;
+
+    // select suggestions
+    if (suggestions && value)
+      if (suggestions.find(i => value === i))
+        setSuggestions([])
+      else
+        setSuggestions(suggestions.filter(i => i.toLowerCase().indexOf(value.toLowerCase()) >= 0));
+    else if (value === "") {
+      setSuggestions([])
+    }
+  };
+
+  const onSuggestionClick = (item: string) => {
+    if (inputRef && inputRef.current) {
+      inputRef.current.value = item;
+      onChange({target: {value: item}})
+    }
+    setState(field, item)
+  };
   return (
-    <TextField
-      variant={"outlined"}
-      label={t(field)}
-      error={!!error}
-      helperText={t(error)}
-      fullWidth
-      defaultValue={""}
-      required={required == undefined ? true : required}
-      onBlur={onChange}
-      onChange={error ? onChange : undefined}
-      {...otherProps}
-    >
-      {otherProps.children}
-    </TextField>
+    <>
+      <TextField
+        id={`id-text-input-${field}`}
+        variant={"outlined"}
+        label={t(field)}
+        error={!!error}
+        helperText={t(error)}
+        fullWidth
+        defaultValue={""}
+        required={required == undefined ? true : required}
+        onBlur={validate}
+        onChange={error ? validate : onChange}
+        inputRef={inputRef}
+        {...otherProps}
+      >
+        {otherProps.children}
+      </TextField>
+      {suggestions && (
+        <div style={{margin: 5}}>
+          {suggestionsSorted.map((item, key) => (
+            <Chip
+              key={key}
+              label={t(item)}
+              onClick={() => onSuggestionClick(t(item))}
+              variant={"outlined"}
+              color={"primary"}
+            />
+          ))}
+        </div>
+      )}
+    </>
   );
 }

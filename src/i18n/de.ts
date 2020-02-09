@@ -23,12 +23,12 @@ import {
   ALTO,
   BASS,
   BEGINNER,
-  FRIDAY,
-  GUEST, MONDAY, NO,
+  FRIDAY, GLUTEN_FREE,
+  GUEST, LACTOSE_FREE, MONDAY, NO,
   PARTICIPANT,
   SATURDAY,
   SOPRANO, SUNDAY,
-  TENOR, YES
+  TENOR, VEGAN, VEGETARIAN, YES
 } from "../modules/registration/choices";
 import {errorBirthday, errorEmail, errorStreetAndNumber, errorZipAndCity} from "../modules/registration/valdiations";
 
@@ -69,6 +69,11 @@ export default {
 
   [YES]: "Ja",
   [NO]: "Nein",
+
+  [VEGAN]: "Vegan",
+  [VEGETARIAN]: "Vegetarisch",
+  [GLUTEN_FREE]: "Gluten frei",
+  [LACTOSE_FREE]: "Lactose frei",
 
   "This agreement can always be revoked at the organization of the brass festival.": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
 
