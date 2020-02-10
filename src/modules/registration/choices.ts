@@ -54,7 +54,11 @@ export const congregationSuggestions = [
   "Bad Boll",
   "Königsfeld",
   "Neudietendorf",
+
   "Zeist",
+  "Amsterdam-Stad",
+  "Amsterdam-Zuidoost",
+
   "Christiansfeld",
 ];
 

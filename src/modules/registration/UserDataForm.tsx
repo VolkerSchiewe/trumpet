@@ -43,6 +43,8 @@ import {
 import SelectInput from "../forms/SelectInput";
 import RadioInput from "../forms/RadioInput";
 import Divider from "@material-ui/core/Divider";
+import {Backdrop} from "@material-ui/core";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const REGISTRATION_URL = "/registration";
 
@@ -60,6 +62,7 @@ export default () => {
     [PHOTO_AGREEMENT]: YES,
   } as any);
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   const setState = (key: string, value: string) => {
     setData({...data, [key]: value})
@@ -69,12 +72,14 @@ export default () => {
     e.preventDefault();
     if (!executeRecaptcha)
       return;
+    setLoading(true);
     const token = await executeRecaptcha("registration");
 
     // check if required fields are available
     const missingFields = requiredFields.filter(item => !data[item]);
-    if (missingFields) {
+    if (missingFields.length) {
       setError(t("Please fill out the following fields correctly: ") + missingFields.map(i => t(i)).join(", "));
+      setLoading(false);
       return
     }
 
@@ -92,6 +97,8 @@ export default () => {
     } catch (e) {
       console.error(e.message);
       setError(t("Something went wrong. Try again later!"))
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -187,7 +194,7 @@ export default () => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextInput field={COMMENTS} setState={setState} required={false} multiline rows={2}/>
+            <TextInput field={COMMENTS} setState={setState} required={false} multiline/>
           </Grid>
 
           {error && (
@@ -198,6 +205,10 @@ export default () => {
           <Grid item xs={12}>
             <Button variant={"outlined"} type={"submit"}> {t("Submit")} </Button>
           </Grid>
+
+          <Backdrop open={isLoading}>
+            <CircularProgress/>
+          </Backdrop>
         </Grid>
       </form>
     </div>

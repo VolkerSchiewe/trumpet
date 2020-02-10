@@ -81,7 +81,7 @@ export default {
   [GROUP_ACCOMMODATION]: "Massenquartier (6 od. 8 Bettzimmer)",
   [DOUBLE_BEDROOM_WITH_BUNK_BED]: "Doppelzimmer Etagenbetten",
   [DOUBLE_BEDROOM]: "Doppelzimmer",
-  [FAMILY_BEDROOM]: "Familenzimmer (Doppelbett u. Etagenbett)",
+  [FAMILY_BEDROOM]: "Familienzimmer (Doppelbett u. Etagenbett)",
 
   "This agreement can always be revoked at the organization of the brass festival.": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
   "Submit": "Abschicken",
@@ -93,5 +93,5 @@ export default {
   [errorZipAndCity]: "Bitte gib PLZ und Stadt richtig ein",
 
   "Something went wrong. Try again later!": "Etwas ist schiefgelaufen. Versuche es später noch mal!",
-  "Please fill out the following fields correctly: ": "Bitte fülle die folgenden Felder korrect aus: ",
+  "Please fill out the following fields correctly: ": "Bitte fülle die folgenden Felder korrekt aus: ",
 }
