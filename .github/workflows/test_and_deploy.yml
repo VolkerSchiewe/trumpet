@@ -27,3 +27,5 @@ jobs:
     - name: Deploy to develop
       if: github.ref == 'refs/heads/develop'
       run: yarn deploy:dev --token "$FIREBASE_TOKEN"
+      env:
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
