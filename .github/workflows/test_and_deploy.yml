@@ -1,0 +1,28 @@
+name: Test and Deploy
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: yarn install
+    - name: Build
+      run: yarn build # TODO run build in functions
+      
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Run tests
+        run: yarn test # TODO run tests in functions
+  
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/develop'
+    steps:
+      - name: Deploy to develop
+        run: yarn deploy:dev --token "$FIREBASE_TOKEN"
