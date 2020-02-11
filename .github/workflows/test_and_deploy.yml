@@ -12,8 +12,12 @@ jobs:
       with:
         node-version: '10.x'
 
-    - name: Install dependencies
-      run: yarn install & cd functions & yarn install
+    - name: Install dependencies hosting
+      run: yarn install
+    - name: Install dependencies functions
+      working-directory: ./functions
+      run: yarn install
+
     - name: Build
       run: yarn build
       
