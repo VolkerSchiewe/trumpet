@@ -43,7 +43,7 @@ import {
 import SelectInput from "../forms/SelectInput";
 import RadioInput from "../forms/RadioInput";
 import Divider from "@material-ui/core/Divider";
-import {Backdrop} from "@material-ui/core";
+import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const REGISTRATION_URL = "/registration";
