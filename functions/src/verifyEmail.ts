@@ -2,13 +2,14 @@ import {Request} from "firebase-functions/lib/providers/https";
 import {Response} from "express";
 import * as admin from "firebase-admin";
 import {DB} from "./utils/constants";
+import Timestamp = admin.firestore.Timestamp;
 
 export default (admin: admin.app.App) => async (req: Request, res: Response) => {
   console.log(req.query.token);
   try {
     const document = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).doc(req.query.token);
     const data = (await document.get()).data();
-    const created = data ? new Date(data[DB.CREATED]) : null;
+    const created = data ? data[DB.CREATED].toDate() : null;
     const ONE_HOUR = 60 * 60 * 1000; /* ms */
     const now = new Date();
     if (created && ((now.getTime()) - created.getTime()) > ONE_HOUR) {
@@ -18,7 +19,7 @@ export default (admin: admin.app.App) => async (req: Request, res: Response) => 
       return
     }
     console.log("Verification completed");
-    await document.update({[DB.EMAIL_VERIFIED]: now.toISOString()});
+    await document.update({[DB.EMAIL_VERIFIED]: Timestamp.now()});
     res.status(200).send("Verification completed")
   } catch (e) {
     console.log("Document not found");

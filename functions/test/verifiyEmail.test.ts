@@ -2,6 +2,7 @@ import "mocha";
 import {expect} from 'chai';
 import * as admin from "firebase-admin";
 import {DB} from "../src/utils/constants";
+import Timestamp = admin.firestore.Timestamp;
 
 require('firebase-functions-test')({
   projectId: 'trumpet-dev-7521f',
@@ -13,7 +14,7 @@ const cloudFunctions = require('../src/index');
 describe("verify email cloud functions", () => {
   it('should test successful verification call', (done) => {
     admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).add({
-      [DB.CREATED]: new Date(new Date().getTime() - 60 * 1000/* ms*/).toISOString()
+      [DB.CREATED]: Timestamp.fromDate(new Date(new Date().getTime() - 60 * 1000/* ms*/))
     }).then(doc => {
       const req = {query: {token: doc.id}};
       const res = {
@@ -32,7 +33,7 @@ describe("verify email cloud functions", () => {
 
   it('should test expired link', (done) => {
     admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).add({
-      [DB.CREATED]: new Date(new Date().getTime() - 61 * 60 * 1000/* ms*/).toISOString()
+      [DB.CREATED]: Timestamp.fromDate(new Date(new Date().getTime() - 61 * 60 * 1000/* ms*/))
     }).then(doc => {
       const req = {query: {token: doc.id}};
       const res = {

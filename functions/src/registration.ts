@@ -5,6 +5,7 @@ import {sendMail} from "./helper/sendMail";
 import {validateRecaptcha} from "./helper/validateRecaptcha";
 import * as admin from "firebase-admin";
 import {DB} from "./utils/constants";
+import Timestamp = admin.firestore.Timestamp;
 
 export default (admin: admin.app.App) => async (req: Request, res: Response) => {
   const {recaptchaToken, ...data} = req.body;
@@ -16,7 +17,7 @@ export default (admin: admin.app.App) => async (req: Request, res: Response) => 
       throw new Error("Email is already registered!");
 
     // adding created date
-    data.created = new Date().toISOString();
+    data.created = Timestamp.now();
     const doc = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).add(data);
     console.log(`Stored document ${doc.id} with data: ${JSON.stringify(data)}`);
 
