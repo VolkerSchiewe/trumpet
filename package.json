@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel src/index.html",
+    "test": "jest",
     "clean": "rm -rf .cache dist functions/lib",
     "build:hosting": "parcel build src/index.html --detailed-report --public-url '.'",
     "build:functions": "cd functions && yarn build",
@@ -25,11 +26,22 @@
     "react-i18next": "^11.3.1"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.2",
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/workbox-sw": "^4.2.0",
     "firebase-tools": "^7.0.2",
+    "jest": "^25.1.0",
     "parcel-bundler": "^1.12.3",
+    "ts-jest": "^25.2.0",
     "typescript": "^3.5.2"
+  },
+  "jest": {
+    "roots": ["<rootDir>/test"],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "clearMocks": true,
+    "coverageDirectory": "coverage"
   }
 }

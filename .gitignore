@@ -22,3 +22,4 @@ functions/keys
 
 # Tests
 .nyc_output
+coverage
