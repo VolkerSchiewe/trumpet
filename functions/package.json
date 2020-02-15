@@ -3,7 +3,9 @@
   "scripts": {
     "build": "tsc",
     "serve": "yarn build && firebase serve --only functions",
-    "test": "nyc mocha -r ts-node/register test/*.test.ts"
+    "test": "nyc mocha -r ts-node/register test/*.test.ts",
+    "deploy:dev": "yarn build && firebase use default && firebase deploy --only functions",
+    "deploy:prod": "yarn build && firebase use prod && firebase deploy --only functions"
   },
   "engines": {
     "node": "10"

@@ -17,7 +17,7 @@ export default (admin: admin.app.App) => async (req: Request, res: Response) => 
       throw new Error("Email is already registered!");
 
     // adding created date
-    data.created = Timestamp.now();
+    data[DB.CREATED] = Timestamp.now();
     const doc = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).add(data);
     console.log(`Stored document ${doc.id} with data: ${JSON.stringify(data)}`);
 

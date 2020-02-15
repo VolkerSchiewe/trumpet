@@ -1,0 +1,88 @@
+{
+  "fields": [
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+    {
+      "name": "lastName",
+      "type": "number"
+    },
+    {
+      "name": "email",
+      "type": "number"
+    },
+    {
+      "name": "phone",
+      "type": "number"
+    },
+    {
+      "name": "birthday",
+      "type": "number"
+    },
+    {
+      "name": "streetNumber",
+      "type": "number"
+    },
+    {
+      "name": "zipCity",
+      "type": "number"
+    },
+    {
+      "name": "diets",
+      "type": "number"
+    },
+    {
+      "name": "registrationType",
+      "type": "number"
+    },
+    {
+      "name": "congregation",
+      "type": "number"
+    },
+    {
+      "name": "voice",
+      "type": "number"
+    },
+    {
+      "name": "instrumentTime",
+      "type": "number"
+    },
+    {
+      "name": "arrival",
+      "type": "number"
+    },
+    {
+      "name": "departure",
+      "type": "number"
+    },
+    {
+      "name": "accommodation",
+      "type": "number"
+    },
+    {
+      "name": "accommodationWith",
+      "type": "number"
+    },
+    {
+      "name": "photoAgreement",
+      "type": "number"
+    },
+    {
+      "name": "shirt",
+      "type": "number"
+    },
+    {
+      "name": "comments",
+      "type": "number"
+    },
+    {
+      "name": "created",
+      "type": "timestamp"
+    },
+    {
+      "name": "emailVerified",
+      "type": "timestamp"
+    }
+  ]
+}
