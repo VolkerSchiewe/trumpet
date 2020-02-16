@@ -9,7 +9,7 @@
     "target": "es2017",
     "typeRoots": ["node_modules/@types"],
     "noImplicitAny": false,
-    "noUnusedParameters": false,
+    "noUnusedParameters": false
   },
   "compileOnSave": true,
   "include": [
