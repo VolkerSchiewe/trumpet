@@ -1,11 +1,12 @@
-import * as React from "react";
+import {h} from "preact"
 import FormControl from "@material-ui/core/FormControl";
 import FormLabel from "@material-ui/core/FormLabel";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
-import {useTranslation} from "react-i18next";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import {useContext} from "preact/hooks";
+import {TranslateContext} from "@denysvuika/preact-translate";
 import slugify from "../../../functions/src/utils/slugify";
 
 interface Props {
@@ -18,7 +19,7 @@ interface Props {
 }
 
 export default ({field, choices, setState, helpText, noLabel, row}: Props) => {
-  const {t} = useTranslation();
+  const {t} = useContext(TranslateContext);
   return (
     <FormControl component="fieldset">
       {!noLabel && (
@@ -31,7 +32,7 @@ export default ({field, choices, setState, helpText, noLabel, row}: Props) => {
         defaultValue={choices[0]}
         onChange={e => setState(field, e.target.value)}>
         {choices.map(item => (
-            <FormControlLabel key={item} value={item} control={<Radio id={`radio-item-${slugify(item)}`}/>} label={t(item)}/>
+            <FormControlLabel key={item} value={item} control={<Radio id={`radio-item-${slugify(item)}`}/> as any} label={t(item)}/>
           )
         )}
       </RadioGroup>

@@ -1,5 +1,5 @@
-import * as React from "react";
-import {FormEvent, useState} from "react";
+import {h} from "preact"
+import {useContext, useState} from "preact/hooks"
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
@@ -28,7 +28,6 @@ import {
   ZIP_CITY
 } from "../../utils/database";
 import TextInput from "../forms/TextInput";
-import {useTranslation} from "react-i18next";
 import {validateBirthday, validateEmail, validateStreetAndNumber, validateZipAndCity} from "./valdiations";
 import {
   accommodationOptions,
@@ -45,6 +44,7 @@ import RadioInput from "../forms/RadioInput";
 import Divider from "@material-ui/core/Divider";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {TranslateContext} from "@denysvuika/preact-translate";
 
 const REGISTRATION_URL = "/registration";
 
@@ -71,7 +71,7 @@ export default () => {
     setData({...data, [key]: value})
   };
 
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     if (!executeRecaptcha)
       return;
@@ -111,7 +111,7 @@ export default () => {
   };
 
   const classes = useStyles();
-  const {t} = useTranslation();
+  const {t} = useContext(TranslateContext);
 
   return (
     <div>
@@ -133,7 +133,7 @@ export default () => {
             <TextInput field={PHONE} setState={setState} type={"tel"} required={false}/>
           </Grid>
           <Grid item sm={6} xs={12}>
-            <TextInput field={BIRTHDAY} setState={setState} validation={validateBirthday} placeholder={"dd.mm.yyyy"}
+            <TextInput field={BIRTHDAY} setState={setState} validation={validateBirthday}
                        inputProps={{inputMode: 'decimal'}}/>
           </Grid>
 

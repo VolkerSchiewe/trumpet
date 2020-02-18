@@ -1,8 +1,8 @@
+import {h, Fragment} from "preact"
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
-import * as React from "react";
-import {useRef, useState} from "react";
-import {useTranslation} from "react-i18next";
 import Chip from "@material-ui/core/Chip";
+import {useContext, useRef, useState} from "preact/hooks";
+import {TranslateContext} from "@denysvuika/preact-translate";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
   field: string,
@@ -13,7 +13,7 @@ interface Props extends Partial<OutlinedTextFieldProps> {
 }
 
 export default ({field, setState, validation, required, suggestions, ...otherProps}: Props) => {
-  const {t} = useTranslation();
+  const {t} = useContext(TranslateContext);
   const [error, setError] = useState("");
   const [suggestionsSorted, setSuggestions] = useState([] as string[]);
   const inputRef = useRef<OutlinedTextFieldProps>(null);
@@ -52,7 +52,7 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
     setState(field, item)
   };
   return (
-    <>
+    <Fragment>
       <TextField
         id={`text-input-${field}`}
         variant={"outlined"}
@@ -83,6 +83,6 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
           ))}
         </div>
       )}
-    </>
+    </Fragment>
   );
 }

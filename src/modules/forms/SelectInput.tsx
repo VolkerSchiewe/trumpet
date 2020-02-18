@@ -1,7 +1,8 @@
-import * as React from "react"
+import {h} from "preact"
 import TextField from "@material-ui/core/TextField";
-import {useTranslation} from "react-i18next";
 import MenuItem from "@material-ui/core/MenuItem";
+import {useContext} from "preact/hooks";
+import {TranslateContext} from "@denysvuika/preact-translate";
 import slugify from "../../../functions/src/utils/slugify";
 
 interface Props {
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export default ({field, choices, setState, required}: Props) => {
-  const {t} = useTranslation();
+  const {t} = useContext(TranslateContext);
   return (
     <TextField
       id={`select-input-${field}`}
