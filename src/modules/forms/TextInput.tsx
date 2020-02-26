@@ -12,7 +12,7 @@ interface Props extends Partial<OutlinedTextFieldProps> {
   suggestions?: string[]
 }
 
-export default ({field, setState, validation, required, suggestions, ...otherProps}: Props) => {
+export default ({field, setState, validation, required, suggestions, className, ...otherProps}: Props) => {
   const {t} = useContext(TranslateContext);
   const [error, setError] = useState("");
   const [suggestionsSorted, setSuggestions] = useState([] as string[]);
@@ -52,7 +52,7 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
     setState(field, item)
   };
   return (
-    <Fragment>
+    <div className={className}>
       <TextField
         id={`text-input-${field}`}
         variant={"outlined"}
@@ -83,6 +83,6 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
           ))}
         </div>
       )}
-    </Fragment>
+    </div>
   );
 }

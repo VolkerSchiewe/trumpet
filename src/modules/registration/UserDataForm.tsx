@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import Axios from "axios";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 import Grid from "@material-ui/core/Grid";
 import {
   ACCOMMODATION,
@@ -48,12 +47,6 @@ import {TranslateContext} from "@denysvuika/preact-translate";
 
 const REGISTRATION_URL = "/registration";
 
-const useStyles = makeStyles({
-  root: {
-    display: "flex",
-    flexDirection: "column",
-  },
-});
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
@@ -110,42 +103,31 @@ export default () => {
     }
   };
 
-  const classes = useStyles();
   const {t} = useContext(TranslateContext);
 
   return (
     <div>
-      <form onSubmit={onSubmit} className={classes.root}>
+      <form className="flex flex-wrap pt-4" onSubmit={onSubmit}>
+        <Typography className="w-full p-2" variant={"h3"}> Anmeldung </Typography>
+        <TextInput className="w-full lg:w-1/2 p-2" field={FIRST_NAME} setState={setState}/>
+        <TextInput className="w-full lg:w-1/2 p-2"  field={LAST_NAME} setState={setState}/>
+        <TextInput className="w-full lg:w-1/2 p-2" field={EMAIL} setState={setState} type={"email"} validation={validateEmail}/>
+        <TextInput className="w-full lg:w-1/2 p-2" field={PHONE} setState={setState} type={"tel"} required={false}/>
+        <TextInput className="w-full lg:w-1/2 p-2" field={BIRTHDAY} setState={setState} validation={validateBirthday} inputProps={{inputMode: 'numeric'}}/>
+        <TextInput className="w-full p-2" field={Street_NUMBER} setState={setState} validation={validateStreetAndNumber}/>
+        <TextInput  className="w-full p-2" field={ZIP_CITY} setState={setState} validation={validateZipAndCity}/>
+        <div className="w-full p-2">
+        <Divider/>
+        </div>
+
         <Grid container spacing={3}>
+
           <Grid item xs={12}>
-            <Typography variant={"h3"}> Anmeldung </Typography>
           </Grid>
-          <Grid item sm={6} xs={12}>
-            <TextInput field={FIRST_NAME} setState={setState}/>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <TextInput field={LAST_NAME} setState={setState}/>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <TextInput field={EMAIL} setState={setState} type={"email"} validation={validateEmail}/>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <TextInput field={PHONE} setState={setState} type={"tel"} required={false}/>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <TextInput field={BIRTHDAY} setState={setState} validation={validateBirthday}
-                       inputProps={{inputMode: 'decimal'}}/>
+          <Grid item xs={12}>
           </Grid>
 
           <Grid item xs={12}>
-            <TextInput field={Street_NUMBER} setState={setState} validation={validateStreetAndNumber}/>
-          </Grid>
-          <Grid item xs={12}>
-            <TextInput field={ZIP_CITY} setState={setState} validation={validateZipAndCity}/>
-          </Grid>
-
-          <Grid item xs={12}>
-            <Divider/>
           </Grid>
 
           <Grid item xs={12}>
