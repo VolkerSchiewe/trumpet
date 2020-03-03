@@ -10,6 +10,7 @@ import {TranslateContext} from "@denysvuika/preact-translate";
 import slugify from "../../../functions/src/utils/slugify";
 
 interface Props {
+  className?: string
   field: string,
   choices: string[]
   setState: (key: string, value: string) => void
@@ -18,27 +19,29 @@ interface Props {
   row?: boolean
 }
 
-export default ({field, choices, setState, helpText, noLabel, row}: Props) => {
+export default ({className, field, choices, setState, helpText, noLabel, row}: Props) => {
   const {t} = useContext(TranslateContext);
   return (
-    <FormControl component="fieldset">
-      {!noLabel && (
-        <FormLabel component="legend">{t(field)}</FormLabel>
-      )}
-      <RadioGroup
-        row={row}
-        aria-label={t(field)}
-        name={field}
-        defaultValue={choices[0]}
-        onChange={e => setState(field, e.target.value)}>
-        {choices.map(item => (
-            <FormControlLabel key={item} value={item} control={<Radio id={`radio-item-${slugify(item)}`}/> as any} label={t(item)}/>
-          )
-        )}
-      </RadioGroup>
-      {helpText && (
-        <FormHelperText>{t(helpText)}</FormHelperText>
-      )}
-    </FormControl>
+    <div className={className}>
+        <FormControl component="fieldset">
+          {!noLabel && (
+            <FormLabel component="legend">{t(field)}</FormLabel>
+          )}
+            <RadioGroup
+                row={row}
+                aria-label={t(field)}
+                name={field}
+                defaultValue={choices[0]}
+                onChange={e => setState(field, e.target.value)}>
+              {choices.map(item => (
+                  <FormControlLabel key={item} value={item} control={<Radio id={`radio-item-${slugify(item)}`}/> as any} label={t(item)}/>
+                )
+              )}
+            </RadioGroup>
+          {helpText && (
+            <FormHelperText>{t(helpText)}</FormHelperText>
+          )}
+        </FormControl>
+    </div>
   )
 }

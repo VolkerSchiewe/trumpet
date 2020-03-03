@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import Axios from "axios";
-import Grid from "@material-ui/core/Grid";
 import {
   ACCOMMODATION,
   ACCOMMODATION_WITH,
@@ -50,13 +49,10 @@ const REGISTRATION_URL = "/registration";
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
-  const initialData =
-    {
-      [ACCOMMODATION]: NO_ACCOMMODATION,
-      [PHOTO_AGREEMENT]: YES,
-    };
-
-  const [data, setData] = useState(initialData as any);
+  const [data, setData] = useState({
+    [ACCOMMODATION]: NO_ACCOMMODATION,
+    [PHOTO_AGREEMENT]: YES,
+  } as any);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -81,7 +77,7 @@ export default () => {
 
     // send data to server
     try {
-      const res = await Axios.post(REGISTRATION_URL, {
+      await Axios.post(REGISTRATION_URL, {
           recaptchaToken: token,
           ...data,
         },
@@ -90,11 +86,6 @@ export default () => {
             "Content-Type": "application/json"
           }
         });
-      if (res.status == 200) {
-        alert("Anmeldung versendet! Bitte bestätige noch deine Email Adresse.");
-        setError("");
-        window.location.reload()
-      }
     } catch (e) {
       console.error(e.message);
       setError(t("Something went wrong. Try again later!"))
@@ -109,99 +100,64 @@ export default () => {
     <div>
       <form className="flex flex-wrap pt-4" onSubmit={onSubmit}>
         <Typography className="w-full p-2" variant={"h3"}> Anmeldung </Typography>
-        <TextInput className="w-full lg:w-1/2 p-2" field={FIRST_NAME} setState={setState}/>
-        <TextInput className="w-full lg:w-1/2 p-2"  field={LAST_NAME} setState={setState}/>
-        <TextInput className="w-full lg:w-1/2 p-2" field={EMAIL} setState={setState} type={"email"} validation={validateEmail}/>
-        <TextInput className="w-full lg:w-1/2 p-2" field={PHONE} setState={setState} type={"tel"} required={false}/>
-        <TextInput className="w-full lg:w-1/2 p-2" field={BIRTHDAY} setState={setState} validation={validateBirthday} inputProps={{inputMode: 'numeric'}}/>
-        <TextInput className="w-full p-2" field={Street_NUMBER} setState={setState} validation={validateStreetAndNumber}/>
-        <TextInput  className="w-full p-2" field={ZIP_CITY} setState={setState} validation={validateZipAndCity}/>
+        <TextInput className="w-full md:w-1/2 p-2" field={FIRST_NAME} setState={setState}/>
+        <TextInput className="w-full md:w-1/2 p-2" field={LAST_NAME} setState={setState}/>
+        <TextInput className="w-full md:w-1/2 p-2" field={EMAIL} setState={setState} type={"email"}
+                   validation={validateEmail}/>
+        <TextInput className="w-full md:w-1/2 p-2" field={PHONE} setState={setState} type={"tel"} required={false}/>
+        <TextInput className="w-full md:w-1/2 p-2" field={BIRTHDAY} setState={setState} validation={validateBirthday}
+                   inputProps={{inputMode: 'numeric'}}/>
+        <TextInput className="w-full p-2" field={Street_NUMBER} setState={setState}
+                   validation={validateStreetAndNumber}/>
+        <TextInput className="w-full p-2" field={ZIP_CITY} setState={setState} validation={validateZipAndCity}/>
         <div className="w-full p-2">
-        <Divider/>
+          <Divider/>
+        </div>
+        <TextInput className="w-full p-2" field={CONGREGATION} setState={setState}
+                   suggestions={congregationSuggestions}/>
+        <SelectInput className="w-full md:w-1/2 p-2" field={REGISTRATION_TYPE} setState={setState}
+                     choices={registrationOptions}/>
+        {data[REGISTRATION_TYPE] !== GUEST && (
+          <SelectInput className="w-full md:w-1/2 p-2" field={VOICE} setState={setState} choices={voiceOptions}/>
+        )}
+        {data[REGISTRATION_TYPE] == BEGINNER && (
+          <TextInput className="w-full p-2" field={INSTRUMENT_TIME} setState={setState}/>
+        )}
+        <SelectInput className="w-full md:w-1/2 p-2" field={ARRIVAL} setState={setState} choices={arrivalOptions}/>
+        <SelectInput className="w-full md:w-1/2 p-2" field={DEPARTURE} setState={setState} choices={departureOptions}/>
+        <RadioInput className="w-full p-2" field={ACCOMMODATION} setState={setState} choices={accommodationOptions}/>
+        {data[ACCOMMODATION] !== NO_ACCOMMODATION && (
+          <TextInput className="w-full p-2" field={ACCOMMODATION_WITH} setState={setState} required={false}/>
+        )}
+        <div className={"w-full p-2"}>
+          <Divider/>
+        </div>
+        <SelectInput className="w-full md:w-1/4 p-2" field={SHIRT} setState={setState} choices={shirtOptions}
+                     required={false}/>
+        <TextInput className="w-full md:w-3/4 p-2" field={DIETS} setState={setState} required={false}
+                   suggestions={dietSuggestions}/>
+
+        <div className={"w-full p-2"}>
+          <Typography>
+            Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur Dokumentation und auf
+            Internetseiten veröffentlicht werden.
+          </Typography>
+          <RadioInput field={PHOTO_AGREEMENT} setState={setState} choices={yesNoOptions} noLabel row
+                      helpText={"This agreement can always be revoked at the organization of the brass festival."}/>
+        </div>
+        <TextInput className="w-full p-2" field={COMMENTS} setState={setState} required={false} multiline/>
+
+        {error && (
+          <Typography className={"w-full p-2"} color={"error"}>{error}</Typography>
+        )}
+        <div className="p-2">
+          <Button id={`btn-submit-form`} variant={"outlined"} type={"submit"}> {t("Submit")} </Button>
+
         </div>
 
-        <Grid container spacing={3}>
-
-          <Grid item xs={12}>
-          </Grid>
-          <Grid item xs={12}>
-          </Grid>
-
-          <Grid item xs={12}>
-          </Grid>
-
-          <Grid item xs={12}>
-            <TextInput field={CONGREGATION} setState={setState} suggestions={congregationSuggestions}
-                       autoComplete={"off"}/>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <SelectInput field={REGISTRATION_TYPE} setState={setState} choices={registrationOptions}/>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            {data[REGISTRATION_TYPE] !== GUEST && (
-              <SelectInput field={VOICE} setState={setState} choices={voiceOptions}/>
-            )}
-          </Grid>
-          {data[REGISTRATION_TYPE] == BEGINNER && (
-            <Grid item xs={12}>
-              <TextInput field={INSTRUMENT_TIME} setState={setState}/>
-            </Grid>
-          )}
-          <Grid item sm={6} xs={12}>
-            <SelectInput field={ARRIVAL} setState={setState} choices={arrivalOptions}/>
-          </Grid>
-          <Grid item sm={6} xs={12}>
-            <SelectInput field={DEPARTURE} setState={setState} choices={departureOptions}/>
-          </Grid>
-
-          <Grid item xs={12}>
-            <RadioInput field={ACCOMMODATION} setState={setState} choices={accommodationOptions}/>
-          </Grid>
-          {data[ACCOMMODATION] !== NO_ACCOMMODATION && (
-            <Grid item xs={12}>
-              <TextInput field={ACCOMMODATION_WITH} setState={setState} required={false}/>
-            </Grid>
-          )}
-
-          <Grid item xs={12}>
-            <Divider/>
-          </Grid>
-
-          <Grid item sm={3} xs={12}>
-            <SelectInput field={SHIRT} setState={setState} choices={shirtOptions} required={false}/>
-          </Grid>
-
-          <Grid item sm={9} xs={12}>
-            <TextInput field={DIETS} setState={setState} required={false} suggestions={dietSuggestions}
-                       autoComplete={"off"}/>
-          </Grid>
-
-          <Grid item xs={12}>
-            <Typography>
-              Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur Dokumentation und auf
-              Internetseiten veröffentlicht werden.
-            </Typography>
-            <RadioInput field={PHOTO_AGREEMENT} setState={setState} choices={yesNoOptions} noLabel row
-                        helpText={"This agreement can always be revoked at the organization of the brass festival."}/>
-          </Grid>
-
-          <Grid item xs={12}>
-            <TextInput field={COMMENTS} setState={setState} required={false} multiline/>
-          </Grid>
-
-          {error && (
-            <Grid item xs={12}>
-              <Typography color={"error"}>{error}</Typography>
-            </Grid>
-          )}
-          <Grid item xs={12}>
-            <Button id={`btn-submit-form`} variant={"outlined"} type={"submit"}> {t("Submit")} </Button>
-          </Grid>
-
-          <Backdrop open={isLoading}>
-            <CircularProgress/>
-          </Backdrop>
-        </Grid>
+        <Backdrop open={isLoading}>
+          <CircularProgress/>
+        </Backdrop>
       </form>
     </div>
   )

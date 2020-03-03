@@ -1,4 +1,4 @@
-import {h, Fragment} from "preact"
+import {h} from "preact"
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
 import Chip from "@material-ui/core/Chip";
 import {useContext, useRef, useState} from "preact/hooks";
