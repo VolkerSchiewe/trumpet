@@ -57,10 +57,13 @@ const useStyles = makeStyles({
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
-  const [data, setData] = useState({
-    [ACCOMMODATION]: NO_ACCOMMODATION,
-    [PHOTO_AGREEMENT]: YES,
-  } as any);
+  const initialData =
+    {
+      [ACCOMMODATION]: NO_ACCOMMODATION,
+      [PHOTO_AGREEMENT]: YES,
+    };
+
+  const [data, setData] = useState(initialData as any);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -85,7 +88,7 @@ export default () => {
 
     // send data to server
     try {
-      await Axios.post(REGISTRATION_URL, {
+      const res = await Axios.post(REGISTRATION_URL, {
           recaptchaToken: token,
           ...data,
         },
@@ -94,6 +97,11 @@ export default () => {
             "Content-Type": "application/json"
           }
         });
+      if (res.status == 200) {
+        alert("Anmeldung versendet!");
+        setError("");
+        window.location.reload()
+      }
     } catch (e) {
       console.error(e.message);
       setError(t("Something went wrong. Try again later!"))
@@ -141,7 +149,8 @@ export default () => {
           </Grid>
 
           <Grid item xs={12}>
-            <TextInput field={CONGREGATION} setState={setState} suggestions={congregationSuggestions}/>
+            <TextInput field={CONGREGATION} setState={setState} suggestions={congregationSuggestions}
+                       autoComplete={"off"}/>
           </Grid>
           <Grid item sm={6} xs={12}>
             <SelectInput field={REGISTRATION_TYPE} setState={setState} choices={registrationOptions}/>
@@ -181,7 +190,8 @@ export default () => {
           </Grid>
 
           <Grid item sm={9} xs={12}>
-            <TextInput field={DIETS} setState={setState} required={false} suggestions={dietSuggestions}/>
+            <TextInput field={DIETS} setState={setState} required={false} suggestions={dietSuggestions}
+                       autoComplete={"off"}/>
           </Grid>
 
           <Grid item xs={12}>

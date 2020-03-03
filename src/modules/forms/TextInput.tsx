@@ -35,10 +35,10 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
 
     // select suggestions
     if (suggestions && value)
-      if (suggestions.find(i => value === i))
+      if (suggestions.find(i => value.toLowerCase() === i.toLowerCase()))
         setSuggestions([]);
       else
-        setSuggestions(suggestions.filter(i => i.toLowerCase().indexOf(value.toLowerCase()) >= 0).slice(0,5));
+        setSuggestions(suggestions.filter(i => i.toLowerCase().indexOf(value.toLowerCase()) >= 0).slice(0, 5));
     else if (value === "") {
       setSuggestions([])
     }
