@@ -98,7 +98,7 @@ export default () => {
           }
         });
       if (res.status == 200) {
-        alert("Anmeldung versendet!");
+        alert("Anmeldung versendet! Bitte bestätige noch deine Email Adresse.");
         setError("");
         window.location.reload()
       }
