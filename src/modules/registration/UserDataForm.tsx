@@ -134,7 +134,7 @@ export default () => {
           </Grid>
           <Grid item sm={6} xs={12}>
             <TextInput field={BIRTHDAY} setState={setState} validation={validateBirthday} placeholder={"dd.mm.yyyy"}
-                       inputProps={{inputMode: 'numeric'}}/>
+                       inputProps={{inputMode: 'decimal'}}/>
           </Grid>
 
           <Grid item xs={12}>
