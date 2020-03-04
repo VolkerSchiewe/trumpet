@@ -17,6 +17,7 @@ functions/lib
 # Firebase
 .firebase
 firebase-debug.log
+firestore-debug.log
 .runtimeconfig.json
 functions/keys
 

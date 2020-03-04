@@ -9,7 +9,7 @@
     "build:hosting": "parcel build src/index.html --detailed-report --public-url '.'",
     "build:functions": "cd functions && yarn build",
     "build": "yarn build:functions && yarn build:hosting",
-    "serve": "yarn clean && yarn build && firebase serve",
+    "serve": "yarn clean && yarn build && firebase emulators:start",
     "deploy:dev": "yarn clean && yarn build && firebase use default && firebase deploy",
     "deploy:prod": "yarn clean && yarn build --no-source-maps && firebase use prod && firebase deploy"
   },
