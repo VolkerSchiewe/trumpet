@@ -49,10 +49,11 @@ const REGISTRATION_URL = "/registration";
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
-  const [data, setData] = useState({
+  const initialData = {
     [ACCOMMODATION]: NO_ACCOMMODATION,
     [PHOTO_AGREEMENT]: YES,
-  } as any);
+  };
+  const [data, setData] = useState(initialData as any);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -77,7 +78,7 @@ export default () => {
 
     // send data to server
     try {
-      await Axios.post(REGISTRATION_URL, {
+      const res = await Axios.post(REGISTRATION_URL, {
           recaptchaToken: token,
           ...data,
         },
@@ -86,6 +87,11 @@ export default () => {
             "Content-Type": "application/json"
           }
         });
+      if (res.status == 200) {
+        alert("Anmeldung versendet! Bitte bestätige noch deine Email Adresse.");
+        setError("");
+        window.location.reload()
+      }
     } catch (e) {
       console.error(e.message);
       setError(t("Something went wrong. Try again later!"))
@@ -106,7 +112,7 @@ export default () => {
                    validation={validateEmail}/>
         <TextInput className="w-full md:w-1/2 p-2" field={PHONE} setState={setState} type={"tel"} required={false}/>
         <TextInput className="w-full md:w-1/2 p-2" field={BIRTHDAY} setState={setState} validation={validateBirthday}
-                   inputProps={{inputMode: 'numeric'}}/>
+                   inputProps={{inputMode: 'decimal'}}/>
         <TextInput className="w-full p-2" field={Street_NUMBER} setState={setState}
                    validation={validateStreetAndNumber}/>
         <TextInput className="w-full p-2" field={ZIP_CITY} setState={setState} validation={validateZipAndCity}/>
@@ -114,7 +120,7 @@ export default () => {
           <Divider/>
         </div>
         <TextInput className="w-full p-2" field={CONGREGATION} setState={setState}
-                   suggestions={congregationSuggestions}/>
+                   suggestions={congregationSuggestions} autoComplete={"off"}/>
         <SelectInput className="w-full md:w-1/2 p-2" field={REGISTRATION_TYPE} setState={setState}
                      choices={registrationOptions}/>
         {data[REGISTRATION_TYPE] !== GUEST && (
@@ -135,7 +141,7 @@ export default () => {
         <SelectInput className="w-full md:w-1/4 p-2" field={SHIRT} setState={setState} choices={shirtOptions}
                      required={false}/>
         <TextInput className="w-full md:w-3/4 p-2" field={DIETS} setState={setState} required={false}
-                   suggestions={dietSuggestions}/>
+                   suggestions={dietSuggestions} autoComplete={"off"}/>
 
         <div className={"w-full p-2"}>
           <Typography>
