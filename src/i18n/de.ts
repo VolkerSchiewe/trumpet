@@ -22,17 +22,32 @@ import {
 import {
   ALTO,
   BASS,
-  BEGINNER, DOUBLE_BEDROOM, DOUBLE_BEDROOM_WITH_BUNK_BED, FAMILY_BEDROOM,
-  FRIDAY, GLUTEN_FREE, GROUP_ACCOMMODATION,
-  GUEST, LACTOSE_FREE, MONDAY, NO, NO_ACCOMMODATION, NONE,
+  BEGINNER,
+  DOUBLE_BEDROOM,
+  DOUBLE_BEDROOM_WITH_BUNK_BED,
+  FAMILY_BEDROOM,
+  FRIDAY,
+  GLUTEN_FREE,
+  GROUP_ACCOMMODATION,
+  GUEST,
+  LACTOSE_FREE,
+  MONDAY,
+  NO,
+  NO_ACCOMMODATION,
+  NONE,
   PARTICIPANT,
   SATURDAY,
-  SOPRANO, SUNDAY,
-  TENOR, VEGAN, VEGETARIAN, YES
+  SOPRANO,
+  SUNDAY,
+  TENOR,
+  VEGAN,
+  VEGETARIAN,
+  YES
 } from "../modules/registration/choices";
-import {errorBirthday, errorEmail, errorStreetAndNumber, errorZipAndCity} from "../modules/registration/valdiations";
+import {errorBirthday, errorRequired, validators} from "../modules/registration/valdiations";
 
 export default {
+  "Registration":"Anmeldung",
   [FIRST_NAME]: "Vorname",
   [LAST_NAME]: "Nachname",
   [EMAIL]: "E-Mail",
@@ -87,11 +102,11 @@ export default {
   "Submit": "Abschicken",
 
   // Errors
-  [errorEmail]: "Bitte gib eine korrekte Email Adresse ein",
+  [validators[EMAIL].message]: "Bitte gib eine korrekte Email Adresse ein",
   [errorBirthday]: "Bitte gib ein richtiges Geburtsdatum ein",
-  [errorStreetAndNumber]: "Bitte gib Straße und Hausnummer richtig ein",
-  [errorZipAndCity]: "Bitte gib PLZ und Stadt richtig ein",
-
+  [validators[Street_NUMBER].message]: "Bitte gib Straße und Hausnummer richtig ein",
+  [validators[ZIP_CITY].message]: "Bitte gib PLZ und Stadt richtig ein",
+  [errorRequired]: "Dieses Feld ist verpflichtend",
   "Something went wrong. Try again later!": "Etwas ist schiefgelaufen. Versuche es später noch mal!",
   "Please fill out the following fields correctly: ": "Bitte fülle die folgenden Felder korrekt aus: ",
 }

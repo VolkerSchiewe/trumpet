@@ -5,30 +5,16 @@ import {useContext, useRef, useState} from "preact/hooks";
 import {TranslateContext} from "@denysvuika/preact-translate";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
-  field: string,
-  setState: (key: string, value: string) => void,
-  validation?: (value: string) => string
-  required?: boolean
+  name: string
   suggestions?: string[]
+  errors: any
+  setValue?: (v: any) => void
 }
 
-export default ({field, setState, validation, required, suggestions, className, ...otherProps}: Props) => {
+export default ({name, errors, suggestions, className, setValue, ...otherProps}: Props) => {
   const {t} = useContext(TranslateContext);
-  const [error, setError] = useState("");
   const [suggestionsSorted, setSuggestions] = useState([] as string[]);
   const inputRef = useRef<OutlinedTextFieldProps>(null);
-
-  const validate = (e: any) => {
-    const value: string = e.target.value;
-
-    // validate
-    const error = value && validation ? validation(value) : "";
-    if (!error)
-      setState(field, value);
-    else
-      setState(field, "");
-    setError(error);
-  };
 
   const onChange = (e: any) => {
     const value: string = e.target.value;
@@ -45,26 +31,22 @@ export default ({field, setState, validation, required, suggestions, className, 
   };
 
   const onSuggestionClick = (item: string) => {
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = item;
-      onChange({target: {value: item}})
-    }
-    setState(field, item)
+    onChange({target: {value: item}});
+    setValue && setValue([{[name]: item}]);
   };
   return (
     <div className={className}>
       <TextField
-        id={`text-input-${field}`}
+        id={`text-input-${name}`}
         variant={"outlined"}
-        label={t(field)}
-        error={!!error}
-        helperText={t(error)}
+        label={t(name)}
+        error={!!errors?.[name]?.message}
+        helperText={errors?.[name] && t(errors?.[name]?.message)}
         fullWidth
         defaultValue={""}
-        required={required == undefined ? true : required}
-        onBlur={validate}
-        onChange={error ? validate : onChange}
         inputRef={inputRef}
+        onChange={onChange}
+        name={name}
         {...otherProps}
       >
         {otherProps.children}

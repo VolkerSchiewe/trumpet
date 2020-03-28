@@ -19,62 +19,47 @@ import {
   LAST_NAME,
   PHONE,
   PHOTO_AGREEMENT,
-  REGISTRATION_TYPE, requiredFields,
+  REGISTRATION_TYPE,
   SHIRT,
   Street_NUMBER,
   VOICE,
   ZIP_CITY
 } from "../../utils/database";
 import TextInput from "../forms/TextInput";
-import {validateBirthday, validateEmail, validateStreetAndNumber, validateZipAndCity} from "./valdiations";
+import {errorRequired, validators} from "./valdiations";
 import {
   accommodationOptions,
   arrivalOptions,
   BEGINNER,
-  congregationSuggestions,
-  departureOptions, dietSuggestions, GUEST, NO_ACCOMMODATION,
+  congregationSuggestions, departureOptions, dietSuggestions,
+  GUEST,
+  NO_ACCOMMODATION,
   registrationOptions, shirtOptions,
-  voiceOptions, YES,
-  yesNoOptions
+  voiceOptions, yesNoOptions
 } from "./choices";
-import SelectInput from "../forms/SelectInput";
-import RadioInput from "../forms/RadioInput";
 import Divider from "@material-ui/core/Divider";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {TranslateContext} from "@denysvuika/preact-translate";
+import {useForm} from 'react-hook-form'
+import SelectInput from "../forms/SelectInput";
+import RadioInput from "../forms/RadioInput";
 
 const REGISTRATION_URL = "/registration";
 
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
-  const initialData = {
-    [ACCOMMODATION]: NO_ACCOMMODATION,
-    [PHOTO_AGREEMENT]: YES,
-  };
-  const [data, setData] = useState(initialData as any);
+
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
-  const setState = (key: string, value: string) => {
-    setData({...data, [key]: value})
-  };
 
-  const onSubmit = async (e: any) => {
-    e.preventDefault();
+  const onSubmit = async (data: any) => {
     if (!executeRecaptcha)
       return;
     setLoading(true);
     const token = await executeRecaptcha("registration");
-
-    // check if required fields are available
-    const missingFields = requiredFields.filter(item => !data[item]);
-    if (missingFields.length) {
-      setError(t("Please fill out the following fields correctly: ") + missingFields.map(i => t(i)).join(", "));
-      setLoading(false);
-      return
-    }
 
     // send data to server
     try {
@@ -101,57 +86,80 @@ export default () => {
   };
 
   const {t} = useContext(TranslateContext);
-
+  const {register, setValue, errors, watch, control, handleSubmit} = useForm({
+    mode: "onBlur",
+  });
+  const registrationType = watch(REGISTRATION_TYPE);
+  const accommodation = watch(ACCOMMODATION);
   return (
     <div>
-      <form className="flex flex-wrap pt-4" onSubmit={onSubmit}>
-        <Typography className="w-full p-2" variant={"h3"}> Anmeldung </Typography>
-        <TextInput className="w-full md:w-1/2 p-2" field={FIRST_NAME} setState={setState}/>
-        <TextInput className="w-full md:w-1/2 p-2" field={LAST_NAME} setState={setState}/>
-        <TextInput className="w-full md:w-1/2 p-2" field={EMAIL} setState={setState} type={"email"}
-                   validation={validateEmail}/>
-        <TextInput className="w-full md:w-1/2 p-2" field={PHONE} setState={setState} type={"tel"} required={false}/>
-        <TextInput className="w-full md:w-1/2 p-2" field={BIRTHDAY} setState={setState} validation={validateBirthday}
-                   inputProps={{inputMode: 'decimal'}}/>
-        <TextInput className="w-full p-2" field={Street_NUMBER} setState={setState}
-                   validation={validateStreetAndNumber}/>
-        <TextInput className="w-full p-2" field={ZIP_CITY} setState={setState} validation={validateZipAndCity}/>
+      {/*
+      // @ts-ignore*/}
+      <form className="flex flex-wrap pt-4" onSubmit={handleSubmit(onSubmit)}>
+        <Typography className="w-full p-2" variant={"h3"}>{t("Registration")}</Typography>
+        <TextInput className="w-full md:w-1/2 p-2" name={FIRST_NAME} errors={errors}
+                   inputRef={register({required: t(errorRequired)})}/>
+        <TextInput className="w-full md:w-1/2 p-2" name={LAST_NAME} errors={errors}
+                   inputRef={register({required: t(errorRequired)})}/>
+        <TextInput className="w-full md:w-1/2 p-2" name={EMAIL} type={"email"} errors={errors}
+                   inputRef={register({
+                     required: t(errorRequired),
+                     pattern: {value: validators[EMAIL].pattern, message: t(validators[EMAIL].message)}
+                   })}/>
+        <TextInput className="w-full md:w-1/2 p-2" name={PHONE} errors={errors} type={"tel"}
+                   inputRef={register}/>
+        <TextInput className="w-full md:w-1/2 p-2" name={BIRTHDAY} errors={errors}
+                   inputProps={{inputMode: 'decimal'}}
+                   inputRef={register({required: t(errorRequired), validate: validators[BIRTHDAY].validation})}/>
+        <TextInput className="w-full p-2" name={Street_NUMBER} errors={errors}
+                   inputRef={register({
+                     required: t(errorRequired),
+                     pattern: {value: validators[Street_NUMBER].pattern, message: t(validators[Street_NUMBER].message)}
+                   })}/>
+        <TextInput className="w-full p-2" name={ZIP_CITY} errors={errors} inputRef={register({
+          required: t(errorRequired),
+          pattern: {value: validators[ZIP_CITY].pattern, message: t(validators[ZIP_CITY].message)}
+        })}/>
         <div className="w-full p-2">
           <Divider/>
         </div>
-        <TextInput className="w-full p-2" field={CONGREGATION} setState={setState}
-                   suggestions={congregationSuggestions} autoComplete={"off"}/>
-        <SelectInput className="w-full md:w-1/2 p-2" field={REGISTRATION_TYPE} setState={setState}
-                     choices={registrationOptions}/>
-        {data[REGISTRATION_TYPE] !== GUEST && (
-          <SelectInput className="w-full md:w-1/2 p-2" field={VOICE} setState={setState} choices={voiceOptions}/>
+        <TextInput className="w-full p-2" name={CONGREGATION} errors={errors} setValue={setValue}
+                   suggestions={congregationSuggestions} autoComplete={"off"}
+                   inputRef={register({required: t(errorRequired)})}/>
+        <SelectInput className="w-full md:w-1/2 p-2" name={REGISTRATION_TYPE} errors={errors}
+                     choices={registrationOptions} control={control} rules={{required: t(errorRequired)}}/>
+        {registrationType !== GUEST && (
+          <SelectInput className="w-full md:w-1/2 p-2" name={VOICE} errors={errors} choices={voiceOptions}
+                       control={control} rules={{required: t(errorRequired)}}/>
         )}
-        {data[REGISTRATION_TYPE] == BEGINNER && (
-          <TextInput className="w-full p-2" field={INSTRUMENT_TIME} setState={setState}/>
+        {registrationType == BEGINNER && (
+          <TextInput className="w-full p-2" name={INSTRUMENT_TIME} errors={errors}
+                     inputRef={register({required: t(errorRequired)})}/>
         )}
-        <SelectInput className="w-full md:w-1/2 p-2" field={ARRIVAL} setState={setState} choices={arrivalOptions}/>
-        <SelectInput className="w-full md:w-1/2 p-2" field={DEPARTURE} setState={setState} choices={departureOptions}/>
-        <RadioInput className="w-full p-2" field={ACCOMMODATION} setState={setState} choices={accommodationOptions}/>
-        {data[ACCOMMODATION] !== NO_ACCOMMODATION && (
-          <TextInput className="w-full p-2" field={ACCOMMODATION_WITH} setState={setState} required={false}/>
+        <SelectInput className="w-full md:w-1/2 p-2" name={ARRIVAL} errors={errors} choices={arrivalOptions}
+                     control={control} rules={{required: t(errorRequired)}}/>
+        <SelectInput className="w-full md:w-1/2 p-2" name={DEPARTURE} errors={errors} choices={departureOptions}
+                     control={control} rules={{required: t(errorRequired)}}/>
+        <RadioInput className="w-full p-2" name={ACCOMMODATION} errors={errors} choices={accommodationOptions} control={control}/>
+        {accommodation !== NO_ACCOMMODATION && (
+          <TextInput className="w-full p-2" name={ACCOMMODATION_WITH} errors={errors}/>
         )}
         <div className={"w-full p-2"}>
           <Divider/>
         </div>
-        <SelectInput className="w-full md:w-1/4 p-2" field={SHIRT} setState={setState} choices={shirtOptions}
-                     required={false}/>
-        <TextInput className="w-full md:w-3/4 p-2" field={DIETS} setState={setState} required={false}
-                   suggestions={dietSuggestions} autoComplete={"off"}/>
+        <SelectInput className="w-full md:w-1/4 p-2" name={SHIRT} errors={errors} choices={shirtOptions} control={control}/>
+        <TextInput className="w-full md:w-3/4 p-2" name={DIETS} errors={errors} inputRef={register}
+                   suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue}/>
 
         <div className={"w-full p-2"}>
           <Typography>
             Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur Dokumentation und auf
             Internetseiten veröffentlicht werden.
           </Typography>
-          <RadioInput field={PHOTO_AGREEMENT} setState={setState} choices={yesNoOptions} noLabel row
+          <RadioInput name={PHOTO_AGREEMENT} errors={errors} choices={yesNoOptions} noLabel row control={control}
                       helpText={"This agreement can always be revoked at the organization of the brass festival."}/>
         </div>
-        <TextInput className="w-full p-2" field={COMMENTS} setState={setState} required={false} multiline/>
+        <TextInput className="w-full p-2" name={COMMENTS} errors={errors} inputRef={register} multiline/>
 
         {error && (
           <Typography className={"w-full p-2"} color={"error"}>{error}</Typography>

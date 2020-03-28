@@ -1,25 +1,19 @@
-import {
-  errorBirthday,
-  errorEmail,
-  errorStreetAndNumber, errorZipAndCity, validateBirthday,
-  validateEmail,
-  validateStreetAndNumber, validateZipAndCity
-} from "../src/modules/registration/valdiations";
+import {errorBirthday, validateBirthday, validators,} from "../src/modules/registration/valdiations";
+import {EMAIL, Street_NUMBER, ZIP_CITY} from "../src/utils/database";
 
 describe("Validation functions", () => {
   describe("Email validation", () => {
 
     it('should pass with correct mail', () => {
-      expect(validateEmail("test@email.com")).toBe("")
+      expect("test@email.com").toEqual(expect.stringMatching(validators[EMAIL].pattern))
     });
 
     it('should fail with wrong emails', () => {
       const wrong = ["testemail.com", "test@emailcom"];
       wrong.forEach(email => {
-        expect(validateEmail(email)).toBe(errorEmail)
+        expect(email).toEqual(expect.not.stringMatching(validators[EMAIL].pattern))
       })
     });
-
   });
 
   describe("Street and number validation", () => {
@@ -29,7 +23,7 @@ describe("Validation functions", () => {
         "Example Street 1D",
       ];
       correct.forEach(streetNumber => {
-        expect(validateStreetAndNumber(streetNumber)).toBe("")
+        expect(streetNumber).toEqual(expect.stringMatching(validators[Street_NUMBER].pattern))
       })
     });
     it('should fail with invalid street and number', () => {
@@ -39,7 +33,7 @@ describe("Validation functions", () => {
         "12345 Example City",
       ];
       wrong.forEach(streetNumber => {
-        expect(validateStreetAndNumber(streetNumber)).toBe(errorStreetAndNumber)
+        expect(streetNumber).toEqual(expect.not.stringMatching(validators[Street_NUMBER].pattern))
       })
     });
   });
@@ -53,7 +47,7 @@ describe("Validation functions", () => {
         "1234AB Dutch Example City",
       ];
       correct.forEach(zipCity => {
-        expect(validateZipAndCity(zipCity)).toBe("")
+        expect(zipCity).toEqual(expect.stringMatching(validators[ZIP_CITY].pattern))
       })
     });
     it('should fail with invalid zip and city', () => {
@@ -63,35 +57,35 @@ describe("Validation functions", () => {
         "12345City",
       ];
       wrong.forEach(zipCity => {
-        expect(validateZipAndCity(zipCity)).toBe(errorZipAndCity)
+        expect(zipCity).toEqual(expect.not.stringMatching(validators[ZIP_CITY].pattern))
       })
     });
   });
+
   describe("Birthday validation", () => {
     it('should pass with correct date', () => {
-      const correct =[
+      const correct = [
         "01.01.2012",
         "31.01.2012",
         "31.12.2012",
         "1.6.2012",
         "1.6.1912",
       ];
-      correct.forEach(date=>{
-        expect(validateBirthday(date)).toBe("")
+      correct.forEach(date => {
+        expect(validateBirthday(date)).toBe(true)
       })
     });
     it('should fail with invalid dates', () => {
-      const wrong =[
-        "01.01.1800",
+      const wrong = [
         "31.12.2200",
         "31012012",
         "16.2012",
         "32.6.1912",
         "12.13.1912",
         "Some string",
-        // "30.02.2012", should fail but not covered yet
+        "30.02.2012",
       ];
-      wrong.forEach(date=>{
+      wrong.forEach(date => {
         expect(validateBirthday(date)).toBe(errorBirthday)
       })
     });
