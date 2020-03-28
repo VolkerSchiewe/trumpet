@@ -5,7 +5,7 @@
   "scripts": {
     "start": "parcel src/index.html",
     "test": "jest",
-    "test:cypress": "cypress run",
+    "test:cypress": "cypress run --record",
     "test:integration": "start-server-and-test start http://localhost:1234 test:cypress",
     "clean": "rm -rf .cache dist functions/lib",
     "build:hosting": "parcel build src/index.html --detailed-report --public-url '.'",
