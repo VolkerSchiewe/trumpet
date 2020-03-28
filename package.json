@@ -31,6 +31,7 @@
     "@types/react": "^16.8.22",
     "@types/react-dom": "^16.8.4",
     "@types/workbox-sw": "^4.2.0",
+    "cypress": "^4.2.0",
     "firebase-tools": "^7.0.2",
     "jest": "^25.1.0",
     "parcel-bundler": "^1.12.3",
@@ -38,7 +39,9 @@
     "typescript": "^3.5.2"
   },
   "jest": {
-    "roots": ["<rootDir>/test"],
+    "roots": [
+      "<rootDir>/test"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },
