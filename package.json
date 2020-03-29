@@ -46,6 +46,9 @@
     "roots": [
       "<rootDir>/test"
     ],
+    "testPathIgnorePatterns" : [
+      "<rootDir>/test/integration"
+    ],
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     },

@@ -43,7 +43,7 @@ export default ({className, name, choices, errors, helpText, noLabel, control, r
                   <FormControlLabel
                     key={item}
                     value={item}
-                    control={<Radio id={`radio-item-${slugify(item)}`}/> as any}
+                    control={<Radio id={`radio-item-${name}-${slugify(item)}`}/> as any}
                     label={t(item)}/>
                 )
               )}

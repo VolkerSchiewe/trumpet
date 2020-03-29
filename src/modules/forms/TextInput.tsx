@@ -3,6 +3,7 @@ import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
 import Chip from "@material-ui/core/Chip";
 import {useContext, useRef, useState} from "preact/hooks";
 import {TranslateContext} from "@denysvuika/preact-translate";
+import slugify from "../../../functions/src/utils/slugify";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
   name: string
@@ -55,6 +56,7 @@ export default ({name, errors, suggestions, className, setValue, ...otherProps}:
         <div>
           {suggestionsSorted.map((item, key) => (
             <Chip
+              id={`text-suggestion-${name}-${slugify(item)}`}
               style={{margin: 3}}
               key={key}
               label={t(item)}

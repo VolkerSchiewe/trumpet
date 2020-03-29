@@ -2,5 +2,6 @@
   "baseUrl": "http://localhost:1234",
   "projectId": "azcv4k",
   "integrationFolder": "test/integration",
-  "pluginsFile": "test/cypress_plugins"
+  "pluginsFile": "test/cypress_plugins",
+  "watchForFileChanges": false
 }
