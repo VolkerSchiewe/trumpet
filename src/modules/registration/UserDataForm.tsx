@@ -213,7 +213,7 @@ export default () => {
             </Grid>
           )}
           <Grid item xs={12}>
-            <Button variant={"outlined"} type={"submit"}> {t("Submit")} </Button>
+            <Button id={`btn-submit-form`} variant={"outlined"} type={"submit"}> {t("Submit")} </Button>
           </Grid>
 
           <Backdrop open={isLoading}>

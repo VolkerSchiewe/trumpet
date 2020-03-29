@@ -6,6 +6,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
 import {useTranslation} from "react-i18next";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import slugify from "../../../functions/src/utils/slugify";
 
 interface Props {
   field: string,
@@ -30,7 +31,7 @@ export default ({field, choices, setState, helpText, noLabel, row}: Props) => {
         defaultValue={choices[0]}
         onChange={e => setState(field, e.target.value)}>
         {choices.map(item => (
-            <FormControlLabel key={item} value={item} control={<Radio/>} label={t(item)}/>
+            <FormControlLabel key={item} value={item} control={<Radio id={`radio-item-${slugify(item)}`}/>} label={t(item)}/>
           )
         )}
       </RadioGroup>

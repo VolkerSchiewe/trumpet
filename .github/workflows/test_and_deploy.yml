@@ -34,7 +34,12 @@ jobs:
       
     - name: Run tests
       run: yarn test # TODO run tests in functions
-  
+
+    - name: Run integration tests
+      run: yarn test:integration
+      env:
+        CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+
     - name: Deploy to develop
       if: github.ref == 'refs/heads/develop'
       run: yarn deploy:dev --only hosting

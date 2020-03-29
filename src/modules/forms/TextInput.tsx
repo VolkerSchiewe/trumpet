@@ -54,7 +54,7 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
   return (
     <>
       <TextField
-        id={`id-text-input-${field}`}
+        id={`text-input-${field}`}
         variant={"outlined"}
         label={t(field)}
         error={!!error}

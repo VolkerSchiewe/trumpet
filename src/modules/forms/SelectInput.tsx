@@ -2,6 +2,7 @@ import * as React from "react"
 import TextField from "@material-ui/core/TextField";
 import {useTranslation} from "react-i18next";
 import MenuItem from "@material-ui/core/MenuItem";
+import slugify from "../../../functions/src/utils/slugify";
 
 interface Props {
   field: string
@@ -14,6 +15,7 @@ export default ({field, choices, setState, required}: Props) => {
   const {t} = useTranslation();
   return (
     <TextField
+      id={`select-input-${field}`}
       variant={"outlined"}
       fullWidth
       select
@@ -23,7 +25,7 @@ export default ({field, choices, setState, required}: Props) => {
       required={required == undefined ? true : required}
     >
       {choices.map(item => (
-        <MenuItem key={item} value={item}>
+        <MenuItem key={item} value={item} id={`select-item-${field}-${slugify(item)}`}>
           {t(item)}
         </MenuItem>
       ))}
