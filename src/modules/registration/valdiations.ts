@@ -1,49 +1,42 @@
-export const errorEmail = "Please enter a valid email";
+import {BIRTHDAY, EMAIL, Street_NUMBER, ZIP_CITY} from "../../utils/database";
 
-export function validateEmail(email: string) {
-  const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  if (email && !regex.test(String(email).trim().toLowerCase())) {
-    return errorEmail;
-  } else {
-    return ""
+export const validators = {
+  [EMAIL]: {
+    message: "Please enter a valid email",
+    pattern: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  },
+  [BIRTHDAY]: {
+    validation: validateBirthday,
+  },
+  [Street_NUMBER]: {
+    message: "Please enter a valid street name and number",
+    pattern: /^.+\s\d+\S?$/,
+  },
+  [ZIP_CITY]: {
+    message: "Please enter a valid ZIP code and city",
+    pattern: /^\d{4,5}(\s?.{2})?\s.+$/,
   }
-}
+};
 
-export const errorStreetAndNumber = "Please enter a valid street name and number";
+export const errorRequired = "This field is required";
+export const errorBirthday = "Please enter a valid birth date";
 
-export function validateStreetAndNumber(value: string) {
-  const regex = /^.+\s\d+\S?$/;
-  if (value && !regex.test(String(value).trim()))
-    return errorStreetAndNumber;
-  else
-    return ""
-}
-
-export const errorZipAndCity = "Please enter a valid ZIP code and city";
-
-export function validateZipAndCity(value: string) {
-  const regex = /^\d{4,5}(\s?.{2})?\s.+$/; // matches german and dutch format
-  if (value && !regex.test(String(value).trim()))
-    return errorZipAndCity;
-  else
-    return ""
-}
-
-export const errorBirthday = "Please enter a valid birth date"
-
-export function validateBirthday(birthday: string) {
-  // FIXME does not catch all edge cases :/
+export function validateBirthday(date: string): string | boolean {
   try {
-    const parts = birthday.match(/(\d+)/g)?.map(p => parseInt(p));
-    if (parts && parts.length > 2) {
-      if (parts[1] > 12)
-        return errorBirthday;
-      if (parts[0] > 31) {
-        return errorBirthday;
-      }
-      const date = new Date(parts[2], parts[1] - 1, parts[0]);
-      if (new Date() > date && date > new Date("1902-1-1"))
-        return "";
+    const matches = /^(\d{1,2})[.](\d{1,2})[.](\d{4})$/.exec(date);
+    if (matches == null) return errorBirthday;
+    const d = parseInt(matches[1]);
+    const m = parseInt(matches[2]) - 1;
+    const y = parseInt(matches[3]);
+    const composedDate = new Date(y, m, d);
+
+    if (composedDate.getDate() == d &&
+      composedDate.getMonth() == m &&
+      composedDate.getFullYear() == y &&
+      composedDate > new Date("1902-1-1") &&
+      composedDate < new Date()
+    ) {
+      return true
     }
   } catch (e) {
     return errorBirthday

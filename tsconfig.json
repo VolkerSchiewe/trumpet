@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
-    "jsx": "preserve",
-    "strict": true,
+    "module": "es6",
     "esModuleInterop": true,
+    "moduleResolution": "Node",
+    "jsx": "preserve",
+    "jsxFactory": "h",
+    "strict": true,
     "lib": [
       "dom",
       "es6",

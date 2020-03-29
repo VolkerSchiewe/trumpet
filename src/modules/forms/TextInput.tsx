@@ -1,34 +1,21 @@
+import {h} from "preact"
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
-import * as React from "react";
-import {useRef, useState} from "react";
-import {useTranslation} from "react-i18next";
 import Chip from "@material-ui/core/Chip";
+import {useContext, useRef, useState} from "preact/hooks";
+import {TranslateContext} from "@denysvuika/preact-translate";
+import slugify from "../../../functions/src/utils/slugify";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
-  field: string,
-  setState: (key: string, value: string) => void,
-  validation?: (value: string) => string
-  required?: boolean
+  name: string
   suggestions?: string[]
+  errors: any
+  setValue?: (v: any) => void
 }
 
-export default ({field, setState, validation, required, suggestions, ...otherProps}: Props) => {
-  const {t} = useTranslation();
-  const [error, setError] = useState("");
+export default ({name, errors, suggestions, className, setValue, ...otherProps}: Props) => {
+  const {t} = useContext(TranslateContext);
   const [suggestionsSorted, setSuggestions] = useState([] as string[]);
   const inputRef = useRef<OutlinedTextFieldProps>(null);
-
-  const validate = (e: any) => {
-    const value: string = e.target.value;
-
-    // validate
-    const error = value && validation ? validation(value) : "";
-    if (!error)
-      setState(field, value);
-    else
-      setState(field, "");
-    setError(error);
-  };
 
   const onChange = (e: any) => {
     const value: string = e.target.value;
@@ -45,26 +32,22 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
   };
 
   const onSuggestionClick = (item: string) => {
-    if (inputRef && inputRef.current) {
-      inputRef.current.value = item;
-      onChange({target: {value: item}})
-    }
-    setState(field, item)
+    onChange({target: {value: item}});
+    setValue && setValue([{[name]: item}]);
   };
   return (
-    <>
+    <div className={className}>
       <TextField
-        id={`text-input-${field}`}
+        id={`text-input-${name}`}
         variant={"outlined"}
-        label={t(field)}
-        error={!!error}
-        helperText={t(error)}
+        label={t(name)}
+        error={!!errors?.[name]?.message}
+        helperText={errors?.[name] && t(errors?.[name]?.message)}
         fullWidth
         defaultValue={""}
-        required={required == undefined ? true : required}
-        onBlur={validate}
-        onChange={error ? validate : onChange}
         inputRef={inputRef}
+        onChange={onChange}
+        name={name}
         {...otherProps}
       >
         {otherProps.children}
@@ -73,6 +56,7 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
         <div>
           {suggestionsSorted.map((item, key) => (
             <Chip
+              id={`text-suggestion-${name}-${slugify(item)}`}
               style={{margin: 3}}
               key={key}
               label={t(item)}
@@ -83,6 +67,6 @@ export default ({field, setState, validation, required, suggestions, ...otherPro
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 }
