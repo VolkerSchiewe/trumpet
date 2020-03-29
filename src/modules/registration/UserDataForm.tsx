@@ -50,7 +50,10 @@ const REGISTRATION_URL = "/registration";
 
 export default () => {
   const {executeRecaptcha} = useGoogleReCaptcha();
-
+  const {t} = useContext(TranslateContext);
+  const {register, setValue, errors, watch, control, handleSubmit, reset} = useForm({
+    mode: "onBlur",
+  });
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -75,7 +78,7 @@ export default () => {
       if (res.status == 200) {
         alert("Anmeldung versendet! Bitte bestätige noch deine Email Adresse.");
         setError("");
-        window.location.reload()
+        reset()
       }
     } catch (e) {
       console.error(e.message);
@@ -85,10 +88,6 @@ export default () => {
     }
   };
 
-  const {t} = useContext(TranslateContext);
-  const {register, setValue, errors, watch, control, handleSubmit} = useForm({
-    mode: "onBlur",
-  });
   const registrationType = watch(REGISTRATION_TYPE);
   const accommodation = watch(ACCOMMODATION);
   return (

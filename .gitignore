@@ -26,5 +26,4 @@ functions/keys
 coverage
 
 # CyPress
-cypress/fixtures
-cypress/support
+cypress
