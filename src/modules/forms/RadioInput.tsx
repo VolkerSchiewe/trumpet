@@ -40,7 +40,11 @@ export default ({className, name, choices, errors, helpText, noLabel, control, r
               name={name}
             >
               {choices.map(item => (
-                  <FormControlLabel key={item} value={item} control={<Radio id={`radio-item-${slugify(item)}`}/> as any} label={t(item)}/>
+                  <FormControlLabel
+                    key={item}
+                    value={item}
+                    control={<Radio id={`radio-item-${slugify(item)}`}/> as any}
+                    label={t(item)}/>
                 )
               )}
             </RadioGroup> as any

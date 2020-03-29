@@ -22,9 +22,7 @@ export default ({className, name, choices, errors, control, rules, ...otherProps
   const {t} = useContext(TranslateContext);
   return (
     <div className={className}>
-      <FormControl variant="outlined" fullWidth error={!!errors[name]}
-                   id={`select-input-${field}`}variant={"outlined"}
-      >
+      <FormControl variant="outlined" fullWidth error={!!errors[name]} id={`select-input-${name}`}>
         <InputLabel id={"id-select-label-" + name}>{t(name)}</InputLabel>
         <Controller
           as={
@@ -35,7 +33,7 @@ export default ({className, name, choices, errors, control, rules, ...otherProps
               {...otherProps}
             >
               {choices.map(item => (
-                <MenuItem key={item} value={item}>
+                <MenuItem key={item} value={item} id={`select-item-${name}-${slugify(item)}`}>
                   {t(item)}
                 </MenuItem>
               ))}

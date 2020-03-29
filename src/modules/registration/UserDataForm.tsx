@@ -140,14 +140,16 @@ export default () => {
                      control={control} rules={{required: t(errorRequired)}}/>
         <SelectInput className="w-full md:w-1/2 p-2" name={DEPARTURE} errors={errors} choices={departureOptions}
                      control={control} rules={{required: t(errorRequired)}}/>
-        <RadioInput className="w-full p-2" name={ACCOMMODATION} errors={errors} choices={accommodationOptions} control={control}/>
+        <RadioInput className="w-full p-2" name={ACCOMMODATION} errors={errors} choices={accommodationOptions}
+                    control={control}/>
         {accommodation !== NO_ACCOMMODATION && (
           <TextInput className="w-full p-2" name={ACCOMMODATION_WITH} errors={errors}/>
         )}
         <div className={"w-full p-2"}>
           <Divider/>
         </div>
-        <SelectInput className="w-full md:w-1/4 p-2" name={SHIRT} errors={errors} choices={shirtOptions} control={control}/>
+        <SelectInput className="w-full md:w-1/4 p-2" name={SHIRT} errors={errors} choices={shirtOptions}
+                     control={control}/>
         <TextInput className="w-full md:w-3/4 p-2" name={DIETS} errors={errors} inputRef={register}
                    suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue}/>
 
