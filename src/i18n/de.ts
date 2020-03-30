@@ -1,25 +1,4 @@
 import {
-  ACCOMMODATION,
-  ACCOMMODATION_WITH,
-  ARRIVAL,
-  BIRTHDAY,
-  COMMENTS,
-  CONGREGATION,
-  DEPARTURE,
-  DIETS,
-  EMAIL,
-  FIRST_NAME,
-  INSTRUMENT_TIME,
-  LAST_NAME,
-  PHONE,
-  PHOTO_AGREEMENT,
-  REGISTRATION_TYPE,
-  SHIRT,
-  Street_NUMBER,
-  VOICE,
-  ZIP_CITY
-} from "../utils/database";
-import {
   ALTO,
   BASS,
   BEGINNER,
@@ -45,14 +24,35 @@ import {
   YES
 } from "../modules/registration/choices";
 import {errorBirthday, errorRequired, validators} from "../modules/registration/valdiations";
+import {
+  ACCOMMODATION,
+  ACCOMMODATION_WITH,
+  ARRIVAL,
+  BIRTHDAY,
+  COMMENTS,
+  CONGREGATION,
+  DEPARTURE,
+  DIETS,
+  EMAIL,
+  FIRST_NAME,
+  INSTRUMENT_TIME,
+  LAST_NAME,
+  PHONE,
+  PHOTO_AGREEMENT,
+  REGISTRATION_TYPE,
+  SHIRT,
+  STREET_NUMBER,
+  VOICE,
+  ZIP_CITY
+} from "../utils/database";
 
 export default {
-  "Registration":"Anmeldung",
+  Registration:"Anmeldung",
   [FIRST_NAME]: "Vorname",
   [LAST_NAME]: "Nachname",
   [EMAIL]: "E-Mail",
   [PHONE]: "Telefon",
-  [Street_NUMBER]: "Straße & Hausnummer",
+  [STREET_NUMBER]: "Straße & Hausnummer",
   [ZIP_CITY]: "PLZ & Stadt",
   [BIRTHDAY]: "Geburtstag",
   [DIETS]: "Essensbesonderheiten (Vegetarisch, Allergien, etc.)",
@@ -99,12 +99,12 @@ export default {
   [FAMILY_BEDROOM]: "Familienzimmer (Doppelbett u. Etagenbett)",
 
   "This agreement can always be revoked at the organization of the brass festival.": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
-  "Submit": "Abschicken",
+  Submit: "Abschicken",
 
   // Errors
   [validators[EMAIL].message]: "Bitte gib eine korrekte Email Adresse ein",
   [errorBirthday]: "Bitte gib ein richtiges Geburtsdatum ein",
-  [validators[Street_NUMBER].message]: "Bitte gib Straße und Hausnummer richtig ein",
+  [validators[STREET_NUMBER].message]: "Bitte gib Straße und Hausnummer richtig ein",
   [validators[ZIP_CITY].message]: "Bitte gib PLZ und Stadt richtig ein",
   [errorRequired]: "Dieses Feld ist verpflichtend",
   "Something went wrong. Try again later!": "Etwas ist schiefgelaufen. Versuche es später noch mal!",

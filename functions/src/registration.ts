@@ -1,24 +1,24 @@
-import {Request} from "firebase-functions/lib/providers/https";
 import {Response} from "express";
-import RegistrationCompleteMail from "./mails/registrationComplete";
+import * as admin from "firebase-admin";
+import {Request} from "firebase-functions/lib/providers/https";
 import {sendMail} from "./helper/sendMail";
 import {validateRecaptcha} from "./helper/validateRecaptcha";
-import * as admin from "firebase-admin";
+import RegistrationCompleteMail from "./mails/registrationComplete";
 import {DB} from "./utils/constants";
 import Timestamp = admin.firestore.Timestamp;
 
-export default (admin: admin.app.App) => async (req: Request, res: Response) => {
+export default (adminObj: typeof admin) => async (req: Request, res: Response): Promise<void> => {
   const {recaptchaToken, ...data} = req.body;
   console.log(`Registering: ${data.firstName} ${data.lastName}, ${data.email}`);
   try {
     await validateRecaptcha(recaptchaToken); // throws if something is wrong
-    const registeredMails = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).where(DB.EMAIL, "==", data.email).get();
+    const registeredMails = await adminObj.firestore().collection(DB.PARTICIPANTS_COLLECTION).where(DB.EMAIL, "==", data.email).get();
     if (registeredMails.size > 0)
       throw new Error("Email is already registered!");
 
     // adding created date
     data[DB.CREATED] = Timestamp.now();
-    const doc = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).add(data);
+    const doc = await adminObj.firestore().collection(DB.PARTICIPANTS_COLLECTION).add(data);
     console.log(`Stored document ${doc.id} with data: ${JSON.stringify(data)}`);
 
     const mail = new RegistrationCompleteMail(data.firstName, data.email, `${req.protocol}://${req.hostname}/verifyMail?token=${doc.id}`);

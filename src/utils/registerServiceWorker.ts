@@ -1,4 +1,4 @@
-export function registerServiceWorker() {
+export function registerServiceWorker(): void {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('../service-worker.ts')
