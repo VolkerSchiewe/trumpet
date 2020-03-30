@@ -1,14 +1,14 @@
+import {TranslateProvider} from "@denysvuika/preact-translate";
+import Container from "@material-ui/core/Container";
 import {h} from "preact"
 import {GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
-import UserDataForm from "../modules/registration/UserDataForm";
-import Container from "@material-ui/core/Container";
-import {TranslateProvider} from "@denysvuika/preact-translate";
 import de from "../i18n/de";
 import en from "../i18n/en";
+import UserDataForm from "../modules/registration/UserDataForm";
 
 const translations = {
-  de: de,
-  en: en,
+  de,
+  en,
 };
 export default () => (
   <div>

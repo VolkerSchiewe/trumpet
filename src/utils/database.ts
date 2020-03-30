@@ -3,7 +3,7 @@ export const LAST_NAME = "lastName";
 export const EMAIL = "email";
 export const PHONE = "phone";
 export const BIRTHDAY = "birthday";
-export const Street_NUMBER = "streetNumber";
+export const STREET_NUMBER = "streetNumber";
 export const ZIP_CITY = "zipCity";
 export const DIETS = "diets";
 export const REGISTRATION_TYPE = "registrationType";
@@ -20,5 +20,5 @@ export const COMMENTS = "comments";
 
 
 export const requiredFields = [
-  FIRST_NAME, LAST_NAME, EMAIL, BIRTHDAY, Street_NUMBER, ZIP_CITY, REGISTRATION_TYPE, CONGREGATION, ARRIVAL, DEPARTURE, ACCOMMODATION, PHOTO_AGREEMENT
+  FIRST_NAME, LAST_NAME, EMAIL, BIRTHDAY, STREET_NUMBER, ZIP_CITY, REGISTRATION_TYPE, CONGREGATION, ARRIVAL, DEPARTURE, ACCOMMODATION, PHOTO_AGREEMENT
 ];

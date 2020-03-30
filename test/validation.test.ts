@@ -1,5 +1,5 @@
 import {errorBirthday, validateBirthday, validators,} from "../src/modules/registration/valdiations";
-import {EMAIL, Street_NUMBER, ZIP_CITY} from "../src/utils/database";
+import {EMAIL, STREET_NUMBER, ZIP_CITY} from "../src/utils/database";
 
 describe("Validation functions", () => {
   describe("Email validation", () => {
@@ -23,7 +23,7 @@ describe("Validation functions", () => {
         "Example Street 1D",
       ];
       correct.forEach(streetNumber => {
-        expect(streetNumber).toEqual(expect.stringMatching(validators[Street_NUMBER].pattern))
+        expect(streetNumber).toEqual(expect.stringMatching(validators[STREET_NUMBER].pattern))
       })
     });
     it('should fail with invalid street and number', () => {
@@ -33,13 +33,13 @@ describe("Validation functions", () => {
         "12345 Example City",
       ];
       wrong.forEach(streetNumber => {
-        expect(streetNumber).toEqual(expect.not.stringMatching(validators[Street_NUMBER].pattern))
+        expect(streetNumber).toEqual(expect.not.stringMatching(validators[STREET_NUMBER].pattern))
       })
     });
   });
 
   describe("Zip and City validation", () => {
-    it('should pass with correct zip and city', function () {
+    it('should pass with correct zip and city', () => {
       const correct = [
         "12345 Example",
         "12345 Example City",

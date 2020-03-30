@@ -1,27 +1,27 @@
-import {h} from "preact"
-import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import FormHelperText from "@material-ui/core/FormHelperText";
-import {useContext} from "preact/hooks";
 import {TranslateContext} from "@denysvuika/preact-translate";
-import {Controller, Control} from "react-hook-form";
+import FormControl from "@material-ui/core/FormControl";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormLabel from "@material-ui/core/FormLabel";
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import {h} from "preact"
+import {useContext} from "preact/hooks";
+import {Control, Controller, FieldError, NestDataObject} from "react-hook-form";
 import slugify from "../../../functions/src/utils/slugify";
 
 interface Props {
-  className?: string
-  name: string
-  choices: string[]
-  errors: any,
-  control: Control,
-  noLabel?: boolean
-  row?: boolean
-  helpText?: string
+  className?: string;
+  name: string;
+  choices: string[];
+  errors: NestDataObject<Record<string, string|undefined>, FieldError>;
+  control: Control;
+  noLabel?: boolean;
+  row?: boolean;
+  helpText?: string;
 }
 
-export default ({className, name, choices, errors, helpText, noLabel, control, row}: Props) => {
+export default function RadioInput({className, name, choices, errors, helpText, noLabel, control, row}: Props): JSX.Element {
   const {t} = useContext(TranslateContext);
   return (
     <div className={className}>
@@ -43,17 +43,17 @@ export default ({className, name, choices, errors, helpText, noLabel, control, r
                   <FormControlLabel
                     key={item}
                     value={item}
-                    control={<Radio id={`radio-item-${name}-${slugify(item)}`}/> as any}
-                    label={t(item)}/>
+                    control={<Radio id={`radio-item-${name}-${slugify(item)}`} /> as JSX.Element}
+                    label={t(item)} />
                 )
               )}
-            </RadioGroup> as any
-          }/>
+            </RadioGroup> as JSX.Element
+          } />
         {helpText && (
           <FormHelperText>{t(helpText)}</FormHelperText>
         )}
         {!!errors?.[name]?.message && (
-          <FormHelperText>{t(errors?.[name]?.message)}</FormHelperText>
+          <FormHelperText>{t(errors?.[name]?.message || "")}</FormHelperText>
         )}
       </FormControl>
     </div>

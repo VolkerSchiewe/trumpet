@@ -1,13 +1,13 @@
-import {Request} from "firebase-functions/lib/providers/https";
 import {Response} from "express";
 import * as admin from "firebase-admin";
+import {Request} from "firebase-functions/lib/providers/https";
 import {DB} from "./utils/constants";
 import Timestamp = admin.firestore.Timestamp;
 
-export default (admin: admin.app.App) => async (req: Request, res: Response) => {
+export default (adminObj: typeof admin) => async (req: Request, res: Response): Promise<void> => {
   console.log(req.query.token);
   try {
-    const document = await admin.firestore().collection(DB.PARTICIPANTS_COLLECTION).doc(req.query.token);
+    const document = await adminObj.firestore().collection(DB.PARTICIPANTS_COLLECTION).doc(req.query.token);
     const data = (await document.get()).data();
     const created = data ? data[DB.CREATED].toDate() : null;
     const ONE_HOUR = 60 * 60 * 1000; /* ms */

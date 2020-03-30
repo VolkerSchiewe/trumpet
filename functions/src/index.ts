@@ -1,14 +1,12 @@
+import * as admin from "firebase-admin"
 import * as functions from "firebase-functions"
 import registration from "./registration";
-import verifyEmail from "./verifyEmail";
-import {DB} from "./utils/constants";
 import sendTelegramMessage from "./sendTelegramMessage";
-
-const admin = require('firebase-admin');
-const serviceAccount = require("../keys/devKeys.json");
+import {DB} from "./utils/constants";
+import verifyEmail from "./verifyEmail";
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(require("../keys/devKeys.json")),
   databaseURL: "https://trumpet-dev-7521f.firebaseio.com"
 });
 const europeFunctions = functions.region("europe-west1");

@@ -1,23 +1,24 @@
-import {h} from "preact"
-import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
-import Chip from "@material-ui/core/Chip";
-import {useContext, useRef, useState} from "preact/hooks";
 import {TranslateContext} from "@denysvuika/preact-translate";
+import Chip from "@material-ui/core/Chip";
+import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
+import {h, JSX} from "preact"
+import {useContext, useRef, useState} from "preact/hooks";
+import {FieldError, NestDataObject} from "react-hook-form"
 import slugify from "../../../functions/src/utils/slugify";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
-  name: string
-  suggestions?: string[]
-  errors: any
-  setValue?: (v: any) => void
+  name: string;
+  suggestions?: string[];
+  errors: NestDataObject<Record<string, string|undefined>, FieldError>;
+  setValue?: (v: object) => void;
 }
 
-export default ({name, errors, suggestions, className, setValue, ...otherProps}: Props) => {
+export default function TextInput({name, errors, suggestions, className, setValue, ...otherProps}: Props): JSX.Element {
   const {t} = useContext(TranslateContext);
   const [suggestionsSorted, setSuggestions] = useState([] as string[]);
   const inputRef = useRef<OutlinedTextFieldProps>(null);
 
-  const onChange = (e: any) => {
+  const onChange = (e: any): void => {
     const value: string = e.target.value;
 
     // select suggestions
@@ -31,7 +32,7 @@ export default ({name, errors, suggestions, className, setValue, ...otherProps}:
     }
   };
 
-  const onSuggestionClick = (item: string) => {
+  const onSuggestionClick = (item: string): void => {
     onChange({target: {value: item}});
     setValue && setValue([{[name]: item}]);
   };
@@ -42,7 +43,7 @@ export default ({name, errors, suggestions, className, setValue, ...otherProps}:
         variant={"outlined"}
         label={t(name)}
         error={!!errors?.[name]?.message}
-        helperText={errors?.[name] && t(errors?.[name]?.message)}
+        helperText={errors?.[name] && t(errors?.[name]?.message || "")}
         fullWidth
         defaultValue={""}
         inputRef={inputRef}
