@@ -45,20 +45,11 @@ const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 20
             <meta name="msapplication-TileImage" content="images/icons/ms-icon-144x144.png"/>
         </Head>
         <header>
-            <nav>
-                <Link href="/">
-                    <a>Home</a>
-                </Link>{' '}
-                |{' '}
-                <Link href="/registration">
-                    <a>Registration</a>
-                </Link>{' '}
-            </nav>
+            {/*   Add Navigation here*/}
         </header>
         {children}
         <footer>
-            <hr/>
-            <span className={"bg-blue-500"}>I'm here to stay (Footer)</span>
+            {/* Add footer here*/}
         </footer>
     </div>
 )

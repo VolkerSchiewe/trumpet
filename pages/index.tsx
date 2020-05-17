@@ -1,15 +1,11 @@
-import Link from 'next/link'
+import React from "react";
+import Placeholder from "../components/Placeholder";
 import Layout from '../components/shared/Layout'
 
 const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
-    <h1>Hello Next.js 👋</h1>
-    <p>
-      <Link href="/about">
-        <a>About</a>
-      </Link>
-    </p>
-  </Layout>
+    <Layout>
+        <Placeholder/>
+    </Layout>
 )
 
 IndexPage.getInitialProps = async () => ({
