@@ -5,6 +5,7 @@
     "./*/*.ts"
   ],
   "compilerOptions": {
+    "isolatedModules": false,
     "types": ["../../node_modules/cypress"]
   }
 }

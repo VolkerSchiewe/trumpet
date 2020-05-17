@@ -6,12 +6,15 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
-    "type-check": "tsc"
+    "build-start": "yarn build && yarn start",
+    "type-check": "tsc",
+    "test": "jest",
+    "test:cypress": "cypress run --record",
+    "test:integration": "start-server-and-test build-start http://localhost:3000 test:cypress"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.14",
-    "axios": "^0.19.2",
-    "next": "latest",
+    "next": "^9.4.1",
     "next-i18next": "^4.4.2",
     "next-pwa": "^2.4.1",
     "react": "^16.12.0",
@@ -21,13 +24,31 @@
     "telegraf": "^3.38.0"
   },
   "devDependencies": {
+    "@types/jest": "^25.2.2",
     "@types/node": "^12.12.21",
     "@types/react": "^16.9.16",
     "@types/react-dom": "^16.9.4",
     "autoprefixer": "^9.8.0",
+    "cypress": "^4.5.0",
     "express": "^4.17.1",
+    "jest": "^26.0.1",
     "postcss-import": "^12.0.1",
+    "start-server-and-test": "^1.11.0",
     "tailwindcss": "^1.4.6",
-    "typescript": "3.7.3"
+    "ts-jest": "^26.0.0",
+    "typescript": "^3.9.2"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/test"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/test/integration"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "clearMocks": true,
+    "coverageDirectory": "coverage"
   }
 }

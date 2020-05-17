@@ -1,4 +1,3 @@
-import Sinon from "cypress/types/sinon";
 
 describe('The User registration', () => {
   const userData = {
@@ -13,20 +12,20 @@ describe('The User registration', () => {
     instrumentTime: "Trumpet, 2 years",
     accommodationWith: "Partner"
   };
-  let windowAlert: Cypress.Agent<Sinon.SinonStub>;
+  let windowAlert:Cypress.Agent<sinon.SinonStub>;
 
   it('successfully loads', () => {
-    cy.visit('/')
+    cy.visit('/registration')
   });
 
   it('guest succeeds with required fields', () => {
     cy.server();
-    cy.route('POST', "/registration", []).as("registrationPost");
+    cy.route('POST', "/api/registration", []).as("registrationPost");
 
     windowAlert = cy.stub();
     cy.on('window:alert', windowAlert);
 
-    cy.visit('/');
+    cy.visit('/registration');
 
     cy.get('#text-input-firstName').type(userData.firstName);
     cy.get('#text-input-lastName').type(userData.lastName);
@@ -61,11 +60,11 @@ describe('The User registration', () => {
 
   it('participant succeeds with required fields', () => {
     cy.server();
-    cy.route('POST', "/registration", []).as("registrationPost");
+    cy.route('POST', "/api/registration", []).as("registrationPost");
     windowAlert = cy.stub();
     cy.on('window:alert', windowAlert);
 
-    cy.visit('/');
+    cy.visit('/registration');
 
     cy.get('#text-input-firstName').type(userData.firstName);
     cy.get('#text-input-lastName').type(userData.lastName);
@@ -101,11 +100,11 @@ describe('The User registration', () => {
 
   it('beginner succeeds with required fields', () => {
     cy.server();
-    cy.route('POST', "/registration", []).as("registrationPost");
+    cy.route('POST', "/api/registration", []).as("registrationPost");
     windowAlert = cy.stub();
     cy.on('window:alert', windowAlert);
 
-    cy.visit('/');
+    cy.visit('/registration');
 
     cy.get('#text-input-firstName').type(userData.firstName);
     cy.get('#text-input-lastName').type(userData.lastName);
@@ -142,11 +141,11 @@ describe('The User registration', () => {
 
   it('should succeed with all fields', () => {
     cy.server();
-    cy.route('POST', "/registration", []).as("registrationPost");
+    cy.route('POST', "/api/registration", []).as("registrationPost");
     windowAlert = cy.stub();
     cy.on('window:alert', windowAlert);
 
-    cy.visit('/');
+    cy.visit('/registration');
 
     cy.get('#text-input-firstName').type(userData.firstName);
     cy.get('#text-input-lastName').type(userData.lastName);

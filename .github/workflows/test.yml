@@ -1,4 +1,4 @@
-name: Test and Deploy
+name: Tests
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: set node version
+    - name: Set node version
       uses: actions/setup-node@v1
       with:
         node-version: '10.x'
@@ -25,23 +25,14 @@ jobs:
 
     - name: Install dependencies hosting
       run: yarn install
-    - name: Install dependencies functions
-      working-directory: ./functions
-      run: yarn install
 
     - name: Build
       run: yarn build
       
-    - name: Run tests
-      run: yarn test # TODO run tests in functions
+    - name: Run unit tests
+      run: yarn test
 
     - name: Run integration tests
       run: yarn test:integration
       env:
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-
-    - name: Deploy to develop
-      if: github.ref == 'refs/heads/develop'
-      run: yarn deploy:dev --only hosting
-      env:
-        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}

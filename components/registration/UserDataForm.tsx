@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
-import Axios from "axios";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {useForm} from 'react-hook-form'
 import {
@@ -47,11 +46,11 @@ import {
 } from "./choices";
 import {errorRequired, validators} from "./valdiations";
 
-const REGISTRATION_URL = "/registration";
+const REGISTRATION_URL = "/api/registration";
 
 
 const UserDataForm = () => {
-    const t = (value: string)=> value;
+    const t = (value: string) => value;
     const {executeRecaptcha} = useGoogleReCaptcha();
     const {register, setValue, errors, watch, control, handleSubmit, reset} = useForm<UserData>({
         mode: "onBlur",
@@ -68,15 +67,16 @@ const UserDataForm = () => {
 
         // send data to server
         try {
-            const res = await Axios.post(REGISTRATION_URL, {
+            const res = await fetch(REGISTRATION_URL, {
+                method: "POST",
+                body: JSON.stringify({
                     recaptchaToken: token,
                     ...data,
-                },
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
+                }),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
             if (res.status == 200) {
                 alert("Anmeldung versendet! Bitte bestätige noch deine Email Adresse.");
                 setError("");
