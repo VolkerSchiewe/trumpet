@@ -1,4 +1,4 @@
-import {errorBirthday, validateBirthday, validators,} from "../src/modules/registration/valdiations";
+import {errorBirthday, validateBirthday, validators,} from "../components/registration/valdiations";
 import {EMAIL, STREET_NUMBER, ZIP_CITY} from "../src/utils/database";
 
 describe("Validation functions", () => {

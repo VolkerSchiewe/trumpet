@@ -31,4 +31,4 @@ cypress
 # Nextjs
 .next
 /public/sw.js
-/public/workbox-e032be30.js
+/public/workbox-*.js

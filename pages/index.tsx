@@ -12,4 +12,7 @@ const IndexPage = () => (
   </Layout>
 )
 
+IndexPage.getInitialProps = async () => ({
+    namespacesRequired: ['index'],
+})
 export default IndexPage
