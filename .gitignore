@@ -11,7 +11,7 @@ yarn-error.log
 # parcel bundler / output files
 dist
 .cache
-functions/lib
+fb-functions/lib
 
 
 # Firebase
@@ -19,7 +19,7 @@ functions/lib
 firebase-debug.log
 firestore-debug.log
 .runtimeconfig.json
-functions/keys
+fb-functions/keys
 
 # Tests
 .nyc_output
