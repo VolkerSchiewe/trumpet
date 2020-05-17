@@ -35,7 +35,7 @@ const Layout: React.FunctionComponent<Props> = ({
     {children}
     <footer>
       <hr />
-      <span>I'm here to stay (Footer)</span>
+      <span className={"bg-blue-500"}>I'm here to stay (Footer)</span>
     </footer>
   </div>
 )
