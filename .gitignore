@@ -27,3 +27,6 @@ coverage
 
 # CyPress
 cypress
+
+# Nextjs
+.next

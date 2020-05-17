@@ -1,17 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es6",
+    "allowJs": true,
+    "alwaysStrict": true,
     "esModuleInterop": true,
-    "moduleResolution": "Node",
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "jsx": "preserve",
-    "jsxFactory": "h",
+    "lib": ["dom", "es2017"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
     "strict": true,
-    "lib": [
-      "dom",
-      "es6",
-      "es2016",
-      "webworker"
-    ]
-  }
+    "target": "esnext"
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }
