@@ -1,6 +1,6 @@
 import React from "react";
 import {GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
-import Layout from "../components/Layout";
+import Layout from "../components/shared/Layout";
 import UserDataForm from "../components/registration/UserDataForm";
 
 const RegistrationPage = () => (

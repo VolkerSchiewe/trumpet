@@ -6,7 +6,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import {Control, Controller, FieldError, Message, NestDataObject} from "react-hook-form";
-import slugify from "../../utils/slugify";
+import slugify from "../../../utils/slugify";
 
 interface Props {
     className?: string;

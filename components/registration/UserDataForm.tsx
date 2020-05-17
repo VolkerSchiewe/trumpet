@@ -27,9 +27,9 @@ import {
     VOICE,
     ZIP_CITY
 } from "./types";
-import RadioInput from "../forms/RadioInput";
-import SelectInput from "../forms/SelectInput";
-import TextInput from "../forms/TextInput";
+import RadioInput from "../shared/forms/RadioInput";
+import SelectInput from "../shared/forms/SelectInput";
+import TextInput from "../shared/forms/TextInput";
 import {
     accommodationOptions,
     arrivalOptions,

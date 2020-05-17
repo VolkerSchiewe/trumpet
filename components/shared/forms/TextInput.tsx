@@ -2,7 +2,7 @@ import Chip from "@material-ui/core/Chip";
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
 import React, {useRef, useState} from "react";
 import {FieldError, Message, NestDataObject} from "react-hook-form"
-import slugify from "../../utils/slugify";
+import slugify from "../../../utils/slugify";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
     name: string;
