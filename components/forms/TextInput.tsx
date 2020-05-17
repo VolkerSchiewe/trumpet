@@ -1,6 +1,6 @@
 import Chip from "@material-ui/core/Chip";
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
-import {useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {FieldError, Message, NestDataObject} from "react-hook-form"
 import slugify from "../../utils/slugify";
 
@@ -43,6 +43,7 @@ export default function TextInput({name, errors, suggestions, className, setValu
                 error={!!errors?.[name]?.message}
                 helperText={errors?.[name] && t(errors?.[name]?.message || "")}
                 fullWidth
+                // @ts-ignore
                 defaultValue={""}
                 inputRef={inputRef}
                 onChange={onChange}

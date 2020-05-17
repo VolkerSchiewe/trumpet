@@ -3,14 +3,13 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "rm public/sw.js && next",
     "build": "next build",
     "start": "next start",
-    "build-start": "yarn build && yarn start",
     "type-check": "tsc",
     "test": "jest",
     "test:cypress": "cypress run --record",
-    "test:integration": "start-server-and-test build-start http://localhost:3000 test:cypress"
+    "test:integration": "start-server-and-test start http://localhost:3000 test:cypress"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.14",
