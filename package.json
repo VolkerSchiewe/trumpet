@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.9.14",
+    "firebase-admin": "^8.12.1",
     "next": "^9.4.1",
     "next-i18next": "^4.4.2",
     "next-pwa": "^2.4.1",

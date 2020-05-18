@@ -32,3 +32,5 @@ cypress
 .next
 /public/sw.js
 /public/workbox-*.js
+
+.env
