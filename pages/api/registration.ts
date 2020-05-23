@@ -8,7 +8,6 @@ import admin from "firebase-admin"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        res.status(200)
         const {recaptchaToken, ...data} = req.body;
         console.log(`Registering: ${data.firstName} ${data.lastName}, ${data.email}`);
         try {
@@ -22,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const doc = await firestore.collection(DB.PARTICIPANTS_COLLECTION).add(data);
             console.log(`Stored document ${doc.id} with data: ${JSON.stringify(data)}`);
 
-            const mail = new RegistrationCompleteMail(data.firstName, data.email, `${req.url}/verifyMail?token=${doc.id}`);
+            const mail = new RegistrationCompleteMail(data.firstName, data.email, `${req.headers.origin}/verify-mail?token=${doc.id}`);
             await sendMail(mail);
             res.status(200).send("");
         } catch (e) {

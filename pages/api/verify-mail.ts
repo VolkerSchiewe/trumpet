@@ -1,0 +1,34 @@
+import admin from "firebase-admin";
+import {NextApiRequest, NextApiResponse} from "next";
+import {DB} from "../../utils/api/constants";
+import firestore from "../../utils/api/firestore";
+
+export default async (req: NextApiRequest, res: NextApiResponse) => {
+    if (req.method === 'POST') {
+
+        const {token} = req.query
+        console.log(token);
+        try {
+            const document = await firestore.collection(DB.PARTICIPANTS_COLLECTION).doc(token as string);
+            const data = (await document.get()).data();
+            const created = data ? data[DB.CREATED].toDate() : null;
+            const ONE_HOUR = 60 * 60 * 1000; /* ms */
+            const now = new Date();
+            if (created && ((now.getTime()) - created.getTime()) > ONE_HOUR) {
+                console.log("More than an hour ago");
+                res.status(400);
+                res.send("Verification code is expired!");
+                return
+            }
+            console.log("Verification completed");
+            await document.update({[DB.EMAIL_VERIFIED]: admin.firestore.Timestamp.now()});
+            res.status(200).send("Verification completed")
+        } catch (e) {
+            console.log("Document not found");
+            res.status(400).send("Wrong Link!")
+        }
+    } else {
+        res.status(405).setHeader("Allow", ["POST"])
+        res.send("")
+    }
+}
