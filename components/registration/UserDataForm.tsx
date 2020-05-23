@@ -6,6 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {useForm} from 'react-hook-form'
+import {post} from "../../utils/request";
 import {
     ACCOMMODATION,
     ACCOMMODATION_WITH,
@@ -64,19 +65,17 @@ const UserDataForm = () => {
             return;
         setLoading(true);
         const token = await executeRecaptcha("registration");
-
         // send data to server
         try {
-            const res = await fetch(REGISTRATION_URL, {
-                method: "POST",
-                body: JSON.stringify({
+            const res = await post(REGISTRATION_URL,
+                {
                     recaptchaToken: token,
                     ...data,
-                }),
-                headers: {
+                },
+                {
                     "Content-Type": "application/json"
                 }
-            });
+            );
             if (res.status == 200) {
                 alert("Anmeldung versendet! Bitte bestätige noch deine Email Adresse.");
                 setError("");

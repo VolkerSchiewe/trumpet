@@ -4,6 +4,7 @@ import absoluteUrl from "next-absolute-url/index";
 import {useRouter} from "next/router";
 import React, {useState} from "react";
 import Layout from "../components/shared/Layout";
+import {get, post} from "../utils/request";
 
 interface Props {
     firstName: string
@@ -23,8 +24,8 @@ const EmailVerificationPage: NextPage<Props> = ({firstName, lastName, baseUrl}) 
     const {token} = router.query
 
     const onClick = async () => {
-        const res = await fetch(`${baseUrl}/api/verify-mail?token=${token}`, {method: "POST"})
-        if (res.ok)
+        const res = await post(`${baseUrl}/api/verify-mail?token=${token}`)
+        if (res.status === 200)
             setAlert({
                 error: true,
                 open: true,
@@ -34,7 +35,7 @@ const EmailVerificationPage: NextPage<Props> = ({firstName, lastName, baseUrl}) 
             setAlert({
                 error: true,
                 open: true,
-                title: await res.text(),
+                title: await res.data,
             })
     }
     return (
@@ -84,9 +85,9 @@ EmailVerificationPage.getInitialProps = async (context) => {
     const {token} = context.query
     const {origin} = absoluteUrl(context.req)
     const url = `${origin}/api/get-name?token=${token}`
-    const res = await fetch(url)
-    if (res.ok)
-        return {...(await res.json()), baseUrl: origin}
+    const res = await get(url)
+    if (res.status === 200)
+        return {...(res.data), baseUrl: origin}
     else {
         return {firstName: "", lastName: ""}
     }
