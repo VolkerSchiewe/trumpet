@@ -5,7 +5,7 @@ import UserDataForm from "../components/registration/UserDataForm";
 
 const RegistrationPage = () => (
     <Layout>
-        <GoogleReCaptchaProvider reCaptchaKey={"6LcQYdQUAAAAAFFX5HpuTOvy9cz2SFWTLomepkIB"}>
+        <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY}>
             <div className="w-full max-w-2xl m-auto">
                 <UserDataForm/>
             </div>

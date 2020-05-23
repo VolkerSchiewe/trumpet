@@ -7,7 +7,7 @@ export const validateRecaptcha = async (token: string): Promise<boolean> => {
             },
         },
     ).then(res => res.json());
-    console.log("recaptcha result", data);
+    console.log("recaptcha_result", data);
     if (data.success) return true;
     throw new Error("Gotcha robot!")
 };

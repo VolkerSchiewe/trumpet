@@ -1,7 +1,7 @@
 import Mail from "./mails/mail";
 
 export const sendMail = async (mail: Mail): Promise<void> => {
-    console.log(`Sending E-Mail to ${mail.name} <${mail.email}>`);
+    console.log("sending_email", {name: mail.name, email: mail.email, subject: mail.subject});
     const res = await fetch("https://api.mailjet.com/v3.1/send", {
         method: "POST",
         body: JSON.stringify({
@@ -30,8 +30,9 @@ export const sendMail = async (mail: Mail): Promise<void> => {
     });
     if (res.ok) {
         const data = await res.json()
-        console.log(`Email sent! ${JSON.stringify(data)}`);
-        return
+        console.log("email_send", {response: data});
+    } else {
+        console.log("email_send_error", {response: res})
+        throw Error(`Email could not been send, response: ${res}`)
     }
-    throw Error(`Email could not been send, response: ${res}`)
 };

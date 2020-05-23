@@ -9,7 +9,7 @@ import admin from "firebase-admin"
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         const {recaptchaToken, ...data} = req.body;
-        console.log(`Registering: ${data.firstName} ${data.lastName}, ${data.email}`);
+        console.log("registration", {firstName: data.firstName, lastName: data.lastName, email: data.email});
         try {
             await validateRecaptcha(recaptchaToken); // throws if something is wrong
             const registeredMails = await firestore.collection(DB.PARTICIPANTS_COLLECTION).where(DB.EMAIL, "==", data.email).get();
@@ -19,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             // adding created date
             data[DB.CREATED] = admin.firestore.Timestamp.now();
             const doc = await firestore.collection(DB.PARTICIPANTS_COLLECTION).add(data);
-            console.log(`Stored document ${doc.id} with data: ${JSON.stringify(data)}`);
+            console.log("document_stored", {id: doc.id, data: data});
 
             const mail = new RegistrationCompleteMail(data.firstName, data.email, `${req.headers.origin}/verify-mail?token=${doc.id}`);
             await sendMail(mail);

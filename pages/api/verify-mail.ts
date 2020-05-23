@@ -5,9 +5,8 @@ import firestore from "../../utils/api/firestore";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-
         const {token} = req.query
-        console.log(token);
+        console.log("email_verification", {token});
         try {
             const document = await firestore.collection(DB.PARTICIPANTS_COLLECTION).doc(token as string);
             const data = (await document.get()).data();
@@ -15,16 +14,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const ONE_HOUR = 60 * 60 * 1000; /* ms */
             const now = new Date();
             if (created && ((now.getTime()) - created.getTime()) > ONE_HOUR) {
-                console.log("More than an hour ago");
+                console.log("verification_expired", {created});
                 res.status(400);
                 res.send("Verification code is expired!");
                 return
             }
-            console.log("Verification completed");
+            console.log("verification_successful");
             await document.update({[DB.EMAIL_VERIFIED]: admin.firestore.Timestamp.now()});
             res.status(200).send("Verification completed")
         } catch (e) {
-            console.log("Document not found");
+            console.log("verification_code_invalid", {token});
             res.status(400).send("Wrong Link!")
         }
     } else {
