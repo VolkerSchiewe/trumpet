@@ -13,7 +13,9 @@ describe('The User registration', () => {
     accommodationWith: "Partner"
   };
   let windowAlert:Cypress.Agent<sinon.SinonStub>;
-
+  afterEach(() => {
+    cy.request("/api/delete-test-data")
+  })
   it('successfully loads', () => {
     cy.visit('/registration')
   });
