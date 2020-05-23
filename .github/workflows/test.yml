@@ -28,6 +28,8 @@ jobs:
 
       - name: Build
         run: yarn build
+        env:
+          RECAPTCHA_KEY: ${{ secrets.RECAPTCHA_KEY }}
 
       - name: Run unit tests
         run: yarn test
