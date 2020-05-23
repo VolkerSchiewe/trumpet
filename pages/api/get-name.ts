@@ -14,9 +14,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             res.status(400).send("")
         } else {
             const userData = await firestore.collection(DB.PARTICIPANTS_COLLECTION).doc(token as string).get();
-            const {firstName, lastName} = userData.data() as NameData
-
-            res.status(200).json({firstName, lastName})
+            const data = userData.data() as NameData
+            if (data)
+                res.status(200).json(data)
+            else
+                res.status(404).send("")
         }
     } else {
         res.status(405).setHeader("Allow", ["GET"])

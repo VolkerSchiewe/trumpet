@@ -8,7 +8,7 @@
     "start": "next start",
     "type-check": "tsc",
     "test": "jest",
-    "test:cypress": "cypress run --record",
+    "test:cypress": "cypress run --record --parallel",
     "test:integration": "start-server-and-test start http://localhost:3000 test:cypress"
   },
   "dependencies": {

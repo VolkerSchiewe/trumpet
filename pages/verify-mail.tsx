@@ -2,13 +2,13 @@ import {Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, 
 import {NextPage} from "next";
 import absoluteUrl from "next-absolute-url/index";
 import {useRouter} from "next/router";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Layout from "../components/shared/Layout";
 import {get, post} from "../utils/request";
 
 interface Props {
-    firstName: string
-    lastName: string
+    firstName?: string
+    lastName?: string
     baseUrl: string
 }
 
@@ -22,7 +22,11 @@ const EmailVerificationPage: NextPage<Props> = ({firstName, lastName, baseUrl}) 
     const router = useRouter()
     const [alert, setAlert] = useState<Alert>({open: false, error: false, title: "",})
     const {token} = router.query
-
+    useEffect(() => {
+        if (!firstName && !lastName) {
+            router.replace("/")
+        }
+    }, [])
     const onClick = async () => {
         const res = await post(`${baseUrl}/api/verify-mail?token=${token}`)
         if (res.status === 200)
@@ -89,7 +93,7 @@ EmailVerificationPage.getInitialProps = async (context) => {
     if (res.status === 200)
         return {...(res.data), baseUrl: origin}
     else {
-        return {firstName: "", lastName: ""}
+        return {baseUrl: origin}
     }
 }
 export default EmailVerificationPage
