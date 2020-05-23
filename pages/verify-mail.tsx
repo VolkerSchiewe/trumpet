@@ -1,9 +1,8 @@
-import {Button, Dialog, DialogContent, DialogContentText, DialogTitle, Snackbar, Typography} from "@material-ui/core";
-import {GetStaticProps, NextPage, NextPageContext} from "next";
+import {Button, Dialog, DialogContent, DialogContentText, DialogTitle, Typography} from "@material-ui/core";
+import {NextPage} from "next";
 import absoluteUrl from "next-absolute-url/index";
 import {useRouter} from "next/router";
 import React, {useState} from "react";
-import {log} from "util";
 import Layout from "../components/shared/Layout";
 
 interface Props {
