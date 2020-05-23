@@ -3,7 +3,7 @@ import {ThemeProvider} from "@material-ui/styles";
 import {AppProps} from "next/app";
 import Head from "next/head";
 import * as React from "react";
-import '../css/tailwind.css'
+import 'tailwindcss/tailwind.css'
 import theme from "../components/theme";
 
 function MyApp({Component, pageProps}: AppProps) {
