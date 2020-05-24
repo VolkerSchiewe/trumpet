@@ -5,8 +5,12 @@ import RegistrationCompleteMail from "../../utils/api/mails/registrationComplete
 import {sendMail} from "../../utils/api/sendMail";
 import {validateRecaptcha} from "../../utils/api/validateRecaptcha";
 import admin from "firebase-admin"
+import {disableIfRestricted} from "../../utils/restrictAccess";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+    if (await disableIfRestricted(res))
+        return
+
     if (req.method === 'POST') {
         const {recaptchaToken, ...data} = req.body;
         console.log("registration", {firstName: data.firstName, lastName: data.lastName, email: data.email});

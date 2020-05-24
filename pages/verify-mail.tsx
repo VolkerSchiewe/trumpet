@@ -4,6 +4,7 @@ import absoluteUrl from "next-absolute-url/index";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import Layout from "../components/shared/Layout";
+import {redirectIfRestricted} from "../utils/restrictAccess";
 import {get, post} from "../utils/request";
 
 interface Props {
@@ -85,13 +86,14 @@ const EmailVerificationPage: NextPage<Props> = ({firstName, lastName, baseUrl}) 
     );
 }
 
-EmailVerificationPage.getInitialProps = async (context) => {
-    const {token} = context.query
-    const {origin} = absoluteUrl(context.req)
+EmailVerificationPage.getInitialProps = async ({req, res, query}) => {
+    await redirectIfRestricted(res)
+    const {token} = query
+    const {origin} = absoluteUrl(req)
     const url = `${origin}/api/get-name?token=${token}`
-    const res = await get(url)
-    if (res.status === 200)
-        return {...(res.data), baseUrl: origin}
+    const response = await get(url)
+    if (response.status === 200)
+        return {...(response.data), baseUrl: origin}
     else {
         return {baseUrl: origin}
     }

@@ -2,8 +2,12 @@ import admin from "firebase-admin";
 import {NextApiRequest, NextApiResponse} from "next";
 import {DB} from "../../utils/api/constants";
 import firestore from "../../utils/api/firestore";
+import {disableIfRestricted} from "../../utils/restrictAccess";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+    if (await disableIfRestricted(res))
+        return
+
     if (req.method === 'POST') {
         const {token} = req.query
         console.log("email_verification", {token});

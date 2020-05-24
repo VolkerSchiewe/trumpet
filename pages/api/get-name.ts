@@ -1,12 +1,16 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import {DB} from "../../utils/api/constants";
 import firestore from "../../utils/api/firestore";
+import {disableIfRestricted} from "../../utils/restrictAccess";
 
 interface NameData {
     firstName: string
     lastName: string
 }
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+    if (await disableIfRestricted(res))
+        return
+
     if (req.method === 'GET') {
         const {token} = req.query
         if (!token) {

@@ -15,6 +15,7 @@ module.exports = withPWA({
         config.plugins.push(
             new webpack.DefinePlugin({
                 'process.env.RECAPTCHA_KEY': JSON.stringify(process.env.RECAPTCHA_KEY),
+                'process.env.RESTRICT_FEATURES': JSON.stringify(process.env.RESTRICT_FEATURES),
             })
         );
 
