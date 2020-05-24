@@ -32,7 +32,7 @@ const EmailVerificationPage: NextPage<Props> = ({firstName, lastName, baseUrl}) 
         const res = await post(`${baseUrl}/api/verify-mail?token=${token}`)
         if (res.status === 200)
             setAlert({
-                error: true,
+                error: false,
                 open: true,
                 title: "Verification completed",
             })
