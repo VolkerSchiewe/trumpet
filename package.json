@@ -38,7 +38,8 @@
     "start-server-and-test": "^1.11.0",
     "tailwindcss": "^1.4.6",
     "ts-jest": "^26.0.0",
-    "typescript": "^3.9.3"
+    "typescript": "^3.9.3",
+    "vercel": "^19.0.1"
   },
   "jest": {
     "roots": [

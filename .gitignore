@@ -34,3 +34,5 @@ cypress
 /public/workbox-*.js
 
 .env
+
+.vercel
