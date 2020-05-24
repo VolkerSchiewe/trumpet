@@ -2,6 +2,7 @@ import admin from "firebase-admin";
 import {NextApiRequest, NextApiResponse} from "next";
 import {DB} from "../../utils/api/constants";
 import firestore from "../../utils/api/firestore";
+import sendTelegramMessage from "../../utils/api/sendTelegramMessage";
 import {disableIfRestricted} from "../../utils/restrictAccess";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -25,6 +26,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             }
             console.log("verification_successful");
             await document.update({[DB.EMAIL_VERIFIED]: admin.firestore.Timestamp.now()});
+            await sendTelegramMessage(data)
             res.status(200).send("Verification completed")
         } catch (e) {
             console.log("verification_code_invalid", {token});

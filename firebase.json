@@ -1,29 +1,4 @@
 {
-  "hosting": {
-    "public": "dist",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "/",
-        "destination": "index.html"
-      },
-      {
-        "source": "/registration",
-        "function": "checkRegistration"
-      },
-      {
-        "source": "/verifyMail",
-        "function": "emailVerificationHandler"
-      }
-    ]
-  },
-  "functions": {
-    "source": "functions"
-  },
   "firestore": {
     "rules": "firestore/firestore.rules",
     "indexes": "firestore/firestore.indexes.json"
