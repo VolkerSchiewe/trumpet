@@ -3,9 +3,8 @@ import Mail from "./mails/mail";
 
 export const sendMail = async (mail: Mail): Promise<void> => {
     console.log("sending_email", {name: mail.name, email: mail.email, subject: mail.subject});
-    const res = await post("https://api.mailjet.com/v3.1/send", {
-        method: "POST",
-        body: JSON.stringify({
+    const res = await post("https://api.mailjet.com/v3.1/send",
+        {
             Messages: [
                 {
                     From: {
@@ -23,12 +22,12 @@ export const sendMail = async (mail: Mail): Promise<void> => {
                     HTMLPart: mail.htmlContent,
                 }
             ]
-        }),
-        headers: {
+        },
+        {
             "Content-Type": "application/json",
             'Authorization': 'Basic ' + Buffer.from(process.env.MAILJET_API_KEY + ":" + process.env.MAILJET_SECRET).toString('base64')
         }
-    });
+    );
     if (res.status === 200) {
         console.log("email_send", {response: res.data});
     } else {

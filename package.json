@@ -46,6 +46,7 @@
     "roots": [
       "<rootDir>/test"
     ],
+    "setupFiles": ["dotenv/config"],
     "testPathIgnorePatterns": [
       "<rootDir>/test/integration"
     ],

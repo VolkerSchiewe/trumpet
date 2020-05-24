@@ -13,7 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (req.method === 'POST') {
         const {recaptchaToken, ...data} = req.body;
-        console.log("registration", {firstName: data.firstName, lastName: data.lastName, email: data.email});
+        console.log("registration", {data: data});
         try {
             await validateRecaptcha(recaptchaToken); // throws if something is wrong
             const registeredMails = await firestore.collection(DB.PARTICIPANTS_COLLECTION).where(DB.EMAIL, "==", data.email).get();
