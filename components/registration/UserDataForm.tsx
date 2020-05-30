@@ -6,7 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {useForm} from 'react-hook-form'
-import i18n from "../../i18n";
+import {useTranslation} from "../../utils/i18n";
 import {post} from "../../utils/request";
 import {
     ACCOMMODATION,
@@ -52,7 +52,7 @@ const REGISTRATION_URL = "/api/registration";
 
 
 const UserDataForm = () => {
-    const {t} = i18n.useTranslation("registration")
+    const t = useTranslation("registration")
     const {executeRecaptcha} = useGoogleReCaptcha();
     const {register, setValue, errors, watch, control, handleSubmit, reset} = useForm<UserData>({
         mode: "onBlur",
@@ -89,7 +89,6 @@ const UserDataForm = () => {
             setLoading(false);
         }
     };
-
     const registrationType = watch(REGISTRATION_TYPE);
     const accommodation = watch(ACCOMMODATION);
     return (
@@ -97,54 +96,54 @@ const UserDataForm = () => {
             <form className="flex flex-wrap pt-4" onSubmit={handleSubmit(onSubmit)}>
                 <Typography className="w-full p-2" variant={"h3"}>{t("Registration")}</Typography>
                 <TextInput className="w-full md:w-1/2 p-2" name={FIRST_NAME} errors={errors}
-                           inputRef={register({required: t(errorRequired) as string})}/>
+                           inputRef={register({required: errorRequired})}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={LAST_NAME} errors={errors}
-                           inputRef={register({required: t(errorRequired) as string})}/>
+                           inputRef={register({required: errorRequired})}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={EMAIL} type={"email"} errors={errors}
                            inputRef={register({
-                               required: t(errorRequired) as string,
-                               pattern: {value: validators[EMAIL].pattern, message: t(validators[EMAIL].message)}
+                               required: errorRequired,
+                               pattern: {value: validators[EMAIL].pattern, message: validators[EMAIL].message}
                            })}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={PHONE} errors={errors} type={"tel"}
                            inputRef={register}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={BIRTHDAY} errors={errors}
                            inputProps={{inputMode: 'decimal'}}
                            inputRef={register({
-                               required: t(errorRequired) as string,
+                               required: errorRequired,
                                validate: validators[BIRTHDAY].validation
                            })}/>
                 <TextInput className="w-full p-2" name={STREET_NUMBER} errors={errors}
                            inputRef={register({
-                               required: t(errorRequired) as string,
+                               required: errorRequired,
                                pattern: {
                                    value: validators[STREET_NUMBER].pattern,
-                                   message: t(validators[STREET_NUMBER].message)
+                                   message: validators[STREET_NUMBER].message
                                }
                            })}/>
                 <TextInput className="w-full p-2" name={ZIP_CITY} errors={errors} inputRef={register({
-                    required: t(errorRequired) as string,
-                    pattern: {value: validators[ZIP_CITY].pattern, message: t(validators[ZIP_CITY].message)}
+                    required: errorRequired,
+                    pattern: {value: validators[ZIP_CITY].pattern, message: validators[ZIP_CITY].message}
                 })}/>
                 <div className="w-full p-2">
                     <Divider/>
                 </div>
                 <TextInput className="w-full p-2" name={CONGREGATION} errors={errors} setValue={setValue}
                            suggestions={congregationSuggestions} autoComplete={"off"}
-                           inputRef={register({required: t(errorRequired) as string})}/>
+                           inputRef={register({required: errorRequired})}/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={REGISTRATION_TYPE} errors={errors}
-                             choices={registrationOptions} control={control} rules={{required: t(errorRequired)}}/>
+                             choices={registrationOptions} control={control} rules={{required: errorRequired}}/>
                 {registrationType !== GUEST && (
                     <SelectInput className="w-full md:w-1/2 p-2" name={VOICE} errors={errors} choices={voiceOptions}
-                                 control={control} rules={{required: t(errorRequired)}}/>
+                                 control={control} rules={{required: errorRequired}}/>
                 )}
                 {registrationType == BEGINNER && (
                     <TextInput className="w-full p-2" name={INSTRUMENT_TIME} errors={errors}
-                               inputRef={register({required: t(errorRequired) as string})}/>
+                               inputRef={register({required: errorRequired})}/>
                 )}
                 <SelectInput className="w-full md:w-1/2 p-2" name={ARRIVAL} errors={errors} choices={arrivalOptions}
-                             control={control} rules={{required: t(errorRequired)}}/>
+                             control={control} rules={{required: errorRequired}}/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={DEPARTURE} errors={errors} choices={departureOptions}
-                             control={control} rules={{required: t(errorRequired)}}/>
+                             control={control} rules={{required: errorRequired}}/>
                 <RadioInput className="w-full p-2" name={ACCOMMODATION} errors={errors} choices={accommodationOptions}
                             control={control}/>
                 {accommodation !== NO_ACCOMMODATION && (
@@ -160,13 +159,11 @@ const UserDataForm = () => {
 
                 <div className={"w-full p-2"}>
                     <Typography>
-                        Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur
-                        Dokumentation und auf
-                        Internetseiten veröffentlicht werden.
+                        {t("photoAgreementText")}
                     </Typography>
                     <RadioInput name={PHOTO_AGREEMENT} errors={errors} choices={yesNoOptions} noLabel row
                                 control={control}
-                                helpText={"This agreement can always be revoked at the organization of the brass festival."}/>
+                                helpText={t("photoAgreementRevocation")}/>
                 </div>
                 <TextInput className="w-full p-2" name={COMMENTS} errors={errors} inputRef={register} multiline/>
 

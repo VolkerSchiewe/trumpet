@@ -2,7 +2,7 @@ import Chip from "@material-ui/core/Chip";
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
 import React, {useRef, useState} from "react";
 import {FieldError, Message, NestDataObject} from "react-hook-form"
-import i18n from "../../../i18n";
+import {useTranslation} from "../../../utils/i18n";
 import slugify from "../../../utils/slugify";
 
 interface Props extends Partial<OutlinedTextFieldProps> {
@@ -13,7 +13,7 @@ interface Props extends Partial<OutlinedTextFieldProps> {
 }
 
 export default function TextInput({name, errors, suggestions, className, setValue, ...otherProps}: Props) {
-    const {t} = i18n.useTranslation("registration")
+    const t = useTranslation("registration")
     const [suggestionsSorted, setSuggestions] = useState<string[]>([]);
     const inputRef = useRef<OutlinedTextFieldProps>(null);
 

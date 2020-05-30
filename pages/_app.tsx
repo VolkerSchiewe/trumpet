@@ -4,7 +4,6 @@ import {AppProps} from "next/app";
 import * as React from "react";
 import 'tailwindcss/tailwind.css'
 import theme from "../components/theme";
-import i18n from "../i18n"
 
 function MyApp({Component, pageProps}: AppProps) {
 

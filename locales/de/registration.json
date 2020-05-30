@@ -28,6 +28,7 @@
   "tenor": "Tenor",
   "bass": "Bass",
   "friday": "Freitag 21.05.2021",
+  "saturday": "Samstag 22.05.2021",
   "sunday": "Sonntag 23.05.2021",
   "monday": "Montag 24.05.2021",
   "yes": "Ja",
@@ -42,7 +43,8 @@
   "double bedroom with bunk bed": "Doppelzimmer Etagenbetten",
   "double bedroom": "Doppelzimmer",
   "family bedroom": "Familienzimmer (Doppelbett u. Etagenbett)",
-  "This agreement can always be revoked at the organization of the brass festival.": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
+  "photoAgreementRevocation": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
+  "photoAgreementText": "Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur  Dokumentation und auf Internetseiten veröffentlicht werden.",
   "Submit": "Abschicken",
   "Please enter a valid email": "Bitte gib eine korrekte Email Adresse ein",
   "Please enter a valid birth date": "Bitte gib ein richtiges Geburtsdatum ein",
@@ -50,5 +52,10 @@
   "Please enter a valid ZIP code and city": "Bitte gib PLZ und Stadt richtig ein",
   "This field is required": "Dieses Feld ist verpflichtend",
   "Something went wrong. Try again later!": "Etwas ist schiefgelaufen. Versuche es später noch mal!",
-  "Please fill out the following fields correctly: ": "Bitte fülle die folgenden Felder korrekt aus: "
+  "Please fill out the following fields correctly: ": "Bitte fülle die folgenden Felder korrekt aus: ",
+  "xs": "XS",
+  "s": "S",
+  "m": "m",
+  "l": "L",
+  "xl": "XL"
 }

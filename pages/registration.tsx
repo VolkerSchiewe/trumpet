@@ -1,9 +1,9 @@
-import {NextPage} from "next";
+import {NextPage, NextPageContext} from "next";
 import React from "react";
 import {GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
 import Layout from "../components/shared/Layout";
 import UserDataForm from "../components/registration/UserDataForm";
-import {redirectIfRestricted} from "../utils/restrictAccess";
+import {getI18nProps, withI18n} from "../utils/i18n";
 
 const RegistrationPage: NextPage = () => {
     return (
@@ -17,11 +17,9 @@ const RegistrationPage: NextPage = () => {
     );
 }
 
-RegistrationPage.getInitialProps = async (ctx) => {
-    await redirectIfRestricted(ctx.res)
-    return {
-        namespacesRequired: ['registration'],
-    }
-}
 
-export default RegistrationPage
+export const getStaticProps = async (ctx: NextPageContext) => ({
+    props: await getI18nProps(ctx, ['common', 'registration']),
+})
+
+export default withI18n(RegistrationPage)

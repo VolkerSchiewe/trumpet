@@ -21,10 +21,10 @@ export const voiceOptions = [
 ];
 
 // ---------- Arrival & Departure ----------------------
-export const FRIDAY = "Friday, 21.05.2021";
-export const SATURDAY = "Saturday, 22.05.2021";
-export const SUNDAY = "Sunday, 23.05.2021";
-export const MONDAY = "Monday, 24.05.2021";
+export const FRIDAY = "friday";
+export const SATURDAY = "saturday";
+export const SUNDAY = "sunday";
+export const MONDAY = "monday";
 
 export const arrivalOptions = [
   FRIDAY,
@@ -78,14 +78,14 @@ export const accommodationOptions = [
 ];
 
 // ---------- Shirt ----------------------
-export const NONE = "None";
+export const NONE = "none";
 export const shirtOptions = [
   NONE,
-  "XL",
-  "L",
-  "M",
-  "S",
-  "XS",
+  "xl",
+  "l",
+  "m",
+  "s",
+  "xs",
 ];
 
 
