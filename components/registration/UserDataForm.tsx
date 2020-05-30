@@ -6,6 +6,7 @@ import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {useForm} from 'react-hook-form'
+import i18n from "../../i18n";
 import {post} from "../../utils/request";
 import {
     ACCOMMODATION,
@@ -51,7 +52,7 @@ const REGISTRATION_URL = "/api/registration";
 
 
 const UserDataForm = () => {
-    const t = (value: string) => value;
+    const {t} = i18n.useTranslation("registration")
     const {executeRecaptcha} = useGoogleReCaptcha();
     const {register, setValue, errors, watch, control, handleSubmit, reset} = useForm<UserData>({
         mode: "onBlur",
@@ -96,12 +97,12 @@ const UserDataForm = () => {
             <form className="flex flex-wrap pt-4" onSubmit={handleSubmit(onSubmit)}>
                 <Typography className="w-full p-2" variant={"h3"}>{t("Registration")}</Typography>
                 <TextInput className="w-full md:w-1/2 p-2" name={FIRST_NAME} errors={errors}
-                           inputRef={register({required: t(errorRequired)})}/>
+                           inputRef={register({required: t(errorRequired) as string})}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={LAST_NAME} errors={errors}
-                           inputRef={register({required: t(errorRequired)})}/>
+                           inputRef={register({required: t(errorRequired) as string})}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={EMAIL} type={"email"} errors={errors}
                            inputRef={register({
-                               required: t(errorRequired),
+                               required: t(errorRequired) as string,
                                pattern: {value: validators[EMAIL].pattern, message: t(validators[EMAIL].message)}
                            })}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={PHONE} errors={errors} type={"tel"}
@@ -109,19 +110,19 @@ const UserDataForm = () => {
                 <TextInput className="w-full md:w-1/2 p-2" name={BIRTHDAY} errors={errors}
                            inputProps={{inputMode: 'decimal'}}
                            inputRef={register({
-                               required: t(errorRequired),
+                               required: t(errorRequired) as string,
                                validate: validators[BIRTHDAY].validation
                            })}/>
                 <TextInput className="w-full p-2" name={STREET_NUMBER} errors={errors}
                            inputRef={register({
-                               required: t(errorRequired),
+                               required: t(errorRequired) as string,
                                pattern: {
                                    value: validators[STREET_NUMBER].pattern,
                                    message: t(validators[STREET_NUMBER].message)
                                }
                            })}/>
                 <TextInput className="w-full p-2" name={ZIP_CITY} errors={errors} inputRef={register({
-                    required: t(errorRequired),
+                    required: t(errorRequired) as string,
                     pattern: {value: validators[ZIP_CITY].pattern, message: t(validators[ZIP_CITY].message)}
                 })}/>
                 <div className="w-full p-2">
@@ -129,7 +130,7 @@ const UserDataForm = () => {
                 </div>
                 <TextInput className="w-full p-2" name={CONGREGATION} errors={errors} setValue={setValue}
                            suggestions={congregationSuggestions} autoComplete={"off"}
-                           inputRef={register({required: t(errorRequired)})}/>
+                           inputRef={register({required: t(errorRequired) as string})}/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={REGISTRATION_TYPE} errors={errors}
                              choices={registrationOptions} control={control} rules={{required: t(errorRequired)}}/>
                 {registrationType !== GUEST && (
@@ -138,7 +139,7 @@ const UserDataForm = () => {
                 )}
                 {registrationType == BEGINNER && (
                     <TextInput className="w-full p-2" name={INSTRUMENT_TIME} errors={errors}
-                               inputRef={register({required: t(errorRequired)})}/>
+                               inputRef={register({required: t(errorRequired) as string})}/>
                 )}
                 <SelectInput className="w-full md:w-1/2 p-2" name={ARRIVAL} errors={errors} choices={arrivalOptions}
                              control={control} rules={{required: t(errorRequired)}}/>

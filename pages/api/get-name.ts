@@ -7,6 +7,7 @@ interface NameData {
     firstName: string
     lastName: string
 }
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (await disableIfRestricted(res))
         return
@@ -20,7 +21,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const userData = await firestore.collection(DB.PARTICIPANTS_COLLECTION).doc(token as string).get();
             const data = userData.data() as NameData
             if (data)
-                res.status(200).json(data)
+                res.status(200).json({firstName: data.firstName, lastName: data.lastName})
             else
                 res.status(404).send("")
         }

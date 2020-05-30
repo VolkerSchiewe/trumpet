@@ -1,11 +1,12 @@
-import React from "react";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import {Control, Controller, FieldError, Message, NestDataObject} from "react-hook-form";
+import React from "react";
+import {Control, Controller, FieldError, NestDataObject} from "react-hook-form";
+import i18n from "../../../i18n";
 import slugify from "../../../utils/slugify";
 
 interface Props {
@@ -20,7 +21,7 @@ interface Props {
 }
 
 export default function RadioInput({className, name, choices, errors, helpText, noLabel, control, row}: Props): JSX.Element {
-    const t = (value: string | Message): string => value as string
+    const {t} = i18n.useTranslation("registration")
     return (
         <div className={className}>
             <FormControl component="fieldset" error={!!errors?.[name]?.message}>
@@ -51,7 +52,7 @@ export default function RadioInput({className, name, choices, errors, helpText, 
                     <FormHelperText>{t(helpText)}</FormHelperText>
                 )}
                 {!!errors?.[name]?.message && (
-                    <FormHelperText>{t(errors?.[name]?.message || "")}</FormHelperText>
+                    <FormHelperText>{t(errors?.[name]?.message as string || "")}</FormHelperText>
                 )}
             </FormControl>
         </div>

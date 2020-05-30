@@ -4,7 +4,8 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import {Control, Controller, FieldError, Message, NestDataObject} from "react-hook-form";
+import {Control, Controller, FieldError, NestDataObject} from "react-hook-form";
+import i18n from "../../../i18n";
 import slugify from "../../../utils/slugify";
 
 interface Props {
@@ -17,7 +18,7 @@ interface Props {
 }
 
 export default function SelectInput({className, name, choices, errors, control, rules, ...otherProps}: Props): JSX.Element {
-    const t = (value: string | Message): string => value as string
+    const {t} = i18n.useTranslation("registration")
     return (
         <div className={className}>
             <FormControl variant="outlined" fullWidth error={!!errors[name]} id={`select-input-${name}`}>

@@ -3,7 +3,11 @@ module.exports = {
         './components/**/*.tsx',
         './pages/**/*.tsx',
     ],
-    theme: {},
+    theme: {
+        fontFamily: {
+            sans: ['Fira Sans', 'Arial', 'sans-serif'],
+        },
+    },
     variants: {},
     plugins: [],
 }
