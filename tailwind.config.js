@@ -8,7 +8,8 @@ module.exports = {
             whitelist: [
                 //Needed for ContentBlock component
                 "text-blue", "text-yellow", "text-magenta", "text-green", "border-blue", "border-yellow",
-                "border-magenta", "border-green"
+                "border-magenta", "border-green", "hover:bg-blue", "hover:bg-yellow", "hover:bg-magenta",
+                "hover:bg-green"
             ],
         }
     },
