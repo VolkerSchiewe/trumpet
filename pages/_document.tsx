@@ -26,6 +26,10 @@ class MyDocument extends Document {
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Fira+Sans:300,500&display=fallback"
                     />
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,500&display=fallback"
+                    />
                 </Head>
                 <body>
                 <Main/>

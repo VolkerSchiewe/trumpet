@@ -1,6 +1,6 @@
 import {Typography} from "@material-ui/core";
 import React from "react";
-import LazyImage from "./shared/LazyImage";
+import LazyImage from "../shared/LazyImage";
 
 const Placeholder = () => (
     <div className="h-full w-full m-0">

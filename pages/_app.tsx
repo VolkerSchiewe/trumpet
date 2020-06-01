@@ -3,6 +3,7 @@ import {ThemeProvider} from "@material-ui/styles";
 import {AppProps} from "next/app";
 import * as React from "react";
 import 'tailwindcss/tailwind.css'
+import '@brainhubeu/react-carousel/lib/style.css';
 import theme from "../components/theme";
 
 function MyApp({Component, pageProps}: AppProps) {

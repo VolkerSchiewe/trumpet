@@ -1,4 +1,3 @@
-import {Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/styles";
 import React, {useEffect, useState} from "react";
 
@@ -42,7 +41,6 @@ const useStyles = makeStyles({
         marginBottom: '-10px',
         textAlign: 'center',
     },
-
 })
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
@@ -66,7 +64,7 @@ const Countdown: React.FC<Props> = ({title, className}) => {
         return () => clearInterval(interval)
     })
 
-    if (days && days < 1){
+    if (days && days < 1) {
         return null
     }
     return (
@@ -74,15 +72,14 @@ const Countdown: React.FC<Props> = ({title, className}) => {
             <div className={classes.module}>
                 <div className={classes.bottomBorder}>
                     <div className={classes.borderText}>
-                        <Typography>{title}</Typography>
+                        <span className="font-bold text-lg">{title}</span>
                     </div>
                 </div>
                 <div>
-                    <Typography align={"center"} variant={"h1"}>{days || ". . ."}</Typography>
+                    <span className="font-medium text-center text-6xl">{days || ". . ."}</span>
                 </div>
             </div>
         </div>
-
     )
 }
 

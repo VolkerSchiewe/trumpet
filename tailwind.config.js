@@ -5,7 +5,9 @@ module.exports = {
     ],
     theme: {
         fontFamily: {
-            sans: ['Fira Sans', 'Arial', 'sans-serif'],
+            sans: ['Fira Sans', 'sans-serif'],
+            'sans-content': ['Fira Sans Condensed', 'sans-serif'],
+
         },
     },
     variants: {},
