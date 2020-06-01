@@ -1,3 +1,4 @@
+import {Container} from "@material-ui/core";
 import * as React from 'react'
 import Head from 'next/head'
 
@@ -7,7 +8,7 @@ type Props = {
 
 const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 2021 Berlin'}) => (
     <div style={{
-        height:'100%',
+        height: '100%',
         // background: 'linear-gradient(180deg, #ffffff 0%, #cacaca 100%)'
     }}>
         <Head>
@@ -28,7 +29,9 @@ const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 20
                 }
         `}
         </style>
-        {children}
+        <Container>
+            {children}
+        </Container>
         <footer>
             {/* Add footer here*/}
         </footer>
