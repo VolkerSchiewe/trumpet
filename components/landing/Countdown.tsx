@@ -4,7 +4,6 @@ import React, {useEffect, useState} from "react";
 const useStyles = makeStyles({
     module: {
         position: 'relative',
-        borderRadius: 3,
         padding: '20px 50px',
         borderRight: '1px solid #000',
         borderTop: '1px solid #000',
@@ -20,14 +19,12 @@ const useStyles = makeStyles({
         left: 0,
 
         '&::before': {
-            borderRadius: '3px 0 0 0',
             display: 'block',
             content: '""',
             flex: '2 0 0',
             borderBottom: '1px solid #000',
         },
         '&::after': {
-            borderRadius: '0 3px 0 0',
             display: 'block',
             content: '""',
             flex: '2 0 0',

@@ -10,8 +10,8 @@ interface Props {
 
 const ContentBlock: React.FC<Props> = ({color, title, content}) => {
     return (
-        <div
-            className={`group border-${color} text-black hover:bg-${color} border p-5 transform hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-2xl cursor-pointer`}>
+        <div className={`group border-${color} text-black hover:bg-${color} border p-5
+            transform hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-2xl cursor-pointer`}>
             <h2 className={`font-medium italic text-lg mb-2`}>{title}</h2>
             <hr className={`border-${color} group-hover:border-black`}/>
             <p className={`font-light text-sm font-sans-content my-2`}>
