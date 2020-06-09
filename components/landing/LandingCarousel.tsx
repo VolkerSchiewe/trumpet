@@ -7,7 +7,7 @@ const LandingCarousel: React.FC = () => (
         infinite
         autoPlay={10000}
     >
-        <div className='bg-white flex flex-row items-start relative'>
+        <div className='flex flex-row items-start relative'>
             <picture className="w-2/3 px-2">
                 <source srcSet={"images/campus-slogan.webp"} type="image/webp"/>
                 <img src={"images/campus-slogan.jpg"} alt="Campus Brüdergemeine"/>

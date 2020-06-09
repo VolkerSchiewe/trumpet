@@ -28,7 +28,7 @@ class MyDocument extends Document {
                     />
                     <link
                         rel="stylesheet"
-                        href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,500&display=fallback"
+                        href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,500,700&display=fallback"
                     />
                 </Head>
                 <body>
