@@ -8,8 +8,9 @@ type Props = {
 
 const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 2021 Berlin'}) => (
     <div style={{
-        height: '100%',
-        background: 'linear-gradient(180deg, #ffffff 50%, #cacaca 100%)'
+        background: 'linear-gradient(180deg, #ffffff 50%, #cacaca 100%)',
+        margin: 0,
+        backgroundRepeat: 'no-repeat',
     }}>
         <Head>
             <title>{title}</title>
@@ -25,7 +26,7 @@ const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 20
                 div#__next,
                 div#__next > div,
                 div#__next > div > div {
-                    height: 100%;
+                    min-height: 100vh;
                 }
         `}
         </style>
