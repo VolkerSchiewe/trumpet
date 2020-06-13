@@ -30,7 +30,7 @@ const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 20
                 }
         `}
         </style>
-        <Container className='flex flex-col mb-5'>
+        <Container className='flex flex-col mb-5' maxWidth={'xl'}>
             {children}
         </Container>
         <div className='flex-grow'/>
