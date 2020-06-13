@@ -6,7 +6,7 @@ module.exports = {
         ],
         options: {
             whitelist: [
-                //Needed for ContentBlock component
+                //Needed for ContentBlock & Orchestra component
                 "text-blue", "text-yellow", "text-magenta", "text-green", "border-blue", "border-yellow",
                 "border-magenta", "border-green", "hover:bg-blue", "hover:bg-yellow", "hover:bg-magenta",
                 "hover:bg-green"
@@ -36,7 +36,14 @@ module.exports = {
                     '800': '#424242',
                     '900': '#212121',
                 }
-            }
+            },
+            strokeWidth: {
+                '075': '0.75',
+            },
+            fill: theme => ({
+                "none": "none",
+                "gray": theme('colors.gray.600')
+            })
         }
     },
     variants: {

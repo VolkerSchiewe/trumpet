@@ -1,5 +1,5 @@
-import {Hidden} from "@material-ui/core";
-import {NextPageContext} from "next";
+import {Hidden, NoSsr} from "@material-ui/core";
+import {GetStaticProps, GetStaticPropsContext, NextPage} from "next";
 import React from "react";
 import ContentBlock from "../components/landing/ContentBlock";
 import Countdown from "../components/landing/Countdown";
@@ -8,7 +8,11 @@ import Orchestra from "../components/landing/orchestra/Orchestra";
 import Layout from '../components/shared/Layout'
 import {getI18nProps, useTranslation, withI18n} from "../utils/i18n";
 
-const IndexPage = () => {
+interface Props {
+    registrationCount: number;
+}
+
+const IndexPage: NextPage<Props> = ({registrationCount}) => {
     const t = useTranslation("home")
     return (
         <Layout>
@@ -25,7 +29,9 @@ const IndexPage = () => {
                     <ContentBlock color={"yellow"} title={"Infos"}/>
                     <ContentBlock color={"magenta"} title={"Anmeldung"}/>
                 </div>
-                <Orchestra className="my-8"/>
+                <NoSsr>
+                    <Orchestra className="my-8" registrationsCount={registrationCount}/>
+                </NoSsr>
                 <Countdown title={t("days left")}/>
             </div>
         </Layout>
@@ -33,8 +39,9 @@ const IndexPage = () => {
 }
 
 
-export const getStaticProps = async (ctx: NextPageContext) => ({
-    props: await getI18nProps(ctx, ['home']),
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => ({
+    props: {...await getI18nProps(ctx, ['home']), registrationCount: 50},
+    unstable_revalidate: 1
 })
 
-export default withI18n(IndexPage)
+export default withI18n<Props>(IndexPage)

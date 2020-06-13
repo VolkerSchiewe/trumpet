@@ -1,4 +1,4 @@
-import {NextPage, NextPageContext} from "next";
+import {GetStaticProps, GetStaticPropsContext, NextPage, NextPageContext} from "next";
 import React from "react";
 import {GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
 import Layout from "../components/shared/Layout";
@@ -18,7 +18,7 @@ const RegistrationPage: NextPage = () => {
 }
 
 
-export const getStaticProps = async (ctx: NextPageContext) => ({
+export const getStaticProps: GetStaticProps = async (ctx) => ({
     props: await getI18nProps(ctx, ['common', 'registration']),
 })
 

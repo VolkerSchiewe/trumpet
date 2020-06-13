@@ -1,4 +1,8 @@
-export const orchestraData = {
+import {ThemeColor} from "../ContentBlock";
+
+export type RectangleAttr = { x: string, y: string, transform: string }
+export type OrchestraData = { [key in ThemeColor]: RectangleAttr[] }
+export const orchestraData: OrchestraData = {
     "magenta": [
         {
             "x": "323.01",
@@ -334,7 +338,7 @@ export const orchestraData = {
     "blue": [
         {
             "x": "642.62",
-            "y": "190.07"  ,
+            "y": "190.07",
             "transform": ""
         },
         {
@@ -1268,27 +1272,33 @@ export const orchestraData = {
         },
         {
             "x": "1062.95",
-            "y": "610.39"
+            "y": "610.39",
+            "transform": ""
         },
         {
             "x": "1100.36",
-            "y": "610.39"
+            "y": "610.39",
+            "transform": ""
         },
         {
             "x": "1137.78",
-            "y": "610.39"
+            "y": "610.39",
+            "transform": ""
         },
         {
             "x": "1175.2",
-            "y": "610.39"
+            "y": "610.39",
+            "transform": ""
         },
         {
             "x": "1212.62",
-            "y": "610.39"
+            "y": "610.39",
+            "transform": ""
         },
         {
             "x": "1250.03",
-            "y": "610.39"
+            "y": "610.39",
+            "transform": ""
         },
         {
             "x": "1061.65",

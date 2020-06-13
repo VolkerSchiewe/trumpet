@@ -1,4 +1,4 @@
-import {NextPageContext} from "next";
+import {GetStaticPropsContext} from "next";
 // @ts-ignore
 import I18nProvider from 'next-translate/I18nProvider'
 // @ts-ignore
@@ -6,10 +6,10 @@ import useTranslationNext from 'next-translate/useTranslation'
 
 import * as React from "react";
 
-const allLanguages = ["de"]
+// const allLanguages = ["de"]
 const defaultLanguage = "de"
 
-async function importNamespaces(lang: string, namespaces: string[] = []) {
+async function importNamespaces(lang: string | string[], namespaces: string[] = []) {
     const pageNamespaces = await Promise.all(
         namespaces.map((ns) =>
             import(`../locales/${lang}/${ns}.json`).then((m) => m.default)
@@ -22,13 +22,7 @@ async function importNamespaces(lang: string, namespaces: string[] = []) {
     }, {})
 }
 
-interface I18nNextContext extends NextPageContext {
-    params?: {
-        lang: string
-    }
-}
-
-export async function getI18nProps(ctx: I18nNextContext, namespaces: any) {
+export async function getI18nProps(ctx: GetStaticPropsContext, namespaces: any) {
     const lang = ctx.params?.lang || defaultLanguage
 
     return {
@@ -37,7 +31,7 @@ export async function getI18nProps(ctx: I18nNextContext, namespaces: any) {
     }
 }
 
-export function withI18n(Component: React.FC) {
+export function withI18n<T>(Component: React.FC<T>) {
     function WithI18n(props: any) {
         return (
             <I18nProvider lang={props.lang} namespaces={props.namespaces}>
