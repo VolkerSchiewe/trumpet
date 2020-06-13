@@ -6,6 +6,7 @@ import Countdown from "../components/landing/Countdown";
 import LandingCarousel from "../components/landing/LandingCarousel";
 import Orchestra from "../components/landing/orchestra/Orchestra";
 import Layout from '../components/shared/Layout'
+import NumberWithBorder from "../components/shared/NumberWithBorder";
 import {getI18nProps, useTranslation, withI18n} from "../utils/i18n";
 
 interface Props {
@@ -32,7 +33,10 @@ const IndexPage: NextPage<Props> = ({registrationCount}) => {
                 <NoSsr>
                     <Orchestra className="my-8" registrationsCount={registrationCount}/>
                 </NoSsr>
-                <Countdown title={t("days left")}/>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <Countdown title={t("days left")}/>
+                    <NumberWithBorder title={t("registrations")} number={registrationCount}/>
+                </div>
             </div>
         </Layout>
     );
