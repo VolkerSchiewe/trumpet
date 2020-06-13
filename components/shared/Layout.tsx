@@ -7,7 +7,7 @@ type Props = {
 }
 
 const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 2021 Berlin'}) => (
-    <div style={{
+    <div className='flex flex-col' style={{
         background: 'linear-gradient(180deg, #ffffff 50%, #cacaca 100%)',
         margin: 0,
         backgroundRepeat: 'no-repeat',
@@ -25,16 +25,17 @@ const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 20
                 body > div:first-child,
                 div#__next,
                 div#__next > div,
-                div#__next > div > div {
+                div#__next > div {
                     min-height: 100vh;
                 }
         `}
         </style>
-        <Container>
+        <Container className='flex flex-col mb-5'>
             {children}
         </Container>
-        <footer>
-            {/* Add footer here*/}
+        <div className='flex-grow'/>
+        <footer className="p-3 bg-gray-600 text-gray-100 text-xs">
+            © 2020 Evangelische Brüdergemeine Berlin
         </footer>
     </div>
 )

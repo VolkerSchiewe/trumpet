@@ -4,6 +4,7 @@ import React from "react";
 import ContentBlock from "../components/landing/ContentBlock";
 import Countdown from "../components/landing/Countdown";
 import LandingCarousel from "../components/landing/LandingCarousel";
+import Orchestra from "../components/landing/orchestra/Orchestra";
 import Layout from '../components/shared/Layout'
 import {getI18nProps, useTranslation, withI18n} from "../utils/i18n";
 
@@ -24,6 +25,7 @@ const IndexPage = () => {
                     <ContentBlock color={"yellow"} title={"Infos"}/>
                     <ContentBlock color={"magenta"} title={"Anmeldung"}/>
                 </div>
+                <Orchestra className="my-8"/>
                 <Countdown title={t("days left")}/>
             </div>
         </Layout>

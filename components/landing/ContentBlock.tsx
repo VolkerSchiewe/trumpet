@@ -1,6 +1,6 @@
 import React from "react";
 
-type ThemeColor = "yellow" | "blue" | "green" | "magenta"
+export type ThemeColor = "yellow" | "blue" | "green" | "magenta"
 
 interface Props {
     title: string
