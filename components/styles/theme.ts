@@ -3,7 +3,7 @@ import colors from "./colors";
 
 const theme = responsiveFontSizes(createMuiTheme({
     typography: {
-        fontFamily: "'Fira Sans', Arial, sans-serif"
+        fontFamily: "'Fira Sans Condensed', Arial, sans-serif"
     },
     palette: {
         primary: colors.blue,
