@@ -159,7 +159,7 @@ const UserDataForm = () => {
                                 helpText={t("photoAgreementRevocation")}/>
                 </div>
                 <TextInput className="w-full p-2" name={DIETS} errors={errors} inputRef={register}
-                           suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue}/>
+                           suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue} placeholder={t("vegetarian, allergies, etc")}/>
                 <TextInput className="w-full p-2" name={COMMENTS} errors={errors} inputRef={register} multiline/>
 
                 {error && (

@@ -6,7 +6,7 @@ const colors = {
         dark: "#0078d2"
     },
     yellow: {
-        light: "#f0b678",
+        light: "#ebdfd5",
         main: "#f19938",
         dark: "#b86914"
     },

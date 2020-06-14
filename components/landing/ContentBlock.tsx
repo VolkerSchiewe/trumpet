@@ -12,7 +12,7 @@ interface Props {
 const ContentBlock: React.FC<Props> = ({color, title, content, onClick}) => {
     return (
         <div className={`group border-${color} text-black hover:bg-${color} hover:text-white border p-5
-            transform hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-2xl cursor-pointer`}
+            transform hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-2xl hover:z-10 cursor-pointer`}
             onClick={onClick}
         >
             <h2 className={`font-bold italic text-3xl text-${color} group-hover:text-white`}>{title}</h2>

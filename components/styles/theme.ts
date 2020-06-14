@@ -29,6 +29,12 @@ const theme = responsiveFontSizes(createMuiTheme({
                 color: colors.blue.dark,
                 borderColor: colors.blue.dark,
             }
+        },
+        MuiChip: {
+            outlinedPrimary: {
+                // color: "black",
+                backgroundColor: "white",
+            }
         }
     }
 }));
