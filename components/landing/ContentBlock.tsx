@@ -6,12 +6,15 @@ interface Props {
     title: string
     content?: string
     color: ThemeColor
+    onClick?: ()=> void
 }
 
-const ContentBlock: React.FC<Props> = ({color, title, content}) => {
+const ContentBlock: React.FC<Props> = ({color, title, content, onClick}) => {
     return (
         <div className={`group border-${color} text-black hover:bg-${color} hover:text-white border p-5
-            transform hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-2xl cursor-pointer`}>
+            transform hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-2xl cursor-pointer`}
+            onClick={onClick}
+        >
             <h2 className={`font-bold italic text-xl mb-2 text-${color} group-hover:text-white`}>{title}</h2>
             <hr className={`border-${color} group-hover:border-white`}/>
             <p className={`font-light text-sm font-sans-content my-2 text-black`}>

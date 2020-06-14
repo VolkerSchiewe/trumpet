@@ -8,9 +8,10 @@ type Props = {
 
 const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 2021 Berlin'}) => (
     <div className='flex flex-col' style={{
-        background: 'linear-gradient(180deg, #ffffff 50%, #cacaca 100%)',
-        margin: 0,
+        // helps to show contrast ratio in dev environment
+        backgroundImage: process.env.NODE_ENV === 'development' ? '': 'linear-gradient(180deg, #ffffff 50%, #cacaca 100%)',
         backgroundRepeat: 'no-repeat',
+        margin: 0,
     }}>
         <Head>
             <title>{title}</title>

@@ -8,6 +8,7 @@ import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {useForm} from 'react-hook-form'
 import {useTranslation} from "../../utils/i18n";
 import {post} from "../../utils/request";
+import SubmitButton from "../shared/forms/SubmitButton";
 import {
     ACCOMMODATION,
     ACCOMMODATION_WITH,
@@ -94,7 +95,6 @@ const UserDataForm = () => {
     return (
         <div>
             <form className="flex flex-wrap pt-4" onSubmit={handleSubmit(onSubmit)}>
-                <Typography className="w-full p-2" variant={"h3"}>{t("Registration")}</Typography>
                 <TextInput className="w-full md:w-1/2 p-2" name={FIRST_NAME} errors={errors}
                            inputRef={register({required: errorRequired})}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={LAST_NAME} errors={errors}
@@ -124,9 +124,7 @@ const UserDataForm = () => {
                     required: errorRequired,
                     pattern: {value: validators[ZIP_CITY].pattern, message: validators[ZIP_CITY].message}
                 })}/>
-                <div className="w-full p-2">
-                    <Divider/>
-                </div>
+                <div className="w-full h-8"/>
                 <TextInput className="w-full p-2" name={CONGREGATION} errors={errors} setValue={setValue}
                            suggestions={congregationSuggestions} autoComplete={"off"}
                            inputRef={register({required: errorRequired})}/>
@@ -144,18 +142,13 @@ const UserDataForm = () => {
                              control={control} rules={{required: errorRequired}}/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={DEPARTURE} errors={errors} choices={departureOptions}
                              control={control} rules={{required: errorRequired}}/>
-                <RadioInput className="w-full p-2" name={ACCOMMODATION} errors={errors} choices={accommodationOptions}
+                <RadioInput className="w-full md:w-1/2 p-2" name={ACCOMMODATION} errors={errors}
+                            choices={accommodationOptions}
                             control={control}/>
-                {accommodation !== NO_ACCOMMODATION && (
-                    <TextInput className="w-full p-2" name={ACCOMMODATION_WITH} errors={errors}/>
+                {accommodation !== NO_ACCOMMODATION && accommodation !== undefined && (
+                    <TextInput className="w-full md:w-1/2 p-2" name={ACCOMMODATION_WITH} errors={errors}/>
                 )}
-                <div className={"w-full p-2"}>
-                    <Divider/>
-                </div>
-                <SelectInput className="w-full md:w-1/4 p-2" name={SHIRT} errors={errors} choices={shirtOptions}
-                             control={control}/>
-                <TextInput className="w-full md:w-3/4 p-2" name={DIETS} errors={errors} inputRef={register}
-                           suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue}/>
+                <div className="w-full h-8"/>
 
                 <div className={"w-full p-2"}>
                     <Typography>
@@ -165,14 +158,16 @@ const UserDataForm = () => {
                                 control={control}
                                 helpText={t("photoAgreementRevocation")}/>
                 </div>
+                <TextInput className="w-full p-2" name={DIETS} errors={errors} inputRef={register}
+                           suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue}/>
                 <TextInput className="w-full p-2" name={COMMENTS} errors={errors} inputRef={register} multiline/>
 
                 {error && (
                     <Typography className={"w-full p-2"} color={"error"}>{error}</Typography>
                 )}
-                <div className="p-2">
-                    <Button id={`btn-submit-form`} variant={"outlined"} type={"submit"}> {t("Submit")} </Button>
-
+                <div className='w-full md:w-1/2'/>
+                <div className="w-full md:w-1/2 p-2">
+                    <SubmitButton className='float-right' fullWidth id={`btn-submit-form`}>{t("Submit")}</SubmitButton>
                 </div>
 
                 <Backdrop open={isLoading}>

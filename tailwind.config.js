@@ -21,7 +21,10 @@ module.exports = {
                 'sans-content': ['Fira Sans Condensed', 'sans-serif'],
             },
             colors: {
-                blue: "#0097dc",
+                blue: {
+                    default: "#0097dc",
+                    dark: "#0078d2"
+                },
                 yellow: "#f19938",
                 green: "#00c835",
                 magenta: "#f00079",
@@ -42,7 +45,7 @@ module.exports = {
             },
             fill: theme => ({
                 "none": "none",
-                "gray": theme('colors.gray.600')
+                "gray": theme('colors.gray.500')
             })
         }
     },

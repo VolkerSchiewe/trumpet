@@ -50,6 +50,8 @@ export function useTranslation(namespace: string = "common") {
 
         if (term?.includes(":"))
             console.warn("Term included namespace!")
-        return t(term ? `${namespace}:${term}` : "");
+        const translatedTerm =  t(term ? `${namespace}:${term}` : "");
+        // Trim namespace in case no translation was found
+        return translatedTerm.split(":")[translatedTerm.split(":").length -1]
     }
 }
