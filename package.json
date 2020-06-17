@@ -6,6 +6,7 @@
     "dev": "rm -f public/sw.js && next",
     "build": "next build",
     "start": "next start",
+    "serve": "yarn build && yarn start",
     "type-check": "tsc",
     "test": "jest",
     "test:cypress": "cypress run --record --parallel",

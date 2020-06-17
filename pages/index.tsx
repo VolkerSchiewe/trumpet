@@ -1,4 +1,4 @@
-import {Hidden, NoSsr} from "@material-ui/core";
+import {NoSsr} from "@material-ui/core";
 import {GetStaticProps, GetStaticPropsContext, NextPage} from "next";
 import {useRouter} from "next/router";
 import React from "react";
@@ -20,13 +20,13 @@ const IndexPage: NextPage<Props> = ({registrationCount}) => {
     return (
         <Layout>
             <div className='flex flex-col items-center justify-start w-full p-2'>
-                <Hidden xsDown>
+                <div className="w-full hidden sm:block" style={{height: '35vw'}}>
                     <LandingCarousel/>
-                </Hidden>
-                <Hidden smUp>
+                </div>
+                <div className="block sm:hidden">
                     <img className="p-3" src={"images/logo.svg"} alt={"logo"}/>
                     <img className="p-3" src={"images/headline-black.svg"} alt={"headline"}/>
-                </Hidden>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 my-5">
                     <ContentBlock color={"blue"} title={"Bilder"}/>
                     <ContentBlock color={"yellow"} title={"Infos"}/>

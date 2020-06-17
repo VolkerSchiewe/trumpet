@@ -1,14 +1,28 @@
-import React, {useState} from "react";
 import Backdrop from "@material-ui/core/Backdrop";
-import Button from "@material-ui/core/Button";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
+import React, {useState} from "react";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {useForm} from 'react-hook-form'
 import {useTranslation} from "../../utils/i18n";
 import {post} from "../../utils/request";
+import RadioInput from "../shared/forms/RadioInput";
+import SelectInput from "../shared/forms/SelectInput";
 import SubmitButton from "../shared/forms/SubmitButton";
+import TextInput from "../shared/forms/TextInput";
+import {
+    accommodationOptions,
+    arrivalOptions,
+    BEGINNER,
+    congregationSuggestions,
+    departureOptions,
+    dietSuggestions,
+    GUEST,
+    NO_ACCOMMODATION,
+    registrationOptions,
+    voiceOptions,
+    yesNoOptions
+} from "./choices";
 import {
     ACCOMMODATION,
     ACCOMMODATION_WITH,
@@ -25,28 +39,11 @@ import {
     PHONE,
     PHOTO_AGREEMENT,
     REGISTRATION_TYPE,
-    SHIRT,
-    STREET_NUMBER, UserData,
+    STREET_NUMBER,
+    UserData,
     VOICE,
     ZIP_CITY
 } from "./types";
-import RadioInput from "../shared/forms/RadioInput";
-import SelectInput from "../shared/forms/SelectInput";
-import TextInput from "../shared/forms/TextInput";
-import {
-    accommodationOptions,
-    arrivalOptions,
-    BEGINNER,
-    congregationSuggestions,
-    departureOptions,
-    dietSuggestions,
-    GUEST,
-    NO_ACCOMMODATION,
-    registrationOptions,
-    shirtOptions,
-    voiceOptions,
-    yesNoOptions
-} from "./choices";
 import {errorRequired, validators} from "./valdiations";
 
 const REGISTRATION_URL = "/api/registration";
@@ -159,7 +156,8 @@ const UserDataForm = () => {
                                 helpText={t("photoAgreementRevocation")}/>
                 </div>
                 <TextInput className="w-full p-2" name={DIETS} errors={errors} inputRef={register}
-                           suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue} placeholder={t("vegetarian, allergies, etc")}/>
+                           suggestions={dietSuggestions} autoComplete={"off"} setValue={setValue}
+                           placeholder={t("vegetarian, allergies, etc")}/>
                 <TextInput className="w-full p-2" name={COMMENTS} errors={errors} inputRef={register} multiline/>
 
                 {error && (
