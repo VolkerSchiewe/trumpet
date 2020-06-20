@@ -9,7 +9,7 @@
     "serve": "yarn build && yarn start",
     "type-check": "tsc",
     "test": "jest",
-    "test:cypress": "cypress run",
+    "test:cypress": "cypress run --record --parallel",
     "test:integration": "start-server-and-test serve http://localhost:3000 test:cypress",
     "coverage:clear": "rm -rf coverage",
     "coverage:merge": "istanbul-merge --out coverage/merged/coverage-final.json ./coverage/unit/coverage-final.json ./coverage/integration/coverage-final.json",
