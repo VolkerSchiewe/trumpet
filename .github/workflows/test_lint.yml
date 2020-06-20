@@ -32,7 +32,7 @@ jobs:
           RECAPTCHA_KEY: ${{ secrets.RECAPTCHA_KEY }}
 
       - name: Run unit tests
-        run: yarn test
+        run: yarn test --coverage
 
       - name: Run integration tests
         run: yarn test:integration
@@ -46,14 +46,11 @@ jobs:
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
           NODE_ENV: test
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v2
-        with:
-          name: coverage
-          path: ./coverage
+      - name: Merge coverage reports
+        run: yarn coverage:merge
 
       - name: Check coverage
-        run: yarn nyc report --check-coverage
+        run:  yarn coverage:merge-report --check-coverage
 
 
   lint:

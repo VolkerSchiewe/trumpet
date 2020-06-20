@@ -10,7 +10,9 @@
     "type-check": "tsc",
     "test": "jest",
     "test:cypress": "cypress run --record --parallel",
-    "test:integration": "start-server-and-test serve http://localhost:3000 test:cypress"
+    "test:integration": "start-server-and-test serve http://localhost:3000 test:cypress",
+    "coverage:merge": "istanbul-merge --out coverage/merged/coverage-final.json ./coverage/unit/coverage-final.json ./coverage/integration/coverage-final.json",
+    "coverage:merge-report": "nyc report --reporter=lcov --reporter=text --temp-dir=./coverage/merged --report-dir=./coverage/merged"
   },
   "dependencies": {
     "@brainhubeu/react-carousel": "^1.18.10",
@@ -39,6 +41,7 @@
     "cypress": "^4.8.0",
     "firebase-tools": "^8.4.3",
     "istanbul-lib-coverage": "^3.0.0",
+    "istanbul-merge": "^1.1.1",
     "jest": "^26.0.1",
     "jimp": "^0.13.0",
     "nyc": "^15.1.0",
@@ -63,6 +66,14 @@
       "^.+\\.tsx?$": "ts-jest"
     },
     "clearMocks": true,
-    "coverageDirectory": "coverage"
+    "coverageDirectory": "coverage/unit"
+  },
+  "nyc": {
+    "report-dir": "coverage/integration",
+    "reporter": [
+      "text",
+      "json",
+      "lcov"
+    ]
   }
 }
