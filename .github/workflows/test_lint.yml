@@ -35,7 +35,7 @@ jobs:
         run: yarn test --coverage
 
       - name: Run integration tests
-        run: yarn test:integration
+        run: yarn test:integration --record --parallel
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           RECAPTCHA_KEY: ${{ secrets.RECAPTCHA_KEY }}
@@ -50,7 +50,7 @@ jobs:
         run: yarn coverage:merge
 
       - name: Check coverage
-        run:  yarn coverage:merge-report --check-coverage
+        run:  yarn coverage:merge-report --check-coverage --lines 85
 
 
   lint:
