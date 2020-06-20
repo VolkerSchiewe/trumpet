@@ -1,31 +1,14 @@
 import React from "react"
-import {getRandomNumbers} from "../../../utils/random";
-import {ThemeColor} from "../ContentBlock";
+import {ThemeColor} from "../../styles/colors";
+import {DistributionArray} from "./distributeOrchestraData";
 import {orchestraData, RectangleAttr} from "./orchestra-data"
 
 interface Props {
     className: string
-    registrationsCount: number
+    orchestraDistribution: DistributionArray
 }
 
-const Orchestra: React.FC<Props> = ({className, registrationsCount}) => {
-    // Security to reduce page load
-    const maxPlaces = 264 // 4 colors * 66 rectangles
-    const places = Math.min(maxPlaces, registrationsCount)
-    const colors: ThemeColor[] = ['magenta', 'blue', 'yellow', 'green']
-
-    type Distribution = { [key in ThemeColor]: number; }
-    const colorsDistributed: Distribution = [...Array(places).keys()].reduce((acc, i) => {
-        const color = colors[i % 4]
-        acc[color] = acc[color] + 1
-        return acc
-    }, {'magenta': 0, 'blue': 0, 'yellow': 0, 'green': 0})
-    type DistributionArray = { [key in ThemeColor]: number[]; }
-    const placesDistributed: DistributionArray = Object.keys(colorsDistributed).reduce((acc, key) => {
-        const typedKey = key as ThemeColor
-        acc[typedKey] = getRandomNumbers(0, 65, colorsDistributed[typedKey])
-        return acc
-    }, {'magenta': [], 'blue': [], 'yellow': [], 'green': []} as DistributionArray)
+const Orchestra: React.FC<Props> = ({className, orchestraDistribution}) => {
 
     return (
         <div className={"w-full h-full " + className}>
@@ -35,7 +18,7 @@ const Orchestra: React.FC<Props> = ({className, registrationsCount}) => {
 
                 {Object.keys(orchestraData).map((color) => {
                     const typedColor = color as ThemeColor
-                    const filled = placesDistributed[typedColor]
+                    const filled = orchestraDistribution[typedColor]
                     return (
                         <g className={`text-${color}`} key={color}>
                             {

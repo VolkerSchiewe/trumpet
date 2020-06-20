@@ -1,4 +1,4 @@
-import {ThemeColor} from "../ContentBlock";
+import {ThemeColor} from "../../styles/colors";
 
 export type RectangleAttr = { x: string, y: string, transform: string }
 export type OrchestraData = { [key in ThemeColor]: RectangleAttr[] }

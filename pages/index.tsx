@@ -5,6 +5,7 @@ import React from "react";
 import ContentBlock from "../components/landing/ContentBlock";
 import Countdown from "../components/landing/Countdown";
 import LandingCarousel from "../components/landing/LandingCarousel";
+import {distributeOrchestraData, DistributionArray} from "../components/landing/orchestra/distributeOrchestraData";
 import Orchestra from "../components/landing/orchestra/Orchestra";
 import Layout from '../components/shared/Layout'
 import NumberWithBorder from "../components/shared/NumberWithBorder";
@@ -12,9 +13,10 @@ import {getI18nProps, useTranslation, withI18n} from "../utils/i18n";
 
 interface Props {
     registrationCount: number;
+    orchestraDistribution: DistributionArray;
 }
 
-const IndexPage: NextPage<Props> = ({registrationCount}) => {
+const IndexPage: NextPage<Props> = ({orchestraDistribution, registrationCount}) => {
     const t = useTranslation("home")
     const router = useRouter()
     return (
@@ -33,9 +35,7 @@ const IndexPage: NextPage<Props> = ({registrationCount}) => {
                     <ContentBlock color={"magenta"} title={"Anmeldung"}
                                   onClick={() => router.push('/registration').then(() => window.scrollTo(0, 0))}/>
                 </div>
-                <NoSsr>
-                    <Orchestra className="my-8" registrationsCount={registrationCount}/>
-                </NoSsr>
+                <Orchestra className="my-8" orchestraDistribution={orchestraDistribution}/>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <Countdown title={t("days left")}/>
                     <NumberWithBorder title={t("registrations")} number={registrationCount}/>
@@ -46,9 +46,16 @@ const IndexPage: NextPage<Props> = ({registrationCount}) => {
 }
 
 
-export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => ({
-    props: {...await getI18nProps(ctx, ['home']), registrationCount: 50},
-    unstable_revalidate: 1
-})
+export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+    const registrationCount = 50
+    return ({
+        props: {
+            ...await getI18nProps(ctx, ['home']),
+            registrationCount,
+            orchestraDistribution: distributeOrchestraData(registrationCount)
+        },
+        unstable_revalidate: 1
+    });
+}
 
 export default withI18n<Props>(IndexPage)

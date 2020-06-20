@@ -1,3 +1,4 @@
+export type ThemeColor = "yellow" | "blue" | "green" | "magenta"
 
 const colors = {
     blue: {
