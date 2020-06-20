@@ -3,9 +3,9 @@ import {NextPage} from "next";
 import absoluteUrl from "next-absolute-url/index";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
-import Layout from "../components/shared/Layout";
-import {redirectIfRestricted} from "../utils/restrictAccess";
-import {get, post} from "../utils/request";
+import Layout from "../src/components/shared/Layout";
+import {redirectIfRestricted} from "../src/utils/restrictAccess";
+import {get, post} from "../src/utils/request";
 
 interface Props {
     firstName?: string

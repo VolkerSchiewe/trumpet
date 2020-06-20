@@ -1,4 +1,4 @@
-import {post} from "../request";
+import {post} from "../utils/request";
 import Mail from "./mails/mail";
 
 export const sendMail = async (mail: Mail): Promise<void> => {

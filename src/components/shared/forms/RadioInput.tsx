@@ -6,7 +6,7 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import React from "react";
 import {Control, Controller, FieldError, NestDataObject} from "react-hook-form";
-import {useTranslation} from "../../../utils/i18n";
+import {useTranslation} from "../../../i18n";
 import slugify from "../../../utils/slugify";
 
 interface Props {

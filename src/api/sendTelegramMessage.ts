@@ -1,6 +1,6 @@
 import * as telegraf from "telegraf"
 import {Message} from "telegram-typings";
-import {UserData} from "../../components/registration/types";
+import {UserData} from "../components/registration/types";
 
 export default function (data: UserData): Promise<Message> | undefined {
     if (!process.env.TELEGRAM_API_TOKEN || !process.env.TELEGRAM_CHAT_ID) {

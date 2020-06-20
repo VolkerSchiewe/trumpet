@@ -1,15 +1,14 @@
-import {NoSsr} from "@material-ui/core";
 import {GetStaticProps, GetStaticPropsContext, NextPage} from "next";
 import {useRouter} from "next/router";
 import React from "react";
-import ContentBlock from "../components/landing/ContentBlock";
-import Countdown from "../components/landing/Countdown";
-import LandingCarousel from "../components/landing/LandingCarousel";
-import {distributeOrchestraData, DistributionArray} from "../components/landing/orchestra/distributeOrchestraData";
-import Orchestra from "../components/landing/orchestra/Orchestra";
-import Layout from '../components/shared/Layout'
-import NumberWithBorder from "../components/shared/NumberWithBorder";
-import {getI18nProps, useTranslation, withI18n} from "../utils/i18n";
+import ContentBlock from "../src/components/landing/ContentBlock";
+import Countdown from "../src/components/landing/Countdown";
+import LandingCarousel from "../src/components/landing/LandingCarousel";
+import {distributeOrchestraData, DistributionArray} from "../src/components/landing/orchestra/distributeOrchestraData";
+import Orchestra from "../src/components/landing/orchestra/Orchestra";
+import Layout from '../src/components/shared/Layout'
+import NumberWithBorder from "../src/components/shared/NumberWithBorder";
+import {getI18nProps, useTranslation, withI18n} from "../src/i18n";
 
 interface Props {
     registrationCount: number;

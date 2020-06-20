@@ -3,9 +3,9 @@ import {GetStaticProps, NextPage} from "next";
 import {useRouter} from "next/router";
 import React from "react";
 import {GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
-import UserDataForm from "../components/registration/UserDataForm";
-import Layout from "../components/shared/Layout";
-import {getI18nProps, useTranslation, withI18n} from "../utils/i18n";
+import UserDataForm from "../src/components/registration/UserDataForm";
+import Layout from "../src/components/shared/Layout";
+import {getI18nProps, useTranslation, withI18n} from "../src/i18n";
 
 const RegistrationPage: NextPage = () => {
     const t = useTranslation("registration")

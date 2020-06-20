@@ -1,7 +1,7 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import {DB} from "../../utils/api/constants";
-import firestore from "../../utils/api/firestore";
-import {disableIfRestricted} from "../../utils/restrictAccess";
+import {DB} from "../../src/api/constants";
+import firestore from "../../src/api/firestore";
+import {disableIfRestricted} from "../../src/utils/restrictAccess";
 
 interface NameData {
     firstName: string

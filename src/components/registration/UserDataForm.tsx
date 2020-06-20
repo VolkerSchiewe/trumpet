@@ -4,7 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import React, {useState} from "react";
 import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
 import {useForm} from 'react-hook-form'
-import {useTranslation} from "../../utils/i18n";
+import {useTranslation} from "../../i18n";
 import {post} from "../../utils/request";
 import RadioInput from "../shared/forms/RadioInput";
 import SelectInput from "../shared/forms/SelectInput";

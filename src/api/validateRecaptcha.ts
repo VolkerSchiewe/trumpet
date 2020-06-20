@@ -1,4 +1,4 @@
-import {get} from "../request";
+import {get} from "../utils/request";
 
 export const validateRecaptcha = async (token: string): Promise<boolean> => {
     console.log("validate_recaptcha", {token: token})

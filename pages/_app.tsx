@@ -4,7 +4,7 @@ import {AppProps} from "next/app";
 import * as React from "react";
 import 'tailwindcss/tailwind.css'
 import '@brainhubeu/react-carousel/lib/style.css';
-import theme from "../components/styles/theme";
+import theme from "../src/components/styles/theme";
 
 function MyApp({Component, pageProps}: AppProps) {
 

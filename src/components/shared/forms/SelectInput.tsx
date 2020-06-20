@@ -5,7 +5,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {Control, Controller, FieldError, NestDataObject} from "react-hook-form";
-import {useTranslation} from "../../../utils/i18n";
+import {useTranslation} from "../../../i18n";
 import slugify from "../../../utils/slugify";
 
 interface Props {

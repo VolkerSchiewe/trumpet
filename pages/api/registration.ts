@@ -1,11 +1,11 @@
 import {NextApiRequest, NextApiResponse} from 'next'
-import {DB} from "../../utils/api/constants";
-import firestore from "../../utils/api/firestore";
-import RegistrationCompleteMail from "../../utils/api/mails/registrationComplete";
-import {sendMail} from "../../utils/api/sendMail";
-import {validateRecaptcha} from "../../utils/api/validateRecaptcha";
+import {DB} from "../../src/api/constants";
+import firestore from "../../src/api/firestore";
+import RegistrationCompleteMail from "../../src/api/mails/registrationComplete";
+import {sendMail} from "../../src/api/sendMail";
+import {validateRecaptcha} from "../../src/api/validateRecaptcha";
 import admin from "firebase-admin"
-import {disableIfRestricted} from "../../utils/restrictAccess";
+import {disableIfRestricted} from "../../src/utils/restrictAccess";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (await disableIfRestricted(res))

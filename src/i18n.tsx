@@ -12,7 +12,7 @@ const defaultLanguage = "de"
 async function importNamespaces(lang: string | string[], namespaces: string[] = []) {
     const pageNamespaces = await Promise.all(
         namespaces.map((ns) =>
-            import(`../locales/${lang}/${ns}.json`).then((m) => m.default)
+            import(`./locales/${lang}/${ns}.json`).then((m) => m.default)
         )
     )
 

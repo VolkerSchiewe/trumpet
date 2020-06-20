@@ -1,10 +1,10 @@
 import admin from "firebase-admin";
 import {NextApiRequest, NextApiResponse} from "next";
-import {UserData} from "../../components/registration/types";
-import {DB} from "../../utils/api/constants";
-import firestore from "../../utils/api/firestore";
-import sendTelegramMessage from "../../utils/api/sendTelegramMessage";
-import {disableIfRestricted} from "../../utils/restrictAccess";
+import {UserData} from "../../src/components/registration/types";
+import {DB} from "../../src/api/constants";
+import firestore from "../../src/api/firestore";
+import sendTelegramMessage from "../../src/api/sendTelegramMessage";
+import {disableIfRestricted} from "../../src/utils/restrictAccess";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (await disableIfRestricted(res))
