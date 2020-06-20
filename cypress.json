@@ -3,5 +3,10 @@
   "projectId": "azcv4k",
   "integrationFolder": "test/integration",
   "watchForFileChanges": false,
-  "fixturesFolder": false
+  "fixturesFolder": false,
+  "env": {
+    "codeCoverage": {
+      "url": "/api/__coverage__"
+    }
+  }
 }
