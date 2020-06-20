@@ -4,8 +4,11 @@
     "../../node_modules/cypress",
     "./*/*.ts"
   ],
+  "exclude": [],
   "compilerOptions": {
     "isolatedModules": false,
-    "types": ["../../node_modules/cypress"]
+    "types": [
+      "../../node_modules/cypress"
+    ]
   }
 }

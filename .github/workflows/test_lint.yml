@@ -44,6 +44,10 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
           FIREBASE_DATABASE_URL: ${{ secrets.FIREBASE_DATABASE_URL }}
+          BABEL_ENV: test
+
+      - name: Check coverage
+        run: yarn nyc report --check-coverage
 
   lint:
     name: Lint Code Base
