@@ -11,7 +11,7 @@ interface Props {
 
 const ContentBlock: React.FC<Props> = ({color, title, content, onClick}) => {
     return (
-        <div className={`group border-${color} text-black hover:bg-${color} hover:text-white border p-5
+        <div id={title} className={`group border-${color} text-black hover:bg-${color} hover:text-white border p-5
             transform hover:scale-105 transition-all duration-200 ease-in-out hover:shadow-2xl hover:z-10 cursor-pointer`}
              onClick={onClick}
         >
