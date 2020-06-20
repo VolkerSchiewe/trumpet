@@ -21,7 +21,7 @@ describe('The User registration', () => {
 
     it('guest succeeds with required fields', () => {
         cy.server();
-        cy.route('POST', "/api/registration", []).as("registrationPost");
+        cy.route('POST', "/api/registration").as("registrationPost");
 
         windowAlert = cy.stub();
         cy.on('window:alert', windowAlert);
@@ -61,7 +61,7 @@ describe('The User registration', () => {
 
     it('participant succeeds with required fields', () => {
         cy.server();
-        cy.route('POST', "/api/registration", []).as("registrationPost");
+        cy.route('POST', "/api/registration").as("registrationPost");
         windowAlert = cy.stub();
         cy.on('window:alert', windowAlert);
 
@@ -101,7 +101,7 @@ describe('The User registration', () => {
 
     it('beginner succeeds with required fields', () => {
         cy.server();
-        cy.route('POST', "/api/registration", []).as("registrationPost");
+        cy.route('POST', "/api/registration").as("registrationPost");
         windowAlert = cy.stub();
         cy.on('window:alert', windowAlert);
 
@@ -142,7 +142,7 @@ describe('The User registration', () => {
 
     it('should succeed with all fields', () => {
         cy.server();
-        cy.route('POST', "/api/registration", []).as("registrationPost");
+        cy.route('POST', "/api/registration").as("registrationPost");
         windowAlert = cy.stub();
         cy.on('window:alert', windowAlert);
 

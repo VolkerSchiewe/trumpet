@@ -3,6 +3,7 @@ import Mail from "./mails/mail";
 
 export const sendMail = async (mail: Mail): Promise<void> => {
     console.log("sending_email", {name: mail.name, email: mail.email, subject: mail.subject});
+    if (mail.email === "max@example.com") return
     const res = await post("https://api.mailjet.com/v3.1/send",
         {
             Messages: [
@@ -29,7 +30,7 @@ export const sendMail = async (mail: Mail): Promise<void> => {
         }
     );
     if (res.status === 200) {
-        console.log("email_send", {response: res.data});
+        console.log("email_send", {response: JSON.stringify(res.data)});
     } else {
         console.log("email_send_error", {response: res})
         throw Error(`Email could not been send, response: ${res}`)

@@ -1,5 +1,6 @@
 import admin from "firebase-admin";
 import {NextApiRequest, NextApiResponse} from "next";
+import {UserData} from "../../components/registration/types";
 import {DB} from "../../utils/api/constants";
 import firestore from "../../utils/api/firestore";
 import sendTelegramMessage from "../../utils/api/sendTelegramMessage";
@@ -15,6 +16,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             const document = await firestore.collection(DB.PARTICIPANTS_COLLECTION).doc(token as string);
             const data = (await document.get()).data();
+            if (!data)
+                throw Error("No document found")
             const created = data ? data[DB.CREATED].toDate() : null;
             const ONE_HOUR = 60 * 60 * 1000; /* ms */
             const now = new Date();
@@ -26,7 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             }
             console.log("verification_successful");
             await document.update({[DB.EMAIL_VERIFIED]: admin.firestore.Timestamp.now()});
-            await sendTelegramMessage(data)
+            await sendTelegramMessage(data as UserData)
             res.status(200).send("Verification completed")
         } catch (e) {
             console.log("verification_code_invalid", {token});
