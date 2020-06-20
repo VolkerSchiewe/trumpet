@@ -32,7 +32,7 @@ const Layout: React.FC<Props> = ({children, title = 'Brüderischer Bläsertag 20
         `}
         </style>
         <Container className='flex flex-col mb-5' maxWidth={'xl'}>
-            {children}
+            {children || ''}
         </Container>
         <div className='flex-grow'/>
         <footer className="p-3 bg-gray-600 text-gray-100 text-xs">
