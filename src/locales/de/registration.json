@@ -47,7 +47,7 @@
   "photoAgreementRevocation": "Widerspruch kann jederzeit bei der Organisation des Bläsertages eingelegt werden.",
   "photoAgreementText": "Ich stimme zu, dass Fotos von mir im Rahmen des Bläsertags in Gemeindezeitungen, zur  Dokumentation und auf Internetseiten veröffentlicht werden.",
   "Submit": "Abschicken",
-  "Please enter a valid email": "Bitte gib eine korrekte Email Adresse ein",
+  "Please enter a valid email": "Bitte gib eine korrekte E-Mail Adresse ein",
   "Please enter a valid birth date": "Bitte gib ein richtiges Geburtsdatum ein",
   "Please enter a valid street name and number": "Bitte gib Straße und Hausnummer richtig ein",
   "Please enter a valid ZIP code and city": "Bitte gib PLZ und Stadt richtig ein",
@@ -60,6 +60,7 @@
   "l": "L",
   "xl": "XL",
   "Registration nearly completed": "Anmeldung fast abgeschlossen",
-  "We have sent you an email": "Wir haben dir eine Email geschickt.",
-  "Please click on the link in that email to complete your registration": "Bitte bestätige deine Anmeldung indem du auf den Link in der Email klickst."
+  "We have sent you an email": "Wir haben dir eine E-Mail geschickt.",
+  "Please click on the link in that email to complete your registration": "Bitte bestätige deine Anmeldung indem du auf den Link in der E-Mail klickst.",
+  "This email is already registered": "Diese E-Mail Addresse ist bereits registriert"
 }

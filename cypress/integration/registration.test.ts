@@ -15,7 +15,7 @@ describe('The User registration', () => {
         cy.visit("/registration")
     })
     afterEach(() => {
-        cy.request("/api/delete-test-data")
+        cy.request("/api/__delete-test-data__")
     })
 
     it('registration succeeds with all fields', () => {

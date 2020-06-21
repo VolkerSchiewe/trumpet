@@ -1,6 +1,7 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import {DB} from "../../src/api/constants";
 import firestore from "../../src/api/firestore";
+import {isEmailRegistered} from "../../src/api/mails/check_email";
 import RegistrationCompleteMail from "../../src/api/mails/registrationComplete";
 import {sendMail} from "../../src/api/sendMail";
 import {validateRecaptcha} from "../../src/api/validateRecaptcha";
@@ -16,10 +17,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         console.log("registration", {data: data});
         try {
             await validateRecaptcha(recaptchaToken); // throws if something is wrong
-            const registeredMails = await firestore.collection(DB.PARTICIPANTS_COLLECTION).where(DB.EMAIL, "==", data.email).get();
-            if (registeredMails.size > 0)
+            if (await isEmailRegistered(data.email)) {
                 throw new Error("Email is already registered!");
-
+            }
             // adding created date
             data[DB.CREATED] = admin.firestore.Timestamp.now();
             const doc = await firestore.collection(DB.PARTICIPANTS_COLLECTION).add(data);

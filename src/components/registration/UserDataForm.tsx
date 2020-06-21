@@ -2,6 +2,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import {Control, FieldErrors} from "react-hook-form";
 import {useTranslation} from "../../i18n";
+import {get} from "../../utils/request";
 import RadioInput from "../shared/forms/RadioInput";
 import SelectInput from "../shared/forms/SelectInput";
 import SubmitButton from "../shared/forms/SubmitButton";
@@ -54,6 +55,13 @@ interface Props {
 
 const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, control, registrationType, accommodation}) => {
     const t = useTranslation("registration")
+    const validateEmail = (value: string): Promise<string> => {
+       return get(`/api/validate-email?email=${value}`).then(res =>{
+           if (res.status === 200)
+               return t("This email is already registered")
+           return ""
+       })
+    }
     return (
         <div>
             <form className="flex flex-wrap pt-4" onSubmit={onSubmit}>
@@ -64,7 +72,8 @@ const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, co
                 <TextInput className="w-full md:w-1/2 p-2" name={EMAIL} type={"email"} errors={errors}
                            inputRef={register({
                                required: errorRequired,
-                               pattern: {value: validators[EMAIL].pattern, message: validators[EMAIL].message}
+                               pattern: {value: validators[EMAIL].pattern, message: validators[EMAIL].message},
+                               validate: validateEmail
                            })}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={PHONE} errors={errors} type={"tel"}
                            inputRef={register}/>
