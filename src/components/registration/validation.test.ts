@@ -1,6 +1,6 @@
 /// <reference types="jest" />
 import {EMAIL, STREET_NUMBER, ZIP_CITY} from "./types";
-import {errorBirthday, validateBirthday, validators,} from "./valdiations";
+import {errorBirthday, validateBirthday, validators} from "./valdiations";
 
 describe("Validation functions", () => {
     describe("Email validation", () => {

@@ -24,6 +24,8 @@ fb-functions/keys
 # Tests
 .nyc_output
 coverage
+cypress/videos
+cypress/screenshots
 
 # Nextjs
 .next
