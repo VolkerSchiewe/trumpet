@@ -55,12 +55,12 @@ interface Props {
 
 const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, control, registrationType, accommodation}) => {
     const t = useTranslation("registration")
-    const validateEmail = (value: string): Promise<string> => {
-       return get(`/api/validate-email?email=${value}`).then(res =>{
-           if (res.status === 200)
-               return t("This email is already registered")
-           return ""
-       })
+    const validateEmail = (value: string): Promise<string | boolean> => {
+        return get(`/api/validate-email?email=${value}`).then(res => {
+            if (res.status === 200)
+                return t("This email is already registered")
+            return true
+        })
     }
     return (
         <div>
