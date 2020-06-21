@@ -1,11 +1,7 @@
-import Backdrop from "@material-ui/core/Backdrop";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import Typography from "@material-ui/core/Typography";
-import React, {useState} from "react";
-import {useGoogleReCaptcha} from "react-google-recaptcha-v3";
-import {useForm} from 'react-hook-form'
+import React from "react";
+import {Control, FieldErrors} from "react-hook-form";
 import {useTranslation} from "../../i18n";
-import {post} from "../../utils/request";
 import RadioInput from "../shared/forms/RadioInput";
 import SelectInput from "../shared/forms/SelectInput";
 import SubmitButton from "../shared/forms/SubmitButton";
@@ -18,7 +14,7 @@ import {
     departureOptions,
     dietSuggestions,
     GUEST,
-    NO_ACCOMMODATION,
+    NO_ACCOMMODATION, PARTICIPANT,
     registrationOptions,
     voiceOptions,
     yesNoOptions
@@ -39,59 +35,28 @@ import {
     PHONE,
     PHOTO_AGREEMENT,
     REGISTRATION_TYPE,
-    STREET_NUMBER,
-    UserData,
+    STREET_NUMBER, UserData,
     VOICE,
     ZIP_CITY
 } from "./types";
 import {errorRequired, validators} from "./valdiations";
+import {register, setValue} from "../../types/react-hook-form";
 
-const REGISTRATION_URL = "/api/registration";
+interface Props {
+    onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
+    errors: FieldErrors<UserData>;
+    register: register;
+    setValue: setValue<UserData>;
+    control: Control;
+    registrationType: string;
+    accommodation: string;
+}
 
-
-const UserDataForm = () => {
+const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, control, registrationType, accommodation}) => {
     const t = useTranslation("registration")
-    const {executeRecaptcha} = useGoogleReCaptcha();
-    const {register, setValue, errors, watch, control, handleSubmit, reset} = useForm<UserData>({
-        mode: "onBlur",
-    });
-    const [error, setError] = useState("");
-    const [isLoading, setLoading] = useState(false);
-
-
-    const onSubmit = async (data: UserData): Promise<void> => {
-        if (!executeRecaptcha)
-            return;
-        setLoading(true);
-        const token = await executeRecaptcha("registration");
-        // send data to server
-        try {
-            const res = await post(REGISTRATION_URL,
-                {
-                    recaptchaToken: token,
-                    ...data,
-                },
-                {
-                    "Content-Type": "application/json"
-                }
-            );
-            if (res.status == 200) {
-                alert("Anmeldung versendet! Bitte bestätige noch deine Email Adresse.");
-                setError("");
-                reset()
-            }
-        } catch (e) {
-            console.error(e.message);
-            setError(t("Something went wrong. Try again later!"))
-        } finally {
-            setLoading(false);
-        }
-    };
-    const registrationType = watch(REGISTRATION_TYPE);
-    const accommodation = watch(ACCOMMODATION);
     return (
         <div>
-            <form className="flex flex-wrap pt-4" onSubmit={handleSubmit(onSubmit)}>
+            <form className="flex flex-wrap pt-4" onSubmit={onSubmit}>
                 <TextInput className="w-full md:w-1/2 p-2" name={FIRST_NAME} errors={errors}
                            inputRef={register({required: errorRequired})}/>
                 <TextInput className="w-full md:w-1/2 p-2" name={LAST_NAME} errors={errors}
@@ -127,7 +92,7 @@ const UserDataForm = () => {
                            inputRef={register({required: errorRequired})}/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={REGISTRATION_TYPE} errors={errors}
                              choices={registrationOptions} control={control} rules={{required: errorRequired}}/>
-                {registrationType !== GUEST && (
+                {[PARTICIPANT, BEGINNER].includes(registrationType) && (
                     <SelectInput className="w-full md:w-1/2 p-2" name={VOICE} errors={errors} choices={voiceOptions}
                                  control={control} rules={{required: errorRequired}}/>
                 )}
@@ -135,14 +100,16 @@ const UserDataForm = () => {
                     <TextInput className="w-full p-2" name={INSTRUMENT_TIME} errors={errors}
                                inputRef={register({required: errorRequired})}/>
                 )}
+                <div className='w-full'/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={ARRIVAL} errors={errors} choices={arrivalOptions}
                              control={control} rules={{required: errorRequired}}/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={DEPARTURE} errors={errors} choices={departureOptions}
                              control={control} rules={{required: errorRequired}}/>
+                <div className='w-full'/>
                 <RadioInput className="w-full md:w-1/2 p-2" name={ACCOMMODATION} errors={errors}
                             choices={accommodationOptions}
                             control={control}/>
-                {accommodation !== NO_ACCOMMODATION && accommodation !== undefined && (
+                {(accommodation !== NO_ACCOMMODATION && accommodation !== undefined) && (
                     <TextInput className="w-full md:w-1/2 p-2" name={ACCOMMODATION_WITH} errors={errors}/>
                 )}
                 <div className="w-full h-8"/>
@@ -160,17 +127,10 @@ const UserDataForm = () => {
                            placeholder={t("vegetarian, allergies, etc")}/>
                 <TextInput className="w-full p-2" name={COMMENTS} errors={errors} inputRef={register} multiline/>
 
-                {error && (
-                    <Typography className={"w-full p-2"} color={"error"}>{error}</Typography>
-                )}
                 <div className='w-full md:w-1/2'/>
                 <div className="w-full md:w-1/2 p-2">
                     <SubmitButton className='float-right' fullWidth id={`btn-submit-form`}>{t("Submit")}</SubmitButton>
                 </div>
-
-                <Backdrop open={isLoading}>
-                    <CircularProgress/>
-                </Backdrop>
             </form>
         </div>
     )

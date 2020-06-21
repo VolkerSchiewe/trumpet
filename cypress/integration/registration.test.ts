@@ -11,181 +11,94 @@ describe('The User registration', () => {
         instrumentTime: "Trumpet, 2 years",
         accommodationWith: "Partner"
     };
-    let windowAlert: Cypress.Agent<sinon.SinonStub>;
+    beforeEach(() => {
+        cy.visit("/registration")
+    })
     afterEach(() => {
         cy.request("/api/delete-test-data")
     })
-    it('successfully loads', () => {
-        cy.visit('/registration')
-    });
 
-    it('guest succeeds with required fields', () => {
-        cy.server();
-        cy.route('POST', "/api/registration").as("registrationPost");
+    it('registration succeeds with all fields', () => {
+        cy.findByLabelText('Vorname').type(userData.firstName);
+        cy.findByLabelText('Nachname').type(userData.lastName);
+        cy.findByLabelText('E-Mail').type(userData.email);
+        cy.findByLabelText('Telefon').type(userData.phone)
+        cy.findByLabelText('Geburtstag').type(userData.birthday);
+        cy.findByLabelText('Straße & Hausnummer').type(userData.streetNumber);
+        cy.findByLabelText('PLZ & Stadt').type(userData.zipCity);
+        cy.findByLabelText('Gemeinde/Bereich').type(userData.congregation);
 
-        windowAlert = cy.stub();
-        cy.on('window:alert', windowAlert);
+        cy.findByLabelText('Ich bin').click();
+        cy.findByText(/Jungbläser/).click();
+        cy.findByLabelText('Stimme').click()
+        cy.findByText('Alt').click()
+        cy.findByLabelText('Instrument & Ausbildungsdauer').type(userData.instrumentTime)
+        cy.findByLabelText('Ankunft').click();
+        cy.findByText(/Freitag/).click();
+        cy.findByLabelText('Abreise').click();
+        cy.findByText(/Montag/).click();
 
-        cy.visit('/registration');
+        cy.findByLabelText(/Massenquartier/).click();
+        cy.findByLabelText('Zusammen mit').type(userData.accommodationWith);
 
-        cy.get('#text-input-firstName').type(userData.firstName);
-        cy.get('#text-input-lastName').type(userData.lastName);
-        cy.get('#text-input-email').type(userData.email);
+        cy.findByLabelText('Essensbesonderheiten').type("Veg")
+        cy.findByText("Vegan").click()
 
-        cy.get('#text-input-birthday').type(userData.birthday);
-        cy.get('#text-input-streetNumber').type(userData.streetNumber);
-        cy.get('#text-input-zipCity').type(userData.zipCity);
-        cy.get('#text-input-congregation').type(userData.congregation);
+        cy.findByLabelText(/Bemerkungen/).type("Something")
 
-        cy.get('#select-input-registrationType').click();
-        cy.get('#select-item-registrationType-guest').click();
-        cy.get('#select-input-arrival').click();
-        cy.get('#select-item-arrival-friday').click();
-        cy.get('#select-input-departure').click();
-        cy.get('#select-item-departure-monday').click();
-
-        cy.get('#radio-item-accommodation-group-accommodation').click();
-        cy.get('#text-input-accommodationWith').type(userData.accommodationWith);
-
-        cy.get('#btn-submit-form').click();
-        cy.wait('@registrationPost')
-            .then(() => {
-                expect(windowAlert.getCall(0)).to.be.calledWith('Anmeldung versendet! Bitte bestätige noch deine Email Adresse.');
-            });
-        cy.get('#text-input-firstName')
+        cy.get('form').submit();
+        cy.findByText('Anmeldung fast abgeschlossen').should('exist')
+        cy.findByText("OK").click()
+        cy.findByLabelText('Vorname')
             .then(e => {
                 expect(e.val()).to.be.eq("")
             })
-
     });
 
-    it('participant succeeds with required fields', () => {
-        cy.server();
-        cy.route('POST', "/api/registration").as("registrationPost");
-        windowAlert = cy.stub();
-        cy.on('window:alert', windowAlert);
-
-        cy.visit('/registration');
-
-        cy.get('#text-input-firstName').type(userData.firstName);
-        cy.get('#text-input-lastName').type(userData.lastName);
-        cy.get('#text-input-email').type(userData.email);
-        cy.get('#text-input-birthday').type(userData.birthday);
-        cy.get('#text-input-streetNumber').type(userData.streetNumber);
-        cy.get('#text-input-zipCity').type(userData.zipCity);
-        cy.get('#text-input-congregation').type(userData.congregation);
-
-        cy.get('#select-input-registrationType').click();
-        cy.get('#select-item-registrationType-participant').click();
-        cy.get('#select-input-voice').click();
-        cy.get('#select-item-voice-alto').click();
-        cy.get('#select-input-arrival').click();
-        cy.get('#select-item-arrival-friday').click();
-        cy.get('#select-input-departure').click();
-        cy.get('#select-item-departure-monday').click();
-
-        cy.get('#radio-item-accommodation-group-accommodation').click();
-        cy.get('#text-input-accommodationWith').type(userData.accommodationWith);
-
-        cy.get('#btn-submit-form').click();
-        cy.wait('@registrationPost')
-            .then(() => {
-                expect(windowAlert.getCall(0)).to.be.calledWith('Anmeldung versendet! Bitte bestätige noch deine Email Adresse.');
-            });
-        cy.get('#text-input-firstName')
-            .then(e => {
-                expect(e.val()).to.be.eq("")
-            })
-
+    it('should disable fields on load', function () {
+        cy.findByLabelText("Stimme").should('not.exist')
+        cy.findByLabelText("Instrument & Ausbildungsdauer").should('not.exist')
+        cy.findByLabelText("Zusammen mit").should('not.exist')
     });
 
-    it('beginner succeeds with required fields', () => {
-        cy.server();
-        cy.route('POST', "/api/registration").as("registrationPost");
-        windowAlert = cy.stub();
-        cy.on('window:alert', windowAlert);
+    it('should enable voice field for participants and beginners', function () {
+        cy.findByLabelText("Ich bin").click()
+        cy.findByText("Bläser*in").click()
+        cy.findByLabelText("Stimme").should('exist')
 
-        cy.visit('/registration');
+        cy.findByLabelText("Ich bin").click()
+        cy.findByText(/Jungbläser/).click()
+        cy.findByLabelText("Stimme").should('exist')
 
-        cy.get('#text-input-firstName').type(userData.firstName);
-        cy.get('#text-input-lastName').type(userData.lastName);
-        cy.get('#text-input-email').type(userData.email);
-        cy.get('#text-input-birthday').type(userData.birthday);
-        cy.get('#text-input-streetNumber').type(userData.streetNumber);
-        cy.get('#text-input-zipCity').type(userData.zipCity);
-        cy.get('#text-input-congregation').type(userData.congregation);
+        cy.findByLabelText("Ich bin").click()
+        cy.findByText(/Gast/).click()
+        cy.findByLabelText("Stimme").should('not.exist')
+    });
+    it('should enable instrument and time field for beginners', function () {
+        cy.findByLabelText("Ich bin").click()
+        cy.findByText(/Jungbläser/).click()
+        cy.findByLabelText(/Instrument/).should('exist')
 
-        cy.get('#select-input-registrationType').click();
-        cy.get('#select-item-registrationType-beginner').click();
-        cy.get('#select-input-voice').click();
-        cy.get('#select-item-voice-alto').click();
-        cy.get('#text-input-instrumentTime').type(userData.instrumentTime);
-        cy.get('#select-input-arrival').click();
-        cy.get('#select-item-arrival-friday').click();
-        cy.get('#select-input-departure').click();
-        cy.get('#select-item-departure-monday').click();
-
-        cy.get('#radio-item-accommodation-group-accommodation').click();
-        cy.get('#text-input-accommodationWith').type(userData.accommodationWith);
-
-        cy.get('#btn-submit-form').click();
-        cy.wait('@registrationPost')
-            .then(() => {
-                expect(windowAlert.getCall(0)).to.be.calledWith('Anmeldung versendet! Bitte bestätige noch deine Email Adresse.');
-            });
-        cy.get('#text-input-firstName')
-            .then(e => {
-                expect(e.val()).to.be.eq("")
-            })
-
+        cy.findByLabelText("Ich bin").click()
+        cy.findByText(/Gast/).click()
+        cy.findByLabelText(/Instrument/).should('not.exist')
     });
 
-    it('should succeed with all fields', () => {
-        cy.server();
-        cy.route('POST', "/api/registration").as("registrationPost");
-        windowAlert = cy.stub();
-        cy.on('window:alert', windowAlert);
+    it('should enable accommodation with field for any accommodation except none', function () {
+        cy.findByLabelText(/Massenquartier/).click()
+        cy.findByLabelText("Zusammen mit").should('exist')
 
-        cy.visit('/registration');
+        cy.findByLabelText(/Doppelzimmer Etagenbetten/).click()
+        cy.findByLabelText("Zusammen mit").should('exist')
 
-        cy.get('#text-input-firstName').type(userData.firstName);
-        cy.get('#text-input-lastName').type(userData.lastName);
-        cy.get('#text-input-email').type(userData.email);
-        cy.get('#text-input-phone').type(userData.phone);
-        cy.get('#text-input-birthday').type(userData.birthday);
-        cy.get('#text-input-streetNumber').type(userData.streetNumber);
-        cy.get('#text-input-zipCity').type(userData.zipCity);
-        cy.get('#text-input-congregation').type("Ber");
-        cy.get('#text-suggestion-congregation-berlin').click();
+        cy.findByLabelText("Doppelzimmer").click()
+        cy.findByLabelText("Zusammen mit").should('exist')
 
-        cy.get('#select-input-registrationType').click();
-        cy.get('#select-item-registrationType-beginner').click();
-        cy.get('#select-input-voice').click();
-        cy.get('#select-item-voice-alto').click();
-        cy.get('#text-input-instrumentTime').type(userData.instrumentTime);
-        cy.get('#select-input-arrival').click();
-        cy.get('#select-item-arrival-friday').click();
-        cy.get('#select-input-departure').click();
-        cy.get('#select-item-departure-monday').click();
+        cy.findByLabelText(/Familienzimmer/).click()
+        cy.findByLabelText("Zusammen mit").should('exist')
 
-        cy.get('#radio-item-accommodation-group-accommodation').click();
-        cy.get('#text-input-accommodationWith').type(userData.accommodationWith);
-
-        cy.get('#text-input-diets').type("Veg");
-        cy.get('#text-suggestion-diets-vegan').click();
-        cy.get('#radio-item-photoAgreement-no').click();
-
-        cy.get('#text-input-comments').type("Something");
-
-        cy.get('#btn-submit-form').click();
-        cy.wait('@registrationPost')
-            .then(() => {
-                expect(windowAlert.getCall(0)).to.be.calledWith('Anmeldung versendet! Bitte bestätige noch deine Email Adresse.');
-            });
-        cy.get('#text-input-firstName')
-            .then(e => {
-                expect(e.val()).to.be.eq("")
-            })
-
+        cy.findByLabelText(/keine Unterkunft/).click()
+        cy.findByLabelText("Zusammen mit").should('not.exist')
     });
+
 });

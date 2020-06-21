@@ -32,9 +32,13 @@ const theme = responsiveFontSizes(createMuiTheme({
         },
         MuiChip: {
             outlinedPrimary: {
-                // color: "black",
                 backgroundColor: "white",
             }
+        },
+    },
+    props: {
+        MuiPaper: {
+            square: true
         }
     }
 }));

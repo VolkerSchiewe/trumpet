@@ -1,7 +1,5 @@
 import {GetStaticPropsContext} from "next";
-// @ts-ignore
 import I18nProvider from 'next-translate/I18nProvider'
-// @ts-ignore
 import useTranslationNext from 'next-translate/useTranslation'
 
 import * as React from "react";

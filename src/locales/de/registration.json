@@ -52,11 +52,14 @@
   "Please enter a valid street name and number": "Bitte gib Straße und Hausnummer richtig ein",
   "Please enter a valid ZIP code and city": "Bitte gib PLZ und Stadt richtig ein",
   "This field is required": "Dieses Feld ist verpflichtend",
-  "Something went wrong. Try again later!": "Etwas ist schiefgelaufen. Versuche es später noch mal!",
+  "Something went wrong": "Etwas ist schiefgelaufen",
   "Please fill out the following fields correctly: ": "Bitte fülle die folgenden Felder korrekt aus: ",
   "xs": "XS",
   "s": "S",
   "m": "m",
   "l": "L",
-  "xl": "XL"
+  "xl": "XL",
+  "Registration nearly completed": "Anmeldung fast abgeschlossen",
+  "We have sent you an email": "Wir haben dir eine Email geschickt.",
+  "Please click on the link in that email to complete your registration": "Bitte bestätige deine Anmeldung indem du auf den Link in der Email klickst."
 }

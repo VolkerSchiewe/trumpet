@@ -3,7 +3,7 @@ import {GetStaticProps, NextPage} from "next";
 import {useRouter} from "next/router";
 import React from "react";
 import {GoogleReCaptchaProvider} from "react-google-recaptcha-v3";
-import UserDataForm from "../src/components/registration/UserDataForm";
+import UserDataContainer from "../src/components/registration/UserDataContainer";
 import Layout from "../src/components/shared/Layout";
 import {getI18nProps, useTranslation, withI18n} from "../src/i18n";
 
@@ -25,7 +25,7 @@ const RegistrationPage: NextPage = () => {
                         <img className="w-1/5 mx-2" src={"images/logo.svg"} alt={"logo"}/>
                     </div>
                     <Typography className="w-full p-2 text-blue-dark" variant={"h3"}>{t("Registration")}</Typography>
-                    <UserDataForm/>
+                    <UserDataContainer/>
                 </div>
             </GoogleReCaptchaProvider>
         </Layout>

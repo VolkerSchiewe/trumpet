@@ -29,9 +29,9 @@ const IndexPage: NextPage<Props> = ({orchestraDistribution, registrationCount}) 
                     <img className="p-3" src={"images/headline-black.svg"} alt={"headline"}/>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 my-5">
-                    <ContentBlock color={"blue"} title={"Bilder"}/>
-                    <ContentBlock color={"yellow"} title={"Infos"}/>
-                    <ContentBlock color={"magenta"} title={"Anmeldung"}
+                    <ContentBlock color={"magenta"} title={t('Images')}/>
+                    <ContentBlock color={"yellow"} title={t("Information")}/>
+                    <ContentBlock color={"blue"} title={t("Registration")}
                                   onClick={() => router.push('/registration').then(() => window.scrollTo(0, 0))}/>
                 </div>
                 <Orchestra className="my-8" orchestraDistribution={orchestraDistribution}/>

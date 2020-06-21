@@ -81,7 +81,8 @@ const EmailVerificationPage: NextPage<Props> = ({firstName, lastName, baseUrl}) 
                             "Your registration is completed. We are looking forward to see you in Berlin!"
                         )}
                     </DialogContentText>
-                </DialogContent></Dialog>
+                </DialogContent>
+            </Dialog>
         </Layout>
     );
 }
