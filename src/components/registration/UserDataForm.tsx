@@ -56,7 +56,7 @@ interface Props {
 const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, control, registrationType, accommodation}) => {
     const t = useTranslation("registration")
     const validateEmail = (value: string): Promise<string | boolean> => {
-        return get(`/api/validate-email?email=${value}`).then(res => {
+        return get(`/api/validate-email?email=${encodeURIComponent(value)}`).then(res => {
             if (res.status === 200)
                 return t("This email is already registered")
             return true

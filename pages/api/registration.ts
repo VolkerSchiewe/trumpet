@@ -16,7 +16,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const {recaptchaToken, ...data} = req.body;
         console.log("registration", {data: data});
         try {
-            await validateRecaptcha(recaptchaToken); // throws if something is wrong
+            if (data.email !== "max@example.com") {
+                // Disable recaptcha check for test email
+                await validateRecaptcha(recaptchaToken); // throws if something is wrong
+            }
             if (await isEmailRegistered(data.email)) {
                 throw new Error("Email is already registered!");
             }
@@ -25,7 +28,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             const doc = await firestore.collection(DB.PARTICIPANTS_COLLECTION).add(data);
             console.log("document_stored", {id: doc.id, data: data});
 
-            const mail = new RegistrationCompleteMail(data.firstName, data.email, `${req.headers.origin}/verify-mail?token=${doc.id}`);
+            const mail = new RegistrationCompleteMail(data.firstName, data.email, req.headers.origin as string,`/verify-mail?token=${doc.id}`);
             await sendMail(mail);
             res.status(200).send("");
         } catch (e) {
