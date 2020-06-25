@@ -6,6 +6,7 @@ import RegistrationCompleteMail from "../../src/api/mails/registrationComplete";
 import {sendMail} from "../../src/api/sendMail";
 import {validateRecaptcha} from "../../src/api/validateRecaptcha";
 import admin from "firebase-admin"
+import isTestUser from "../../src/utils/isTestUser";
 import {disableIfRestricted} from "../../src/utils/restrictAccess";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,7 +17,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const {recaptchaToken, ...data} = req.body;
         console.log("registration", {data: data});
         try {
-            if (data.email !== "max@example.com") {
+            if (!isTestUser(data.email)) {
                 // Disable recaptcha check for test email
                 await validateRecaptcha(recaptchaToken); // throws if something is wrong
             }
@@ -30,7 +31,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             const mail = new RegistrationCompleteMail(data.firstName, data.email, req.headers.origin as string,`/verify-mail?token=${doc.id}`);
             await sendMail(mail);
-            res.status(200).send("");
+            res.status(200).send(isTestUser(data.email) ? doc.id :"");
         } catch (e) {
             console.error(e.name, e.message);
             res.status(400).send(`Something went wrong. ${e.name}: ${e.message}`)

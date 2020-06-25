@@ -1,16 +1,6 @@
+import userData from "../fixtures/userData";
+
 describe('The User registration', () => {
-    const userData = {
-        firstName: "Max",
-        lastName: "Muster",
-        email: "max@example.com",
-        phone: "0123456789",
-        birthday: "01.01.2000",
-        streetNumber: "Example Street 1",
-        zipCity: "12345 Berlin",
-        congregation: "Berlin",
-        instrumentTime: "Trumpet, 2 years",
-        accommodationWith: "Partner"
-    };
     beforeEach(() => {
         cy.visit("/registration")
     })

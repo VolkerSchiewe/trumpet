@@ -69,10 +69,10 @@ const EmailVerificationPage: NextPage = () => {
                         <CircularProgress/>
                     )}
                     {state === State.DONE && (
-                        <>
+                        <div className="flex flex-col">
                             <Typography>{t("Your email has been verified")}. {t("This completes your registration")}.</Typography>
                             <Typography>{t("In a second, you will be redirected to the home page")}.</Typography>
-                        </>
+                        </div>
                     )}
                     {state === State.ERROR && (
                         <Typography color={"error"}>{t(error)}</Typography>

@@ -1,6 +1,7 @@
 import * as telegraf from "telegraf"
 import {Message} from "telegram-typings";
 import {UserData} from "../components/registration/types";
+import isTestUser from "../utils/isTestUser";
 
 export default function (data: UserData): Promise<Message> | undefined {
     if (!process.env.TELEGRAM_API_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
@@ -11,7 +12,7 @@ export default function (data: UserData): Promise<Message> | undefined {
         return
     }
     //disable for tests
-    if (data.email === 'max@example.com') return
+    if (isTestUser(data.email)) return
     const bot = new telegraf.Telegram(process.env.TELEGRAM_API_TOKEN);
     return bot.sendMessage(
         process.env.TELEGRAM_CHAT_ID,

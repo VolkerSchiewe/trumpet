@@ -1,9 +1,10 @@
+import isTestUser from "../utils/isTestUser";
 import {post} from "../utils/request";
 import Mail from "./mails/mail";
 
 export const sendMail = async (mail: Mail): Promise<void> => {
     console.log("sending_email", {name: mail.name, email: mail.email, subject: mail.subject});
-    if (mail.email === "max@example.com") return
+    if (isTestUser(mail.email)) return
     const res = await post("https://api.mailjet.com/v3.1/send",
         {
             Messages: [
