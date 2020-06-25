@@ -1,6 +1,6 @@
 import Chip from "@material-ui/core/Chip";
 import TextField, {OutlinedTextFieldProps} from "@material-ui/core/TextField";
-import React, {useRef, useState} from "react";
+import React, {ChangeEvent, useRef, useState} from "react";
 import {FieldError, NestDataObject} from "react-hook-form"
 import {useTranslation} from "../../../i18n";
 import slugify from "../../../utils/slugify";
@@ -9,7 +9,7 @@ interface Props extends Partial<OutlinedTextFieldProps> {
     name: string;
     suggestions?: string[];
     errors: NestDataObject<Record<string, string | undefined>, FieldError>;
-    setValue?: (v: any) => void;
+    setValue?: (v: [{[name: string]: string}]) => void;
 }
 
 export default function TextInput({name, errors, suggestions, className, setValue, ...otherProps}: Props) {
@@ -17,7 +17,7 @@ export default function TextInput({name, errors, suggestions, className, setValu
     const [suggestionsSorted, setSuggestions] = useState<string[]>([]);
     const inputRef = useRef<OutlinedTextFieldProps>(null);
 
-    const onChange = (e: any): void => {
+    const onChange = (e: ChangeEvent<HTMLTextAreaElement | HTMLInputElement>): void => {
         const value: string = e.target.value;
 
         // select suggestions
@@ -32,7 +32,7 @@ export default function TextInput({name, errors, suggestions, className, setValu
     };
 
     const onSuggestionClick = (item: string): void => {
-        onChange({target: {value: item}});
+        onChange({target: {value: item}} as ChangeEvent<HTMLInputElement>);
         setValue && setValue([{[name]: item}]);
     };
     return (

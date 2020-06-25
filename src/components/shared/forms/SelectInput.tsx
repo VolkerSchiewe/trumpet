@@ -5,6 +5,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import {Control, Controller, FieldError, NestDataObject} from "react-hook-form";
+import {ValidationOptions} from "react-hook-form/dist/types";
 import {useTranslation} from "../../../i18n";
 import slugify from "../../../utils/slugify";
 
@@ -14,7 +15,7 @@ interface Props {
     errors: NestDataObject<Record<string, string | undefined>, FieldError>;
     className: string;
     control: Control;
-    rules?: any;
+    rules?: ValidationOptions;
 }
 
 export default function SelectInput({className, name, choices, errors, control, rules, ...otherProps}: Props): JSX.Element {

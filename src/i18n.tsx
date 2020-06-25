@@ -1,11 +1,11 @@
 import {GetStaticPropsContext} from "next";
-import I18nProvider from 'next-translate/I18nProvider'
+import I18nProvider, {I18nProviderProps} from 'next-translate/I18nProvider'
 import useTranslationNext from 'next-translate/useTranslation'
 
-import * as React from "react";
+import React from "react";
 
-// const allLanguages = ["de"]
 const defaultLanguage = "de"
+type Namespaces = { [key: string]: {} }
 
 async function importNamespaces(lang: string | string[], namespaces: string[] = []) {
     const pageNamespaces = await Promise.all(
@@ -14,13 +14,13 @@ async function importNamespaces(lang: string | string[], namespaces: string[] = 
         )
     )
 
-    return namespaces.reduce((obj: any, ns, i) => {
+    return namespaces.reduce((obj: Namespaces, ns, i) => {
         obj[ns] = pageNamespaces[i]
         return obj
     }, {})
 }
 
-export async function getI18nProps(ctx: GetStaticPropsContext, namespaces: any) {
+export async function getI18nProps(ctx: GetStaticPropsContext<{ lang?: string }>, namespaces: string[]): Promise<I18nProviderProps> {
     const lang = ctx.params?.lang || defaultLanguage
 
     return {
@@ -29,10 +29,11 @@ export async function getI18nProps(ctx: GetStaticPropsContext, namespaces: any) 
     }
 }
 
-export function withI18n<T>(Component: React.FC<T>) {
-    function WithI18n(props: any) {
+export function withI18n<Props = {}>(Component: React.FC<Props>) {
+    function WithI18n({lang, namespaces, ...props}: I18nProviderProps & Props) {
         return (
-            <I18nProvider lang={props.lang} namespaces={props.namespaces}>
+            <I18nProvider lang={lang} namespaces={namespaces}>
+                {/*// @ts-ignore*/}
                 <Component {...props} />
             </I18nProvider>
         )
@@ -48,8 +49,8 @@ export function useTranslation(namespace: string = "common") {
 
         if (term?.includes(":"))
             console.warn("Term included namespace!")
-        const translatedTerm =  t(term ? `${namespace}:${term}` : "");
+        const translatedTerm = t(term ? `${namespace}:${term}` : "");
         // Trim namespace in case no translation was found
-        return translatedTerm.split(":")[translatedTerm.split(":").length -1]
+        return translatedTerm.split(":")[translatedTerm.split(":").length - 1]
     }
 }

@@ -1,102 +1,92 @@
-import {Button, Dialog, DialogContent, DialogContentText, DialogTitle, Divider, Typography} from "@material-ui/core";
-import {NextPage} from "next";
-import absoluteUrl from "next-absolute-url/index";
+import {
+    Button,
+    CircularProgress,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    Typography
+} from "@material-ui/core";
+import {GetStaticProps, NextPage} from "next";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import Layout from "../src/components/shared/Layout";
-import {redirectIfRestricted} from "../src/utils/restrictAccess";
-import {get, post} from "../src/utils/request";
+import {getI18nProps, useTranslation, withI18n} from "../src/i18n";
+import {post} from "../src/utils/request";
 
-interface Props {
-    firstName?: string
-    lastName?: string
-    baseUrl: string
+
+enum State {
+    LOADING,
+    DONE,
+    ERROR
 }
 
-interface Alert {
-    open: boolean,
-    error: boolean
-    title: string,
-}
-
-const EmailVerificationPage: NextPage<Props> = ({firstName, lastName, baseUrl}) => {
-    const router = useRouter()
-    const [alert, setAlert] = useState<Alert>({open: false, error: false, title: "",})
-    const {token} = router.query
+const EmailVerificationPage: NextPage = () => {
+    const t = useTranslation("verify-mail")
+    const {query: {token}, replace} = useRouter()
+    const [state, setState] = useState<State>(State.LOADING)
+    const [error, setError] = useState<string>("")
     useEffect(() => {
-        if (!firstName && !lastName) {
-            router.replace("/")
+        const verifyMail = async () => {
+            const res = await post(`${location.origin}/api/verify-mail?token=${token}`)
+            if (res.status === 200) {
+                setState(State.DONE)
+            } else {
+                setError(res.data)
+                setState(State.ERROR)
+            }
         }
-    }, [])
-    const onClick = async () => {
-        const res = await post(`${baseUrl}/api/verify-mail?token=${token}`)
-        if (res.status === 200)
-            setAlert({
-                error: false,
-                open: true,
-                title: "Verification completed",
-            })
-        else
-            setAlert({
-                error: true,
-                open: true,
-                title: await res.data,
-            })
-    }
+        if (token)
+            verifyMail().then()
+    }, [token])
+
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (state == State.DONE) {
+            timer = setTimeout(async () => {
+                await replace("/")
+            }, 5000)
+        }
+        return () => clearTimeout(timer)
+    }, [state])
     return (
-        <Layout>
-            <div className="flex flex-col items-center">
-                <div className="flex flex-col max-w-4xl h-full m-5">
-                    <div className="my-8">
-                        <Typography align={"center"} variant={"h4"}>Verify your email address</Typography>
-                    </div>
-                    <Typography>{'Hello'} <b>{`${firstName} ${lastName},`}</b></Typography>
-                    <br/>
-                    <Typography>{`We received a registration for the Brüderischen Bläsertag 2021 in Berlin`}</Typography>
-                    <Typography>{"To complete your registration please verify your email address by clicking the button below:"}</Typography>
-                    <div className="my-6 mx-auto flex justify-center">
-                        <Button variant={"outlined"} onClick={onClick}>
-                            {"Verify my email"}
-                        </Button>
-                    </div>
-                    <div className="flex-1"/>
-                    <Divider/>
-                    <div className="mt-2 mb-8 flex justify-center">
-                        <Typography className="text-gray-600" variant={'caption'}>
-                            {'If you did attempt to register yourself please ignore this email.'}
-                        </Typography>
-                    </div>
-                </div>
-            </div>
-            <Dialog open={alert.open}>
-                <DialogTitle>{alert.title}</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        {alert.error ? (
-                            <>
-                                {"Please try again or contact the team at "}
-                                <a href="mailto:info@blaesertag2021.de">{"info@blaesertag2021.de."}</a>
-                            </>
-                        ) : (
-                            "Your registration is completed. We are looking forward to see you in Berlin!"
-                        )}
-                    </DialogContentText>
-                </DialogContent>
+        <Layout disableGutters>
+            <picture>
+                <source srcSet="/images/campus.webp" type="image/webp"/>
+                <source srcSet="/images/campus.jpg" type="image/jpeg"/>
+                <img className="w-screen h-screen object-cover" src={"/images/campus-slogan.jpg"} alt={"Campus Brüdergemeine Berlin"}/>
+            </picture>
+            <Dialog open={true} fullWidth>
+                <DialogTitle disableTypography className="flex justify-between items-center">
+                    <Typography>
+                        {t("Email Verification")}
+
+                    </Typography>
+                    <img src={'/images/logo.svg'} alt={"logo"} className="h-12 w-12"/>
+                </DialogTitle>
+                <DialogContent className={"flex justify-center items-center"} style={{height: 100}}>
+                    {state === State.LOADING && (
+                        <CircularProgress/>
+                    )}
+                    {state === State.DONE && (
+                        <>
+                            <Typography>{t("Your email has been verified")}. {t("This completes your registration")}.</Typography>
+                            <Typography>{t("In a second, you will be redirected to the home page")}.</Typography>
+                        </>
+                    )}
+                    {state === State.ERROR && (
+                        <Typography color={"error"}>{t(error)}</Typography>
+                    )}
+                </DialogContent>{[State.DONE, State.ERROR].includes(state) &&
+            <DialogActions>
+                <Button onClick={() => replace("/")}>{t("Back to home page")}</Button>
+            </DialogActions>}
             </Dialog>
         </Layout>
     );
 }
 
-EmailVerificationPage.getInitialProps = async ({req, res, query}) => {
-    await redirectIfRestricted(res)
-    const {token} = query
-    const {origin} = absoluteUrl(req)
-    const url = `${origin}/api/get-name?token=${token}`
-    const response = await get(url)
-    if (response.status === 200)
-        return {...(response.data), baseUrl: origin}
-    else {
-        return {baseUrl: origin}
-    }
-}
-export default EmailVerificationPage
+export const getStaticProps: GetStaticProps = async (ctx) => ({
+    props: await getI18nProps(ctx, ['common', 'verify-mail']),
+})
+export default withI18n(EmailVerificationPage)

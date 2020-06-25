@@ -1,7 +1,10 @@
 declare module 'next-translate/I18nProvider' {
-    export default function I18nProvider(props: {
+    import {PropsWithChildren, ReactElement} from "react";
+
+    export interface I18nProviderProps {
         lang: string;
         namespaces: object;
-        children: ReactNode;
-    }): ReactElement;
+    }
+
+    export default function I18nProvider(props: PropsWithChildren<I18nProviderProps>): ReactElement;
 }

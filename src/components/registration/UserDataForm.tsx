@@ -2,6 +2,7 @@ import Typography from "@material-ui/core/Typography";
 import React from "react";
 import {Control, FieldErrors} from "react-hook-form";
 import {useTranslation} from "../../i18n";
+import {register, setValue} from "../../types/react-hook-form";
 import {get} from "../../utils/request";
 import RadioInput from "../shared/forms/RadioInput";
 import SelectInput from "../shared/forms/SelectInput";
@@ -14,8 +15,8 @@ import {
     congregationSuggestions,
     departureOptions,
     dietSuggestions,
-    GUEST,
-    NO_ACCOMMODATION, PARTICIPANT,
+    NO_ACCOMMODATION,
+    PARTICIPANT,
     registrationOptions,
     voiceOptions,
     yesNoOptions
@@ -36,12 +37,12 @@ import {
     PHONE,
     PHOTO_AGREEMENT,
     REGISTRATION_TYPE,
-    STREET_NUMBER, UserData,
+    STREET_NUMBER,
+    UserData,
     VOICE,
     ZIP_CITY
 } from "./types";
 import {errorRequired, validators} from "./valdiations";
-import {register, setValue} from "../../types/react-hook-form";
 
 interface Props {
     onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;

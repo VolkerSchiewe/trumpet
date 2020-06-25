@@ -45,7 +45,7 @@ const IndexPage: NextPage<Props> = ({orchestraDistribution, registrationCount}) 
 }
 
 
-export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext) => {
+export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsContext) => {
     const registrationCount = 50
     return ({
         props: {
@@ -57,4 +57,4 @@ export const getStaticProps: GetStaticProps = async (ctx: GetStaticPropsContext)
     });
 }
 
-export default withI18n<Props>(IndexPage)
+export default withI18n(IndexPage)
