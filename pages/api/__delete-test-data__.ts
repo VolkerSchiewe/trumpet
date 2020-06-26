@@ -1,25 +1,20 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import {DB} from "../../src/api/constants";
 import firestore from "../../src/api/firestore";
-import {disableIfRestricted} from "../../src/utils/restrictAccess";
+import {restrictRoute} from "../../src/api/restrictRoute";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    if (await disableIfRestricted(res))
+    if (await restrictRoute(req, res, 'GET'))
         return
-    if (req.method === 'GET') {
-        const snapshot = await firestore.collection(DB.PARTICIPANTS_COLLECTION).get()
-        let deleted = 0
-        snapshot.forEach(d => {
-            const user = d.data()
-            if (user?.email?.includes("@example.com")) {
-                d.ref.delete();
-                deleted++
-            }
-        })
-        res.json(`Deleted ${deleted} items`)
 
-    } else {
-        res.status(405).setHeader("Allow", ["GET"])
-        res.send("")
-    }
+    const snapshot = await firestore.collection(DB.PARTICIPANTS_COLLECTION).get()
+    let deleted = 0
+    snapshot.forEach(d => {
+        const user = d.data()
+        if (user?.email?.includes("@example.com")) {
+            d.ref.delete();
+            deleted++
+        }
+    })
+    res.json(`Deleted ${deleted} items`)
 }

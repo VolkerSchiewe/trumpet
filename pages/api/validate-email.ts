@@ -1,22 +1,17 @@
 import {NextApiRequest, NextApiResponse} from "next";
 import {isEmailRegistered} from "../../src/api/mails/check_email";
-import {disableIfRestricted} from "../../src/utils/restrictAccess";
+import {restrictRoute} from "../../src/api/restrictRoute";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    if (await disableIfRestricted(res))
+    if (await restrictRoute(req, res, 'GET'))
         return
 
-    if (req.method === 'GET') {
-        const {email} = req.query as { email: string }
-        console.log("validate_email", {email});
+    const {email} = req.query as { email: string }
+    console.log("validate_email", {email});
 
-        if (await isEmailRegistered(email)) {
-            res.status(200).send("")
-        } else {
-            res.status(404).send("")
-        }
+    if (await isEmailRegistered(email)) {
+        res.status(200).send("")
     } else {
-        res.status(405).setHeader("Allow", ["GET"])
-        res.send("")
+        res.status(404).send("")
     }
 }
