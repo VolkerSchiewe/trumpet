@@ -25,7 +25,7 @@ function MyApp({Component, pageProps, err}: AppProps & { err: Error }) {
     return (
         <ThemeProvider theme={theme}>
             <CssBaseline/>
-            <Component {...pageProps} err={err}/>;
+            <Component {...pageProps} err={err}/>
         </ThemeProvider>
     )
 }
