@@ -12,8 +12,9 @@ interface UserProfile {
     image: string
 }
 
+console.log("VERCEL URL", process.env.VERCEL_URL)
 const options = {
-    site: process.env.SITE || 'http://localhost:3000',
+    site: `https://${process.env.VERCEL_URL}` || 'http://localhost:3000',
     providers: [
         Providers.Google({
             clientId: "183076695944-hu2dgs4aorbdagfok2kpg05avakqltfi.apps.googleusercontent.com",
