@@ -17,7 +17,7 @@ const AdminIndex: React.FC = () => {
     return (
         <Layout>
             {loading ? (
-                <div className="w-full h-full flex justify-center items-center">
+                <div className="w-full h-full flex justify-center items-center mt-10">
                     <CircularProgress size={200}/>
                 </div>
             ) : (
