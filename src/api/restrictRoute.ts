@@ -1,7 +1,8 @@
 import {NextApiRequest, NextApiResponse} from "next";
-import {allowedUsers, getSite} from "../../pages/api/auth/[...nextauth]";
+import {allowedUsers} from "../../pages/api/auth/[...nextauth]";
 // @ts-ignore
 import {setOptions, getSession} from "next-auth/client";
+import {getSite} from "../utils/getSite";
 
 
 export async function restrictRoute(req: NextApiRequest, res: NextApiResponse, allowedMethods: string | string[], validateUsers?: boolean) {

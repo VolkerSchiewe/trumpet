@@ -9,6 +9,7 @@ import theme from "../src/components/styles/theme";
 import * as Sentry from '@sentry/node'
 // @ts-ignore
 import {Provider} from 'next-auth/client'
+import {getSite} from "../src/utils/getSite";
 
 Sentry.init({
     enabled: process.env.NODE_ENV === 'production',
@@ -25,7 +26,7 @@ function MyApp({Component, pageProps, err}: AppProps & { err: Error }) {
         }
     }, []);
     return (
-        <Provider options={{site: process.env.NEXT_PUBLIC_SITE ?? ""}} session={pageProps?.session}>
+        <Provider options={{site: getSite()}} session={pageProps?.session}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Component {...pageProps} err={err}/>

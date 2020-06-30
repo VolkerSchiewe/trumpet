@@ -3,10 +3,10 @@ import {NextApiRequest, NextApiResponse} from "next";
 import NextAuth, {InitOptions} from 'next-auth'
 // @ts-ignore
 import Providers from 'next-auth/providers'
+import {getSite} from "../../../src/utils/getSite";
 
 export const allowedUsers = ["volker.s1994@gmail.com", "bagpipe.j@gmail.com", "mr.querdenker@gmail.com"]
 
-export const getSite = () => process.env.NEXT_PUBLIC_SITE ? `https://${process.env.NEXT_PUBLIC_SITE}` : 'http://localhost:3000'
 const options: InitOptions = {
     site: getSite(),
     providers: [
