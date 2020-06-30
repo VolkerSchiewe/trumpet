@@ -36,7 +36,7 @@ declare module "next-auth/client" {
     declare function getCsrfToken(context: NextContext): Promise<string | null>;
     declare function csrfToken(context: NextContext): Promise<string | null>;
     declare function signin(provider: Provider, data: GenericObject): Promise<void>;
-    declare function signout(context: NextContext): Promise<void>;
+    declare function signout(): Promise<void>;
 
     export { useSession, getSession, session, getProviders, providers, getCsrfToken, csrfToken, signin, signout };
     export type { Session };
