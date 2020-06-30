@@ -7,6 +7,8 @@ import 'tailwindcss/tailwind.css'
 import '@brainhubeu/react-carousel/lib/style.css';
 import theme from "../src/components/styles/theme";
 import * as Sentry from '@sentry/node'
+// @ts-ignore
+import {Provider} from 'next-auth/client'
 
 Sentry.init({
     enabled: process.env.NODE_ENV === 'production',
@@ -23,10 +25,12 @@ function MyApp({Component, pageProps, err}: AppProps & { err: Error }) {
         }
     }, []);
     return (
-        <ThemeProvider theme={theme}>
-            <CssBaseline/>
-            <Component {...pageProps} err={err}/>
-        </ThemeProvider>
+        <Provider options={{site: process.env.NEXT_PUBLIC_SITE}} session={pageProps?.session}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <Component {...pageProps} err={err}/>
+            </ThemeProvider>
+        </Provider>
     )
 }
 

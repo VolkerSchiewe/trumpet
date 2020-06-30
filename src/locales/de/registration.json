@@ -62,5 +62,8 @@
   "Registration nearly completed": "Anmeldung fast abgeschlossen",
   "We have sent you an email": "Wir haben dir eine E-Mail geschickt.",
   "Please click on the link in that email to complete your registration": "Bitte bestätige deine Anmeldung indem du auf den Link in der E-Mail klickst.",
-  "This email is already registered": "Diese E-Mail Addresse ist bereits registriert"
+  "This email is already registered": "Diese E-Mail Addresse ist bereits registriert",
+  "created": "Anmeldedatum",
+  "emailVerified": "Email bestätigt",
+  "Sending registration": "Anmeldung wird abgeschickt"
 }

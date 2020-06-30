@@ -1,4 +1,5 @@
 import {Button, CircularProgress, Typography} from "@material-ui/core";
+import Link from "next/link";
 import {useRouter} from "next/router";
 import React from "react";
 // @ts-ignore
@@ -24,7 +25,9 @@ const AdminIndex: React.FC = () => {
                     <>
                         <Typography variant={"h1"}>Administration</Typography>
                         <Typography>Hello {session.user.name}</Typography>
-                        <Button variant={'outlined'}>Download registrations</Button>
+                        <Link href={"/api/admin/download-registrations"}>
+                            <Button variant={'outlined'}>Download registrations</Button>
+                        </Link>
                     </>
                 )
             )}

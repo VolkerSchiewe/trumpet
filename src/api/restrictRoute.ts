@@ -1,11 +1,24 @@
 import {NextApiRequest, NextApiResponse} from "next";
+import {allowedUsers, getSite} from "../../pages/api/auth/[...nextauth]";
+// @ts-ignore
+import {setOptions, getSession} from "next-auth/client";
 
-export async function restrictRoute(req: NextApiRequest, res: NextApiResponse, allowedMethods: string | string[]) {
+
+export async function restrictRoute(req: NextApiRequest, res: NextApiResponse, allowedMethods: string | string[], validateUsers?: boolean) {
     allowedMethods = Array.isArray(allowedMethods) ? allowedMethods : [allowedMethods]
     if (!allowedMethods.includes(req.method ?? "")) {
         res.status(405).setHeader("Allow", allowedMethods)
         res.send("")
         return true
+    }
+
+    if (validateUsers) {
+        setOptions({site: getSite()})
+        const session = await getSession({req})
+        if (!allowedUsers.includes(session?.user?.email ?? "")){
+            res.status(403).send("Not Allowed")
+            return true
+        }
     }
     return false
 }

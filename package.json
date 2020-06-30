@@ -34,7 +34,8 @@
     "react-dom": "^16.13.1",
     "react-google-recaptcha-v3": "^1.5.2",
     "react-hook-form": "^5.7.2",
-    "telegraf": "^3.38.0"
+    "telegraf": "^3.38.0",
+    "xlsx": "^0.16.2"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.8.1",
