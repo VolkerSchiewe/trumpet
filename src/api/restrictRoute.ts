@@ -15,6 +15,7 @@ export async function restrictRoute(req: NextApiRequest, res: NextApiResponse, a
     if (validateUsers) {
         setOptions({site: getSite()})
         const session = await getSession({req})
+        console.log("Current session:", session)
         if (!allowedUsers.includes(session?.user?.email ?? "")){
             res.status(403).send("Not Allowed")
             return true

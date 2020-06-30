@@ -20,6 +20,7 @@ const options: InitOptions = {
             return baseUrl + "/admin"
         },
         signin: async (profile, _account, _metadata) => {
+            console.log("Login attempt:", profile)
             return allowedUsers.includes(profile?.email ?? "")
         }
     }

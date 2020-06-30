@@ -25,7 +25,7 @@ function MyApp({Component, pageProps, err}: AppProps & { err: Error }) {
         }
     }, []);
     return (
-        <Provider options={{site: process.env.NEXT_PUBLIC_SITE}} session={pageProps?.session}>
+        <Provider options={{site: process.env.NEXT_PUBLIC_SITE ?? ""}} session={pageProps?.session}>
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Component {...pageProps} err={err}/>

@@ -7,7 +7,7 @@ declare module "next-auth" {
 
     interface InitOptions {
         site: string;
-        providers: PossibleProviders[];
+        providers?: PossibleProviders[];
         database?: ConnectionOptions | string;
         secret?: string;
         jwt?: boolean;
@@ -18,7 +18,7 @@ declare module "next-auth" {
         pages?: PageOptions;
         debug?: boolean;
         basePath?: string;
-        callbacks:Callbacks;
+        callbacks?:Callbacks;
         callbackUrlHandler?: (url: string, options: CallbackURLOptions) => Promise<void>;
         adapter?: Adapter;
         useSecureCookies?: boolean;

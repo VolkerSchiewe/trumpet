@@ -1,10 +1,6 @@
-import {CircularProgressProps} from "@material-ui/core/CircularProgress/CircularProgress";
-
 declare module "next-auth/client" {
-    import exp from "constants";
     import { IncomingMessage } from 'http';
     import {InitOptions} from "next-auth";
-    import {ReactNode} from "react";
 
     interface Session {
         user: {
@@ -73,6 +69,4 @@ declare module "next-auth/client" {
         session: Session
         options: InitOptions
     }
-    export function Provider(props: ProviderProps): JSX.Element;
-
 }
