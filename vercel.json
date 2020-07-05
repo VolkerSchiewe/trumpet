@@ -6,7 +6,13 @@
   "routes": [
     {
       "src": "/.*",
-      "headers": { "X-Frame-Options": "sameorigin" },
+      "headers": {
+        "X-Frame-Options": "sameorigin",
+        "Content-Security-Policy": "script-src 'self'",
+        "Feature-Policy": "fullscreen 'self'",
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "same-origin"
+      },
       "continue": true
     }
   ]
