@@ -5,7 +5,8 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import React from "react";
-import {Control, Controller, FieldError, NestDataObject} from "react-hook-form";
+import {Controller} from "react-hook-form";
+import {Control, FieldErrors} from "react-hook-form/dist/types/form";
 import {useTranslation} from "../../../i18n";
 import slugify from "../../../utils/slugify";
 
@@ -13,7 +14,7 @@ interface Props {
     className?: string;
     name: string;
     choices: string[];
-    errors: NestDataObject<Record<string, string | undefined>, FieldError>;
+    errors: FieldErrors
     control: Control;
     noLabel?: boolean;
     row?: boolean;

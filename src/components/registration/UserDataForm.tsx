@@ -3,7 +3,6 @@ import React from "react";
 import {Control, UseFormMethods} from "react-hook-form";
 import {FieldErrors} from "react-hook-form/dist/types/form";
 import {useTranslation} from "../../i18n";
-import {register} from "../../types/react-hook-form";
 import {get} from "../../utils/request";
 import RadioInput from "../shared/forms/RadioInput";
 import SelectInput from "../shared/forms/SelectInput";
@@ -47,8 +46,8 @@ import {errorRequired, validators} from "./valdiations";
 interface Props {
     onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
     errors: FieldErrors
-    register: register;
-    setValue: UseFormMethods["setValue"]
+    register: UseFormMethods["register"];
+    setValue: UseFormMethods["setValue"];
     control: Control;
     registrationType: string;
     accommodation: string;
@@ -56,13 +55,18 @@ interface Props {
 
 const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, control, registrationType, accommodation}) => {
     const t = useTranslation("registration")
-    const validateEmail = (value: string): Promise<string | boolean> => {
+
+    function validateEmail(value: string): Promise<string | boolean> {
         return get(`/api/validate-email?email=${encodeURIComponent(value)}`).then(res => {
             if (res.status === 200)
                 return t("This email is already registered")
             return true
         })
     }
+
+    const isVoiceVisible = [PARTICIPANT, BEGINNER].includes(registrationType)
+    const isBeginner = registrationType == BEGINNER
+    const accommodationWithVisible = accommodation !== NO_ACCOMMODATION && accommodation !== undefined
     return (
         <div>
             <form className="flex flex-wrap pt-4" onSubmit={onSubmit}>
@@ -102,11 +106,11 @@ const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, co
                            inputRef={register({required: errorRequired})}/>
                 <SelectInput className="w-full md:w-1/2 p-2" name={REGISTRATION_TYPE} errors={errors}
                              choices={registrationOptions} control={control} rules={{required: errorRequired}}/>
-                {[PARTICIPANT, BEGINNER].includes(registrationType) && (
+                {isVoiceVisible && (
                     <SelectInput className="w-full md:w-1/2 p-2" name={VOICE} errors={errors} choices={voiceOptions}
                                  control={control} rules={{required: errorRequired}}/>
                 )}
-                {registrationType == BEGINNER && (
+                {isBeginner && (
                     <TextInput className="w-full p-2" name={INSTRUMENT_TIME} errors={errors}
                                inputRef={register({required: errorRequired})}/>
                 )}
@@ -119,7 +123,7 @@ const UserDataForm: React.FC<Props> = ({onSubmit, errors, register, setValue, co
                 <RadioInput className="w-full md:w-1/2 p-2" name={ACCOMMODATION} errors={errors}
                             choices={accommodationOptions}
                             control={control}/>
-                {(accommodation !== NO_ACCOMMODATION && accommodation !== undefined) && (
+                {accommodationWithVisible && (
                     <TextInput className="w-full md:w-1/2 p-2" name={ACCOMMODATION_WITH} errors={errors}/>
                 )}
                 <div className="w-full h-8"/>
