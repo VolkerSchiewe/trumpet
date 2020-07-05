@@ -8,7 +8,7 @@
       "src": "/.*",
       "headers": {
         "X-Frame-Options": "sameorigin",
-        "Content-Security-Policy": "script-src 'self', 'https://www.google.com/recaptcha/', 'https://www.gstatic.com/recaptcha/'",
+        "Content-Security-Policy": "default-src 'self' 'https://www.google.com/recaptcha/' 'https://www.gstatic.com/recaptcha/'",
         "Feature-Policy": "fullscreen 'self'",
         "X-Content-Type-Options": "nosniff",
         "Referrer-Policy": "same-origin"
