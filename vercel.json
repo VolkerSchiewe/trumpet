@@ -3,31 +3,11 @@
   "github": {
     "silent": true
   },
-  "headers": [
+  "routes": [
     {
-      "source": "/.*",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "sameorigin"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "script-src 'self'"
-        },
-        {
-          "key": "Feature-Policy",
-          "value": "fullscreen 'self'"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "same-origin"
-        }
-      ]
+      "src": "/.*",
+      "headers": { "X-Frame-Options": "sameorigin" },
+      "continue": true
     }
   ]
 }
