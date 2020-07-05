@@ -1,8 +1,9 @@
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import {Control, FieldErrors} from "react-hook-form";
+import {Control, UseFormMethods} from "react-hook-form";
+import {FieldErrors} from "react-hook-form/dist/types/form";
 import {useTranslation} from "../../i18n";
-import {register, setValue} from "../../types/react-hook-form";
+import {register} from "../../types/react-hook-form";
 import {get} from "../../utils/request";
 import RadioInput from "../shared/forms/RadioInput";
 import SelectInput from "../shared/forms/SelectInput";
@@ -38,7 +39,6 @@ import {
     PHOTO_AGREEMENT,
     REGISTRATION_TYPE,
     STREET_NUMBER,
-    UserData,
     VOICE,
     ZIP_CITY
 } from "./types";
@@ -46,9 +46,9 @@ import {errorRequired, validators} from "./valdiations";
 
 interface Props {
     onSubmit: (e?: React.BaseSyntheticEvent) => Promise<void>;
-    errors: FieldErrors<UserData>;
+    errors: FieldErrors
     register: register;
-    setValue: setValue<UserData>;
+    setValue: UseFormMethods["setValue"]
     control: Control;
     registrationType: string;
     accommodation: string;

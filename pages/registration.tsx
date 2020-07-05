@@ -15,7 +15,7 @@ const RegistrationPage: NextPage = () => {
             <GoogleReCaptchaProvider reCaptchaKey={process.env.RECAPTCHA_KEY}>
                 <div className="w-full max-w-2xl m-auto">
                     <div className='flex justify-end items-start mt-5'>
-                        <svg className='h-8 w-8 text-blue-dark cursor-pointer' fill="currentColor" viewBox="0 0 20 20" onClick={router.back}>
+                        <svg className='h-8 w-8 text-blue-dark cursor-pointer' fill="currentColor" viewBox="0 0 20 20" onClick={()=>router.push("/")}>
                             <path fillRule="evenodd"
                                   d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
                                   clipRule="evenodd"/>
