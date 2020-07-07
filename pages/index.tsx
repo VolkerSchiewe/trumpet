@@ -7,6 +7,7 @@ import LandingCarousel from "../src/components/landing/LandingCarousel";
 import {distributeOrchestraData, DistributionArray} from "../src/components/landing/orchestra/distributeOrchestraData";
 import Orchestra from "../src/components/landing/orchestra/Orchestra";
 import Layout from '../src/components/shared/Layout'
+import Logo from "../src/components/shared/Logo";
 import NumberWithBorder from "../src/components/shared/NumberWithBorder";
 import {getI18nProps, useTranslation, withI18n} from "../src/i18n";
 
@@ -25,8 +26,8 @@ const IndexPage: NextPage<Props> = ({orchestraDistribution, registrationCount}) 
                     <LandingCarousel/>
                 </div>
                 <div className="block sm:hidden">
-                    <img className="p-3" src={"images/logo.svg"} alt={"logo"}/>
-                    <img className="p-3" src={"images/headline-black.svg"} alt={"headline"}/>
+                    <Logo className="p-3"/>
+                    <img className="p-3" src={"/images/headline-black.svg"} alt={"Brüderischer Bläsertag 2021 Berlin"}/>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 my-5">
                     <ContentBlock color={"magenta"} title={t('Images')}/>

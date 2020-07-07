@@ -11,6 +11,7 @@ import {GetStaticProps, NextPage} from "next";
 import {useRouter} from "next/router";
 import React, {useEffect, useState} from "react";
 import Layout from "../src/components/shared/Layout";
+import Logo from "../src/components/shared/Logo";
 import {getI18nProps, useTranslation, withI18n} from "../src/i18n";
 import {post} from "../src/utils/request";
 
@@ -62,7 +63,7 @@ const EmailVerificationPage: NextPage = () => {
                         {t("Email Verification")}
 
                     </Typography>
-                    <img src={'/images/logo.svg'} alt={"logo"} className="h-12 w-12"/>
+                    <Logo className="h-12 w-12"/>
                 </DialogTitle>
                 <DialogContent className={"flex justify-center items-center"} style={{height: 100}}>
                     {state === State.LOADING && (
