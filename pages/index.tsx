@@ -30,7 +30,7 @@ const IndexPage: NextPage<Props> = ({orchestraDistribution, registrationCount}) 
                     <img className="p-3" src={"/images/headline-black.svg"} alt={"Brüderischer Bläsertag 2021 Berlin"}/>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 my-5">
-                    <ContentBlock color={"magenta"} title={t('Images')}/>
+                    <ContentBlock color={"magenta"} title={t('Images')} onClick={()=> router.push('/gallery')}/>
                     <ContentBlock color={"yellow"} title={t("Information")}/>
                     <ContentBlock color={"blue"} title={t("Registration")}
                                   onClick={() => router.push('/registration').then(() => window.scrollTo(0, 0))}/>
