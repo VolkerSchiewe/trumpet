@@ -1,3 +1,4 @@
+import {NoSsr} from "@material-ui/core";
 import {NextPage} from "next";
 import React from "react";
 import ImageViewer from "../src/components/gallery/ImageViewer";
@@ -13,7 +14,9 @@ const GalleryPage: NextPage<Props> = ({}) => {
         <Layout disableGutters>
             <div className={"w-screen h-screen fixed bg-black bg-opacity-75"}>
                 <div className={"max-h-screen max-w-screen absolute inset-0"}>
-                    <ImageViewer/>
+                    <NoSsr>
+                        <ImageViewer/>
+                    </NoSsr>
                 </div>
             </div>
         </Layout>
