@@ -1,39 +1,44 @@
 import admin from "firebase-admin";
 import {NextApiRequest, NextApiResponse} from "next";
-import {DB} from "../../utils/api/constants";
-import firestore from "../../utils/api/firestore";
-import sendTelegramMessage from "../../utils/api/sendTelegramMessage";
-import {disableIfRestricted} from "../../utils/restrictAccess";
+import {UserData} from "../../src/components/registration/types";
+import {DB} from "../../src/api/constants";
+import firestore from "../../src/api/firestore";
+import sendTelegramMessage from "../../src/api/sendTelegramMessage";
+import {restrictRoute} from "../../src/api/restrictRoute";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    if (await disableIfRestricted(res))
+    if (await restrictRoute(req, res, "POST"))
         return
 
-    if (req.method === 'POST') {
-        const {token} = req.query
-        console.log("email_verification", {token});
-        try {
-            const document = await firestore.collection(DB.PARTICIPANTS_COLLECTION).doc(token as string);
-            const data = (await document.get()).data();
-            const created = data ? data[DB.CREATED].toDate() : null;
-            const ONE_HOUR = 60 * 60 * 1000; /* ms */
-            const now = new Date();
-            if (created && ((now.getTime()) - created.getTime()) > ONE_HOUR) {
-                console.log("verification_expired", {created});
-                res.status(400);
-                res.send("Verification code is expired!");
-                return
-            }
-            console.log("verification_successful");
-            await document.update({[DB.EMAIL_VERIFIED]: admin.firestore.Timestamp.now()});
-            await sendTelegramMessage(data)
-            res.status(200).send("Verification completed")
-        } catch (e) {
-            console.log("verification_code_invalid", {token});
-            res.status(400).send("Wrong Link!")
+    function sendResponse(status: number, message: string) {
+        res.status(status).send(message)
+    }
+
+    const {token} = req.query
+    console.log("email_verification", {token});
+    try {
+        const document = await firestore.collection(DB.PARTICIPANTS_COLLECTION).doc(token as string);
+        const data = (await document.get()).data();
+
+        if (!data)
+            return sendResponse(400, "Invalid Link")
+        if (data[DB.EMAIL_VERIFIED])
+            return sendResponse(400, "Email is already verified")
+
+        const created = data ? data[DB.CREATED].toDate() : null;
+        const ONE_HOUR = 60 * 60 * 1000; /* ms */
+        const now = new Date();
+        if (created && ((now.getTime()) - created.getTime()) > ONE_HOUR) {
+            console.log("verification_expired", {created});
+            return sendResponse(400, "Verification code is expired")
         }
-    } else {
-        res.status(405).setHeader("Allow", ["POST"])
-        res.send("")
+
+        await document.update({[DB.EMAIL_VERIFIED]: admin.firestore.Timestamp.now()});
+        await sendTelegramMessage(data as UserData)
+        console.log("verification_successful");
+        sendResponse(200, "Verification completed")
+    } catch (e) {
+        console.log("verification_code_invalid", {token});
+        return sendResponse(400, "Unexpected Error")
     }
 }

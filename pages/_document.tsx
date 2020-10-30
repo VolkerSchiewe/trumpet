@@ -1,13 +1,8 @@
 import {ServerStyleSheets} from "@material-ui/styles";
+import Document, {Head, Html, Main, NextScript} from 'next/document'
 import React from "react";
-import Document, {Html, Head, Main, NextScript, DocumentContext} from 'next/document'
 
 class MyDocument extends Document {
-    static async getInitialProps(ctx: DocumentContext) {
-        const initialProps = await Document.getInitialProps(ctx)
-        return {...initialProps}
-    }
-
     render() {
         return (
             <Html lang={"de"}>
@@ -25,6 +20,10 @@ class MyDocument extends Document {
                     <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css?family=Fira+Sans:300,500&display=fallback"
+                    />
+                    <link
+                        rel="stylesheet"
+                        href="https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:300,500,700&display=fallback"
                     />
                 </Head>
                 <body>

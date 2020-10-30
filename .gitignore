@@ -24,14 +24,13 @@ fb-functions/keys
 # Tests
 .nyc_output
 coverage
-
-# CyPress
-cypress
+cypress/videos
+cypress/screenshots
 
 # Nextjs
 .next
-/public/sw.js
-/public/workbox-*.js
+/public/sw.js*
+/public/workbox-*
 
 .env
 

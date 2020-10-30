@@ -1,4 +1,6 @@
 # Bruederischer Blaesertag 2021 in Berlin
+[![codecov](https://codecov.io/gh/VolkerSchiewe/trumpet/branch/preview/graph/badge.svg)](https://codecov.io/gh/VolkerSchiewe/trumpet)
+
 Website based on next.js and deployed on Vercel
 
 ## Development
