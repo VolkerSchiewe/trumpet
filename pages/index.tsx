@@ -54,7 +54,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx: GetStaticPropsC
             registrationCount,
             orchestraDistribution: distributeOrchestraData(registrationCount)
         },
-        unstable_revalidate: 1
+        revalidate: 1
     });
 }
 

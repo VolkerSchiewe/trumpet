@@ -4,8 +4,7 @@ import FormHelperText from "@material-ui/core/FormHelperText";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
-import {Controller} from "react-hook-form";
-import {Control, FieldErrors, ValidationRules} from "react-hook-form/dist/types/form";
+import { Control, Controller, FieldErrors, ValidationRules } from "react-hook-form";
 import {useTranslation} from "../../../i18n";
 import slugify from "../../../utils/slugify";
 

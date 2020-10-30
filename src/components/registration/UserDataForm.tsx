@@ -1,7 +1,6 @@
 import Typography from "@material-ui/core/Typography";
 import React from "react";
-import {Control, UseFormMethods} from "react-hook-form";
-import {FieldErrors} from "react-hook-form/dist/types/form";
+import { Control, FieldErrors, UseFormMethods } from "react-hook-form";
 import {useTranslation} from "../../i18n";
 import {get} from "../../utils/request";
 import RadioInput from "../shared/forms/RadioInput";

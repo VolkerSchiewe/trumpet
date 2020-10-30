@@ -5,8 +5,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import React from "react";
-import {Controller} from "react-hook-form";
-import {Control, FieldErrors} from "react-hook-form/dist/types/form";
+import { Control, Controller, FieldErrors } from "react-hook-form";
 import {useTranslation} from "../../../i18n";
 import slugify from "../../../utils/slugify";
 
