@@ -1,9 +1,0 @@
-{
-  "baseUrl": "http://localhost:3000",
-  "projectId": "azcv4k",
-  "integrationFolder": "test/integration",
-  "pluginsFile": false,
-  "watchForFileChanges": false,
-  "supportFile": false,
-  "fixturesFolder": false
-}
