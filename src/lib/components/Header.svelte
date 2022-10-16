@@ -7,7 +7,7 @@
 	export let color: 'magenta' | 'green' | 'blue' | 'yellow' | null = null;
 </script>
 
-<div class="relative -mx-14 lg:-mx-24 font-bold">
+<div class="relative -mx-14 font-bold lg:-mx-24">
 	<a href={link}>
 		<ArrowUp
 			clazz={`absolute w-[40px] lg:w-[80px] h-[40px] lg:h-[80px] top-1/2 left-0 -translate-y-1/2 ${

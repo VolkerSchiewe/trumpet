@@ -1,3 +1,5 @@
+const { rules } = require('eslint-config-prettier');
+
 module.exports = {
 	root: true,
 	parser: '@typescript-eslint/parser',
@@ -16,5 +18,8 @@ module.exports = {
 		browser: true,
 		es2017: true,
 		node: true
+	},
+	rules: {
+		'no-console': ['error', { allow: ['info', 'warn', 'error'] }]
 	}
 };

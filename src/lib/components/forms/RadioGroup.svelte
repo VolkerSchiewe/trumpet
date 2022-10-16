@@ -9,7 +9,7 @@
 </script>
 
 <fieldset type="radiogroup" class="flex items-start gap-5">
-	<legend class=" text-white">{label}</legend>
+	<legend class={`text-white ${required ? "after:ml-1 after:content-['*']" : ''}`}>{label}</legend>
 	{#each values as { label, value }}
 		<label class="relative">
 			<input

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { enhance } from '$app/forms';
 	import Container from '$lib/components/Container.svelte';
 	import Dropdown from '$lib/components/forms/Dropdown.svelte';
 	import RadioGroup from '$lib/components/forms/RadioGroup.svelte';
@@ -6,12 +7,22 @@
 	import Header from '$lib/components/Header.svelte';
 	import type { ActionData } from './$types';
 	export let form: ActionData;
+
 	let type: 'blaeser' | 'jungblaeser' | 'gast';
 </script>
-<Container imageLocation="/images/herrnhuter_weg_02.jpg" imageAlt="Straßenschild vom Herrnhuter Weg mit Logoafkleber">
+
+<Container
+	imageLocation="/images/herrnhuter_weg_02.jpg"
+	imageAlt="Straßenschild vom Herrnhuter Weg mit Logoafkleber"
+>
 	<slot slot="left">
 		<img alt="Logo" src="bear-magenta.svg" width="200" />
-		<Header title="Wo kann ich schlafen?" subTitle="Alle Informationen" link={"/"} color={'magenta'} />
+		<Header
+			title="Wo kann ich schlafen?"
+			subTitle="Alle Informationen"
+			link={'/'}
+			color={'magenta'}
+		/>
 
 		<p class="hyphen text-justify font-semibold">
 			Für das Bläsertreffen 2023 in Berlin wird es eine entscheidende Neuerung geben: Wir bitten
@@ -34,7 +45,7 @@
 	</slot>
 	<slot slot="right">
 		<div class="h-40" />
-		<Header title="Anmeldung" subTitle="Moravian Brass Festival" link={"/"}  />
+		<Header title="Anmeldung" subTitle="Moravian Brass Festival" link={'/'} />
 		<p class="hyphen text-justify font-bold">
 			Um gut planen zu können benötigen wir natürlich einige Angaben von euch.
 		</p>
@@ -42,7 +53,17 @@
 			Wichtig ist natürlich welche Stimme ihr spielt und wir wollen natürlich auch wissen wer ihr
 			seid und wo ihr herkommt.
 		</p>
-		<form method="POST" action="/registration" class="mb-10 flex flex-col gap-3">
+		<form
+			id="registration-form"
+			method="POST"
+			action="/registration"
+			class="mb-10 flex flex-col gap-3"
+			use:enhance
+		>
+			{#if form?.message}
+				<span>&#x26A0; {form?.message}</span>
+			{/if}
+
 			<TextInput label="Name" required name="name" {form} />
 			<TextInput label="E-Mail" required name="email" type="email" {form} />
 			<TextInput label="Addresse" required name="address" {form} />
@@ -59,7 +80,7 @@
 				]}
 				{form}
 			/>
-			<TextInput label="Zu welchem Chor gehörst du?" name="choire" {form} />
+			<TextInput label="Zu welchem Chor gehörst du?" name="choir" {form} />
 			{#if type != 'gast'}
 				<RadioGroup
 					label="Welche Stimme spielst du?"

@@ -9,7 +9,7 @@
 <label>
 	<span class={`text-white ${required ? "after:ml-1 after:content-['*']" : ''}`}>{label}</span>
 	<input {type} class="w-full" placeholder="" {name} {required} value={form?.[name]?.value || ''} />
-	{#if form?.[name].message}
-		<span>{form?.[name].message}</span>
+	{#if form?.data?.[name]?.message}
+		<span>&#x26A0; {form?.data?.[name]?.message}</span>
 	{/if}
 </label>
