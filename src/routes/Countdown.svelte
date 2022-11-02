@@ -9,11 +9,11 @@
 </script>
 
 {#if number > 0}
-	<div class="module min-w-[200px] rounded border-2 border-b-0 border-theme-blue">
+	<div class="module min-w-[200px] border-2 border-b-0 border-theme-blue mb-2">
 		<div
 			class="bottomBorder 
-          before:rounded-l before:border-b-2 before:border-theme-blue 
-          after:rounded-r after:border-b-2 after:border-theme-blue"
+        before:border-b-2 before:border-theme-blue 
+        after:border-b-2 after:border-theme-blue"
 		>
 			<div class="borderText text-gray-600">
 				<span class="text-lg font-bold">{title}</span>
