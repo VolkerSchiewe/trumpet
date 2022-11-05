@@ -1,4 +1,4 @@
-@import url("/fonts/open-sans.css");
+@import url('/static/fonts/open-sans.css');
 
 @tailwind base;
 @tailwind components;

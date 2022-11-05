@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Footer from "./Footer.svelte";
+	import Footer from './Footer.svelte';
 
 	export let imageLocation: string;
 	export let imageAlt: string;
@@ -14,4 +14,4 @@
 	</div>
 </main>
 
-<Footer {imageAlt} {imageLocation}></Footer>
+<Footer {imageAlt} {imageLocation} />

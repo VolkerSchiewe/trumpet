@@ -21,7 +21,7 @@
 
 <div class="glide">
 	<div data-glide-el="track" class="glide__track">
-		<div class="glide__slides max-h-96">
+		<div class="glide__slides max-h-96 md:max-h-[30rem]">
 			{#each images as image}
 				<img
 					class={`object-cover ${

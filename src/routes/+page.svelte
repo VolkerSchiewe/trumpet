@@ -20,5 +20,5 @@
 		<Countdown title="Tage bis Beginn" />
 	</div>
 </main>
-<div class="flex-grow"></div>
+<div class="flex-grow" />
 <Footer />

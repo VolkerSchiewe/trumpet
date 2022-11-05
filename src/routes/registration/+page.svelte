@@ -134,7 +134,7 @@
 			<br />
 			Hier einige Links zu möglichen Unterkünften in der Nähe:
 		</p>
-		<div class="flex flex-col max-h-64 min-h-[400px] overflow-y-auto gap-5">
+		<div class="flex max-h-64 min-h-[400px] flex-col gap-5 overflow-y-auto">
 			{#each hotels as hotel}
 				<HotelCard {hotel} />
 			{/each}

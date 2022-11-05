@@ -9,7 +9,7 @@
 </script>
 
 {#if number > 0}
-	<div class="module min-w-[200px] border-2 border-b-0 border-theme-blue mb-2">
+	<div class="module mb-2 min-w-[200px] border-2 border-b-0 border-theme-blue">
 		<div
 			class="bottomBorder 
         before:border-b-2 before:border-theme-blue 

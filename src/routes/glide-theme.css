@@ -25,11 +25,11 @@
 }
 .glide__bullet:hover,
 .glide__bullet:focus {
-	border: 2px solid rgba(93,201,59, 0.7);
+	border: 2px solid rgba(93, 201, 59, 0.7);
 }
 .glide__bullet--active {
 	background-color: #5dc93b;
-    border: none
+	border: none;
 }
 .glide--swipeable {
 	cursor: grab;
