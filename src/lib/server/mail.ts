@@ -12,7 +12,7 @@ export async function sendEmailConfirmation(email: string, confirmation_id: stri
 		from: emailFrom,
 		templateId: EMAIL_CONFIRMATION_TEMPLATE,
 		dynamicTemplateData: {
-			confirmation_link: `${VERCEL_URL}registration/confirm/${confirmation_id}`
+			confirmation_link: `${VERCEL_URL}/registration/confirm/${confirmation_id}`
 		}
 	});
 }
