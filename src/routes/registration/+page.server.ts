@@ -1,3 +1,4 @@
+import { dev } from '$app/environment';
 import { verifyCaptcha } from '$lib/server/captcha';
 import { createUser, findUserByEmail, setUserState, State } from '$lib/server/firebase';
 import { sendEmailConfirmation } from '$lib/server/mail';
@@ -11,11 +12,11 @@ function generateFailureData(data: Record<string, FormDataEntryValue>): FormErro
 		return acc;
 	}, {} as FormError);
 }
+export type ActionFormData = { success: boolean; data?: FormError; message?: string };
 
 export const actions: Actions = {
 	default: async ({ request }) => {
 		console.info('registration');
-		await new Promise(r => setTimeout(r, 2000));
 
 		const formData = await request.formData();
 		const data = Object.fromEntries(formData.entries());
@@ -32,7 +33,7 @@ export const actions: Actions = {
 
 		const userData: User = result.data;
 		try {
-			await verifyCaptcha(userData['frc-captcha-solution']);
+			if (!dev) await verifyCaptcha(userData['frc-captcha-solution'] as string);
 		} catch (e) {
 			return invalid(400, {
 				success: false,

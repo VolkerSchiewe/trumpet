@@ -6,17 +6,26 @@
 	import TextInput from '$lib/components/forms/TextInput.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import type { ActionData } from './$types';
-	export let form: ActionData;
 	import { dev } from '$app/environment';
 	import Loading from '$lib/components/Loading.svelte';
+	import Modal from '$lib/components/Modal.svelte';
+
+	export let form: ActionData;
+	$: modalOpen = Boolean(form?.success);
 
 	let type: 'blaeser' | 'jungblaeser' | 'gast';
 	let loading = false;
-	function formEnhancement() {
+
+	function formEnhancement(): ({ update }: { update: Function }) => void {
 		loading = true;
-		return () => {
+		return ({ update }) => {
 			loading = false;
+			update();
 		};
+	}
+
+	function closeModal() {
+		modalOpen = false;
 	}
 </script>
 
@@ -39,7 +48,13 @@
 		<span>&#x26A0; {form?.message}</span>
 	{/if}
 	{#if form?.success}
-		Danke für deine Anmeldung. Bitte vergiss nicht deine E-Mail Addresse zu bestätigen.
+		<Modal open={modalOpen} on:close={closeModal}>
+			<div slot="body">
+				<h2 class="text-bold pb-2 text-xl">Anmeldung erfolgreich</h2>
+				<p>Danke für deine Anmeldung. Bitte vergiss nicht deine E-Mail Addresse zu bestätigen.</p>
+			</div>
+			<button slot="buttons" on:click={closeModal}>Schließen</button>
+		</Modal>
 	{/if}
 
 	<TextInput label="Name" required name="name" {form} />
