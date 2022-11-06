@@ -29,3 +29,6 @@ jobs:
         run: yarn test:integration
         env:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
+          VERCEL_URL: ${{ secrets.VERCEL_URL }}
+          CAPTACHA_API_KEY: ${{ secrets.CAPTACHA_API_KEY }}
+          SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
