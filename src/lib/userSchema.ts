@@ -10,7 +10,8 @@ const guestSchema = z.object({
 	address: z.string(),
 	zip_city: z.string(),
 	type: z.enum(guestTypes),
-	choir: z.string().optional()
+	choir: z.string().optional(),
+	'frc-captcha-solution': z.string()
 });
 const playerSchema = guestSchema.extend({
 	type: z.enum(playerTypes),

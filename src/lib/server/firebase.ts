@@ -60,7 +60,9 @@ export async function findUserByConfirmationId(
 	return undefined;
 }
 
-export async function createUser(userData: User): Promise<UserDocument> {
+export async function createUser(formData: User): Promise<UserDocument> {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const { 'frc-captcha-solution': captchaSolution, ...userData } = formData; // Remove captcha solution from userData
 	const document: UserDocument = { ...userData, state: State.CREATED, confirmation_id: uuidv4() };
 	await db.collection(USER_COLLECTION).doc(userData.email).set(document);
 	console.info('Document written with ID: ', userData.email);

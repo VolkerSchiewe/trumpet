@@ -1,3 +1,4 @@
+import { verifyCaptcha } from '$lib/server/captcha';
 import { createUser, findUserByEmail, setUserState, State } from '$lib/server/firebase';
 import { sendEmailConfirmation } from '$lib/server/mail';
 import { userSchema, type User } from '$lib/userSchema';
@@ -29,6 +30,14 @@ export const actions: Actions = {
 		}
 
 		const userData: User = result.data;
+		try {
+			await verifyCaptcha(userData['frc-captcha-solution']);
+		} catch (e) {
+			return invalid(400, {
+				success: false,
+				message: 'Etwas stimmt nicht. Bitte versuch es erneut oder melde dich bei uns.'
+			});
+		}
 		const user = await findUserByEmail(userData.email);
 		if (user) {
 			return invalid(400, {
