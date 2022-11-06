@@ -3,6 +3,7 @@ import admin from 'firebase-admin';
 import { getFirestore } from 'firebase-admin/firestore';
 import { FIREBASE_PRIVATE_KEY } from '$env/static/private';
 import type { User } from '$lib/userSchema';
+import { v4 as uuidv4 } from 'uuid';
 
 const serviceAccount: ServiceAccount = {
 	projectId: 'trumpet-b59c1',
@@ -35,9 +36,10 @@ type UserDocument = {
 	voice?: string;
 
 	state: State;
+	confirmation_id: string;
 };
 
-export async function findUser(email: string): Promise<UserDocument | undefined> {
+export async function findUserByEmail(email: string): Promise<UserDocument | undefined> {
 	const existingDoc = await db.collection(USER_COLLECTION).doc(email).get();
 	if (existingDoc.exists) {
 		return existingDoc.data() as UserDocument;
@@ -45,14 +47,29 @@ export async function findUser(email: string): Promise<UserDocument | undefined>
 	return undefined;
 }
 
-export async function createUser(userData: User): Promise<void> {
-	const document: UserDocument = { ...userData, state: State.CREATED };
+export async function findUserByConfirmationId(
+	confirmation_id: string
+): Promise<UserDocument | undefined> {
+	const queryResult = await db
+		.collection(USER_COLLECTION)
+		.where('confirmation_id', '==', confirmation_id)
+		.get();
+	if (!queryResult.empty) {
+		return queryResult.docs[0].data() as UserDocument;
+	}
+	return undefined;
+}
+
+export async function createUser(userData: User): Promise<UserDocument> {
+	const document: UserDocument = { ...userData, state: State.CREATED, confirmation_id: uuidv4() };
 	await db.collection(USER_COLLECTION).doc(userData.email).set(document);
 	console.info('Document written with ID: ', userData.email);
+
+	return document;
 }
 
 export async function setUserState(email: string, state: State): Promise<void> {
-	const user = await findUser(email);
+	const user = await findUserByEmail(email);
 	if (!user) {
 		throw new Error('Unable to find the respective user');
 	}

@@ -8,6 +8,7 @@
 	import type { Hotel } from '$lib/types/hotel';
 	import HotelCard from '../HotelCard.svelte';
 	import type { ActionData } from './$types';
+
 	export let form: ActionData;
 
 	let type: 'blaeser' | 'jungblaeser' | 'gast';
@@ -106,10 +107,10 @@
 
 <Container
 	imageLocation="/images/herrnhuter_weg_02.jpg"
-	imageAlt="Straßenschild vom Herrnhuter Weg mit Logoafkleber"
+	imageAlt="Straßenschild vom Herrnhuter Weg mit Logoaufkleber"
 >
 	<slot slot="left">
-		<img alt="Logo" src="bear-magenta.svg" width="200" />
+		<img alt="Logo" src="/bear-magenta.svg" width="200" />
 		<Header
 			title="Wo kann ich schlafen?"
 			subTitle="Alle Informationen"
@@ -160,6 +161,9 @@
 		>
 			{#if form?.message}
 				<span>&#x26A0; {form?.message}</span>
+			{/if}
+			{#if form?.success}
+				Danke für deine Anmeldung. Bitte vergiss nicht deine E-Mail Addresse zu bestätigen.
 			{/if}
 
 			<TextInput label="Name" required name="name" {form} />

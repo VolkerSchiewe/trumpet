@@ -1,4 +1,5 @@
-import { createUser, findUser } from '$lib/components/server/firebase';
+import { createUser, findUserByEmail, setUserState, State } from '$lib/server/firebase';
+import { sendEmailConfirmation } from '$lib/server/mail';
 import { userSchema, type User } from '$lib/userSchema';
 import { invalid, type Actions } from '@sveltejs/kit';
 
@@ -12,12 +13,14 @@ function generateFailureData(data: Record<string, FormDataEntryValue>): FormErro
 
 export const actions: Actions = {
 	default: async ({ request }) => {
+		console.info('registration');
+
 		const formData = await request.formData();
 		const data = Object.fromEntries(formData.entries());
 
 		const result = userSchema.safeParse(data);
 		if (!result.success) {
-			console.error('Schema Error', result.error);
+			console.error('registration_schema_error', result.error);
 			return invalid(400, {
 				success: false,
 				data: generateFailureData(data),
@@ -26,7 +29,7 @@ export const actions: Actions = {
 		}
 
 		const userData: User = result.data;
-		const user = await findUser(userData.email);
+		const user = await findUserByEmail(userData.email);
 		if (user) {
 			return invalid(400, {
 				success: false,
@@ -34,21 +37,21 @@ export const actions: Actions = {
 					...generateFailureData(userData),
 					email: {
 						value: userData.email,
-						message: 'Es gibt schon eine Anmeldung mit dieser Email Addresse'
+						message: 'Es gibt schon eine Anmeldung mit dieser E-Mail Addresse'
 					}
 				}
 			});
 		}
 
 		try {
-			await createUser(userData);
+			const user = await createUser(userData);
+			await sendEmailConfirmation(user.email, user.confirmation_id);
+
+			await setUserState(userData.email, State.EMAIL_VERIFICATION_SENT);
 			return { success: true };
-
-			// TODO send out email
-
-			// TODO update state
 		} catch (e) {
-			console.error('Error adding document: ', e);
+			console.error('registration_unexpected_error: ', e);
+			return { success: false };
 		}
 	}
 };

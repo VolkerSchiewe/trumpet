@@ -5,7 +5,11 @@
 
 <footer>
 	{#if imageLocation}
-		<img class="aspect-[16/6] w-full object-cover" src={imageLocation} alt={imageAlt} />
+		<img
+			class="aspect-[16/6] w-full object-cover object-bottom"
+			src={imageLocation}
+			alt={imageAlt}
+		/>
 	{/if}
 	<div class="flex flex-col items-center gap-5 bg-theme-purple py-10 text-white">
 		<div class="flex gap-5 font-bold">
