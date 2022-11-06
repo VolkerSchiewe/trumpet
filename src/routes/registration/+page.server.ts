@@ -15,6 +15,7 @@ function generateFailureData(data: Record<string, FormDataEntryValue>): FormErro
 export const actions: Actions = {
 	default: async ({ request }) => {
 		console.info('registration');
+		await new Promise(r => setTimeout(r, 2000));
 
 		const formData = await request.formData();
 		const data = Object.fromEntries(formData.entries());

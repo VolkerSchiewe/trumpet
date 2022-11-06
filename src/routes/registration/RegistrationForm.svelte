@@ -7,8 +7,17 @@
 	import Header from '$lib/components/Header.svelte';
 	import type { ActionData } from './$types';
 	export let form: ActionData;
+	import { dev } from '$app/environment';
+	import Loading from '$lib/components/Loading.svelte';
 
 	let type: 'blaeser' | 'jungblaeser' | 'gast';
+	let loading = false;
+	function formEnhancement() {
+		loading = true;
+		return () => {
+			loading = false;
+		};
+	}
 </script>
 
 <Header title="Anmeldung" subTitle="Moravian Brass Festival" link={'/'} />
@@ -24,7 +33,7 @@
 	method="POST"
 	action="/registration"
 	class="mb-10 flex flex-col gap-3"
-	use:enhance
+	use:enhance={formEnhancement}
 >
 	{#if form?.message}
 		<span>&#x26A0; {form?.message}</span>
@@ -66,8 +75,19 @@
 	{:else}
 		<div class="h-16" />
 	{/if}
-	<Captcha />
-	<button class="mt-3 bg-white p-3 font-bold uppercase text-theme-magenta" type="submit"
-		>Anmelden</button
+	{#if !dev}
+		<Captcha />
+	{/if}
+	<button
+		class="mt-3 bg-white p-3 font-bold uppercase text-theme-magenta disabled:text-theme-magenta/50 "
+		disabled={loading}
+		type="submit"
 	>
+		<span class="flex items-center justify-center">
+			{#if loading}
+				<Loading />
+			{/if}
+			Anmelden
+		</span>
+	</button>
 </form>
