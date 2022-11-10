@@ -10,7 +10,7 @@
 	imageAlt="Rixdorf mit einem Aufkleber des Logos des Bläsertreffens an einem Straßenschild"
 >
 	<slot slot="left">
-		<img alt="Logo" src="/bear_blue.svg" width="200" />
+		<img alt="Bär mit Trompete" src="/bear_blue.svg" width="200" />
 		<Header color={'blue'} title="Fragen und Antworten" subTitle="Alle Informationen" />
 		<div class="flex flex-col my-8">
             <Faq question="Wann findet das Bläsertreffen statt?">
@@ -47,7 +47,7 @@
             Das Vorbereitungsteam hat dieses mal entschieden, dass es einfacher für alle ist wenn jeder
             sich selbst ein Quartier sucht. Eine Liste von Hotels in der Umgebung findet ihr auf der <a
                 href="/registration"
-                class="text-white">Anmeldungsseite</a
+                class="text-blue-50">Anmeldungsseite</a
             >.
         </Faq>
 	</div>
