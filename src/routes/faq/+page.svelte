@@ -6,11 +6,11 @@
 
 <Container
 	color="blue"
-	imageLocation="/images/rix_02.jpg"
+	imageLocation="/images/rix_02.jpeg"
 	imageAlt="Rixdorf mit einem Aufkleber des Logos des Bläsertreffens an einem Straßenschild"
 >
 	<slot slot="left">
-		<img alt="Bär mit Trompete" src="/bear_blue.svg" width="200" />
+		<img alt="Bär mit Trompete" src="/bear_blue.svg" width="200" height="200" />
 		<Header color={'blue'} title="Fragen und Antworten" subTitle="Alle Informationen" />
 		<div class="flex flex-col my-8">
             <Faq question="Wann findet das Bläsertreffen statt?">

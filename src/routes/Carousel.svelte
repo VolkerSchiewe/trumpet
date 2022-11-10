@@ -12,16 +12,16 @@
 	});
 	type ImageData = { src: string; alt: string; position: 'bottom' | 'center' | 'right' };
 	const images: ImageData[] = [
-		{ src: '/images/rix_panorama_01.jpg', alt: '', position: 'right' },
-		{ src: '/images/rix_02.jpg', alt: '', position: 'center' },
-		{ src: '/images/herrnhuter_weg_02.jpg', alt: '', position: 'center' },
-		{ src: '/images/berlin_panorama_02.jpg', alt: '', position: 'bottom' }
+		{ src: '/images/rix_panorama_01.jpeg', alt: '', position: 'right' },
+		{ src: '/images/rix_02.jpeg', alt: '', position: 'center' },
+		{ src: '/images/herrnhuter_weg_02.jpeg', alt: '', position: 'center' },
+		{ src: '/images/berlin_panorama_02.jpeg', alt: '', position: 'bottom' }
 	];
 </script>
 
 <div class="glide">
 	<div data-glide-el="track" class="glide__track">
-		<div class="glide__slides max-h-96 md:max-h-[30rem]">
+		<div class="glide__slides h-[24rem] md:h-[30rem]">
 			{#each images as image}
 				<img
 					class={`object-cover ${

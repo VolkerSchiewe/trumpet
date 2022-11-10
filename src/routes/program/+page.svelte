@@ -5,11 +5,11 @@
 
 <Container
 	color="green"
-	imageLocation="/images/rix_panorama_01.jpg"
+	imageLocation="/images/rix_panorama_01.jpeg"
 	imageAlt="Graffiti im Herrnhuter Weg mit der Schrift 'Moravian Brass Festival'"
 >
 	<slot slot="left">
-		<img alt="Bär mit Tuba" src="/bear_green.svg" width="200" />
+		<img alt="Bär mit Tuba" src="/bear_green.svg" width="200" height="200" />
 		<p class="hyphen text-justify font-semibold">
 			Hierbei handelt es sich um ein vorläufiges Programm um eine grobe Orientierung zu geben. Bis
 			zum Bläsertreffen werdet ihr hier immer neue Informationen finden.

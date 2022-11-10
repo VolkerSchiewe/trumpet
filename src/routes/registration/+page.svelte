@@ -103,11 +103,11 @@
 
 <Container
 	color="magenta"
-	imageLocation="/images/herrnhuter_weg_02.jpg"
+	imageLocation="/images/herrnhuter_weg_02.jpeg"
 	imageAlt="Straßenschild vom Herrnhuter Weg mit Logoaufkleber"
 >
 	<slot slot="left">
-		<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" />
+		<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" height="200" />
 		<Header
 			title="Wo kann ich schlafen?"
 			subTitle="Alle Informationen"
