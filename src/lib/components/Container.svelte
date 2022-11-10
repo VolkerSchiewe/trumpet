@@ -4,7 +4,7 @@
 
 	export let imageLocation: string | undefined = undefined;
 	export let imageAlt: string | undefined = undefined;
-	export let color: ThemeColors = 'magenta';
+	export let color: ThemeColors;
 </script>
 
 <main class="grid flex-grow grid-cols-1 xl:grid-cols-2">

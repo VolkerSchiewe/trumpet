@@ -7,7 +7,7 @@
 	import RegistrationForm from './RegistrationForm.svelte';
 
 	export let form: ActionData;
-	
+
 	let hotels: Hotel[] = [
 		{
 			name: 'Mercure Hotel',
@@ -102,6 +102,7 @@
 </script>
 
 <Container
+	color="magenta"
 	imageLocation="/images/herrnhuter_weg_02.jpg"
 	imageAlt="Straßenschild vom Herrnhuter Weg mit Logoaufkleber"
 >
@@ -110,7 +111,6 @@
 		<Header
 			title="Wo kann ich schlafen?"
 			subTitle="Alle Informationen"
-			link={'/'}
 			color={'magenta'}
 		/>
 

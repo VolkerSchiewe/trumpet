@@ -29,7 +29,7 @@
 	}
 </script>
 
-<Header title="Anmeldung" subTitle="Moravian Brass Festival" link={'/'} />
+<Header title="Anmeldung" subTitle="Moravian Brass Festival" />
 <p class="hyphen text-justify font-bold">
 	Um gut planen zu können benötigen wir natürlich einige Angaben von euch.
 </p>

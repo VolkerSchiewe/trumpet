@@ -3,7 +3,7 @@
 
 	export let title: string;
 	export let subTitle: string;
-	export let link: string;
+	export let link: string = "/";
 	export let color: 'magenta' | 'green' | 'blue' | 'yellow' | null = null;
 </script>
 
