@@ -124,9 +124,9 @@
 			dem Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher
 			ist, wenn sich alle Teilnehmer selbst um ein Quartier kümmern. Im Blick auf Vorfinanzierung,
 			Bezahlung oder Stornierung macht sich dies unkomlizierter und das Vorbereitungsteam hat mehr
-			Zeit sich um das eigentliche Ereignis zu kümmern. Wer Interesse am MoravianBrass Festival
-			Berlin 2023 teilzunehmen, wende sich am besten an seinen Chorleiter, eine gemeinsame Buchen
-			per Chor macht natürlich Sinn. Die Mahlzeiten nehmen wir dann auf dem Festivalgelände ein.
+			Zeit sich um das eigentliche Ereignis zu kümmern. Wer Interesse hat am Moravian Brass Festival
+			Berlin 2023 teilzunehmen, wende sich am besten an seinen Chorleiter, eine gemeinsame Buchung
+			pro Chor macht natürlich Sinn. Die Mahlzeiten nehmen wir dann auf dem Festivalgelände ein.
 			<br />
 			<br />
 			Hier einige Links zu möglichen Unterkünften in der Nähe:
