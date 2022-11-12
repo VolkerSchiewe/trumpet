@@ -30,7 +30,7 @@
 		<ul class="mb-8 list-disc">
 			<li>Morgensegen Gesamtprobe</li>
 			<li>Workshops</li>
-			<li>Mittagessn</li>
+			<li>Mittagessen</li>
 			<li>Führungen Böhm. Dorf, Comenius Garten</li>
 			<li>Abendmahlsgottesdienst</li>
 		</ul>

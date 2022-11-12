@@ -14,7 +14,7 @@
 		<div class="hidden flex-grow md:block" />
 		<img
 			class="max-w-xl"
-			src="/moravian_brass_23_weiss.svg"
+			src="/slogan.svg"
 			alt="Moravian Brass Festival Berlin 2023"
 		/>
 	</div>

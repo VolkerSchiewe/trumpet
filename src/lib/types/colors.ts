@@ -1,1 +1,1 @@
-export type ThemeColors = 'magenta' | 'blue' | 'green' | 'yellow';
+export type ThemeColor = 'magenta' | 'blue' | 'green' | 'yellow';

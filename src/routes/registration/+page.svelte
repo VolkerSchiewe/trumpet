@@ -2,7 +2,7 @@
 	import Container from '$lib/components/Container.svelte';
 	import Header from '$lib/components/Header.svelte';
 	import type { Hotel } from '$lib/types/hotel';
-	import HotelCard from '../HotelCard.svelte';
+	import HotelCard from './HotelCard.svelte';
 	import type { ActionData, PageData } from './$types';
 	import RegistrationForm from './RegistrationForm.svelte';
 
