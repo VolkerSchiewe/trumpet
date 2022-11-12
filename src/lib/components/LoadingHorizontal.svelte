@@ -1,4 +1,4 @@
-<div class="bg-gray-700 w-[0%] h-full my-0 mx-auto animate-[barWidth_2s_linear_infinite] z-50" />
+<div class="z-50 my-0 mx-auto h-full w-[0%] animate-[barWidth_2s_linear_infinite] bg-gray-700" />
 
 <style>
 	@keyframes -global-barWidth {
