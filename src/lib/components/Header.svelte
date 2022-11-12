@@ -5,7 +5,7 @@
 
 	export let title: string;
 	export let subTitle: string;
-	export let link: string = '/';
+	export let link = '/';
 	export let color: ThemeColor | null = null;
 </script>
 

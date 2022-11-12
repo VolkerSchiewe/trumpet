@@ -1,5 +1,4 @@
 <script lang="ts">
-	import type { ThemeColor } from '$lib/types/colors';
 	import { getTextColorClass } from '$lib/utils/color-classes';
 	import { colors, orchestraData } from './data';
 	import type { DistributionArray } from './distribute-orchestra-data';

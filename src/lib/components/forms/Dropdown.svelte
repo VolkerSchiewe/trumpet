@@ -1,9 +1,11 @@
 <script lang="ts">
-	export let form: any;
+	import type { ActionFormData } from 'src/routes/registration/+page.server';
+
+	export let form: ActionFormData | undefined;
 
 	export let label: string;
 	export let name: string;
-	export let value: string | undefined = form?.[name]?.value || '';
+	export let value = form?.data?.[name]?.value ?? '';
 	export let values: Array<{ label: string; value: string }>;
 	export let required = false;
 </script>

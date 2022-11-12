@@ -17,7 +17,7 @@
 	let type: 'blaeser' | 'jungblaeser' | 'gast';
 	let loading = false;
 
-	function formEnhancement(): ({ update }: { update: Function }) => void {
+	function formEnhancement(): ({ update }: { update: () => void }) => void {
 		loading = true;
 		return ({ update }) => {
 			loading = false;

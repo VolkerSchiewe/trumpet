@@ -3,7 +3,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import type { Hotel } from '$lib/types/hotel';
 	import HotelCard from './HotelCard.svelte';
-	import type { ActionData, PageData } from './$types';
+	import type { ActionData } from './$types';
 	import RegistrationForm from './RegistrationForm.svelte';
 
 	export let form: ActionData;
