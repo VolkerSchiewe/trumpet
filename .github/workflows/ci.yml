@@ -38,11 +38,11 @@ jobs:
     needs: [test]
     if: ${{ always() && contains(join(needs.*.result, ','), 'failure') }}
     steps:
-      - name: "Telegram Notification"
+      - name: 'Telegram Notification'
         uses: appleboy/telegram-action@master
         with:
-          to: "-1001235848925"
+          to: ${{ secrets.TELEGRAM_CHAT_ID }}
           token: ${{ secrets.TELEGRAM_API_TOKEN }}
           message: |
-            Pipeline failed
+            ⚠️ Pipeline failed
             Repository: ${{ github.repository }}
