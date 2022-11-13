@@ -33,6 +33,8 @@ jobs:
           CAPTACHA_API_KEY: ${{ secrets.CAPTACHA_API_KEY }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
           HOST_URL: 'http://127.0.0.1:5173'
+          TELEGRAM_API_TOKEN: 'invalid_token'
+          TELEGRAM_CHAT_ID: '012345'
 
   telegram-notification:
     runs-on: ubuntu-latest
