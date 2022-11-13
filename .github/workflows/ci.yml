@@ -32,6 +32,7 @@ jobs:
           VERCEL_URL: ${{ secrets.VERCEL_URL }}
           CAPTACHA_API_KEY: ${{ secrets.CAPTACHA_API_KEY }}
           SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
+          HOST_URL: 'http://127.0.0.1:5173'
 
   telegram-notification:
     runs-on: ubuntu-latest
