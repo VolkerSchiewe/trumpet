@@ -13,16 +13,16 @@
 	export let form: ActionData;
 	$: modalOpen = Boolean(form?.success);
 
-	let captcha: {reset: () => void}
+	let captcha: { reset: () => void };
 	let type: 'blaeser' | 'jungblaeser' | 'gast';
 	let loading = false;
 
-	function formEnhancement(): ({ update }: { update: Function }) => void {
+	function formEnhancement(): ({ update }: { update: () => void }) => void {
 		loading = true;
 		return ({ update }) => {
 			loading = false;
 			update();
-			captcha.reset()
+			captcha.reset();
 		};
 	}
 
@@ -92,7 +92,7 @@
 		<div class="h-16" />
 	{/if}
 	{#if dev}
-		<Captcha bind:captcha={captcha} />
+		<Captcha bind:captcha />
 	{/if}
 	<button
 		class="mt-3 bg-white p-3 font-bold uppercase text-theme-magenta disabled:text-theme-magenta/50 "

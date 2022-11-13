@@ -3,7 +3,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import type { Hotel } from '$lib/types/hotel';
 	import HotelCard from './HotelCard.svelte';
-	import type { ActionData, PageData } from './$types';
+	import type { ActionData } from './$types';
 	import RegistrationForm from './RegistrationForm.svelte';
 
 	export let form: ActionData;
@@ -108,11 +108,7 @@
 >
 	<slot slot="left">
 		<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" height="200" />
-		<Header
-			title="Wo kann ich schlafen?"
-			subTitle="Alle Informationen"
-			color={'magenta'}
-		/>
+		<Header title="Wo kann ich schlafen?" subTitle="Alle Informationen" color={'magenta'} />
 
 		<p class="hyphen text-justify font-semibold">
 			Für das Bläsertreffen 2023 in Berlin wird es eine entscheidende Neuerung geben: Wir bitten

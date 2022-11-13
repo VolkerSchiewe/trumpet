@@ -16,7 +16,7 @@ export function distributeOrchestraData(registrationsCount: number): Distributio
 		},
 		{ magenta: 0, blue: 0, yellow: 0, green: 0 }
 	);
-	
+
 	const test = Object.keys(colorsDistributed).reduce(
 		(acc, key) => {
 			const typedKey = key as ThemeColor;
@@ -25,9 +25,8 @@ export function distributeOrchestraData(registrationsCount: number): Distributio
 		},
 		{ magenta: [], blue: [], yellow: [], green: [] } as DistributionArray
 	);
-	return test
+	return test;
 }
-
 
 export function getRandomNumbers(min: number, max: number, count = 1): number[] {
 	const result: number[] = [];
