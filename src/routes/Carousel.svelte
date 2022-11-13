@@ -10,7 +10,11 @@
 			hoverpause: true
 		}).mount();
 	});
-	type ImageData = { src: string; alt: string; positionClass: 'object-bottom' | 'object-center' | 'object-right' };
+	type ImageData = {
+		src: string;
+		alt: string;
+		positionClass: 'object-bottom' | 'object-center' | 'object-right';
+	};
 	const images: ImageData[] = [
 		{ src: '/images/rix_panorama_01.jpeg', alt: '', positionClass: 'object-right' },
 		{ src: '/images/rix_02.jpeg', alt: '', positionClass: 'object-center' },
@@ -23,11 +27,7 @@
 	<div data-glide-el="track" class="glide__track">
 		<div class="glide__slides h-[16rem] md:h-[30rem] lg:h-[40rem] xl:h-[50rem]">
 			{#each images as image}
-				<img
-					class={`object-cover ${image.positionClass}`}
-					src={image.src}
-					alt={image.alt}
-				/>
+				<img class={`object-cover ${image.positionClass}`} src={image.src} alt={image.alt} />
 			{/each}
 		</div>
 		<div class="glide__bullets" data-glide-el="controls[nav]">

@@ -22,7 +22,7 @@
 			color="yellow"
 		/>
 	</div>
-	<div class="h-full w-full md:w-2/3 p-3 md:p-10 md:py-14">
+	<div class="h-full w-full p-3 md:w-2/3 md:p-10 md:py-14">
 		<Orchestra orchestraDistribution={data.orchestraDistribution} />
 	</div>
 	<div class="my-5 self-center">
