@@ -10,27 +10,21 @@
 			hoverpause: true
 		}).mount();
 	});
-	type ImageData = { src: string; alt: string; position: 'bottom' | 'center' | 'right' };
+	type ImageData = { src: string; alt: string; positionClass: 'object-bottom' | 'object-center' | 'object-right' };
 	const images: ImageData[] = [
-		{ src: '/images/rix_panorama_01.jpeg', alt: '', position: 'right' },
-		{ src: '/images/rix_02.jpeg', alt: '', position: 'center' },
-		{ src: '/images/herrnhuter_weg_02.jpeg', alt: '', position: 'center' },
-		{ src: '/images/berlin_panorama_02.jpeg', alt: '', position: 'bottom' }
+		{ src: '/images/rix_panorama_01.jpeg', alt: '', positionClass: 'object-right' },
+		{ src: '/images/rix_02.jpeg', alt: '', positionClass: 'object-center' },
+		{ src: '/images/herrnhuter_weg_02.jpeg', alt: '', positionClass: 'object-center' },
+		{ src: '/images/berlin_panorama_02.jpeg', alt: '', positionClass: 'object-bottom' }
 	];
 </script>
 
 <div class="glide">
 	<div data-glide-el="track" class="glide__track">
-		<div class="glide__slides h-[24rem] md:h-[30rem]">
+		<div class="glide__slides h-[16rem] md:h-[30rem] lg:h-[40rem] xl:h-[50rem]">
 			{#each images as image}
 				<img
-					class={`object-cover ${
-						image.position === 'bottom'
-							? 'object-bottom'
-							: image.position === 'right'
-							? 'object-right'
-							: 'object-center'
-					}`}
+					class={`object-cover ${image.positionClass}`}
 					src={image.src}
 					alt={image.alt}
 				/>

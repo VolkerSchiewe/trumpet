@@ -11,7 +11,7 @@
 
 <main class="flex flex-col items-center">
 	<Landing />
-	<div class="mt-5 grid grid-cols-2 gap-5 md:grid-cols-4">
+	<div class="mt-5 grid grid-cols-2 gap-5 lg:grid-cols-4">
 		<Link href="/registration" header="Anmeldung" subHeader="alle Informationen" color="magenta" />
 		<Link href="/faq" header="Häufige Fragen" subHeader="und die Antworten" color="blue" />
 		<Link href="/program" header="Programm" subHeader="Was, Wann und Wo" color="green" />
@@ -22,7 +22,7 @@
 			color="yellow"
 		/>
 	</div>
-	<div class="h-full w-full p-3 md:p-10 md:py-14">
+	<div class="h-full w-full md:w-2/3 p-3 md:p-10 md:py-14">
 		<Orchestra orchestraDistribution={data.orchestraDistribution} />
 	</div>
 	<div class="my-5 self-center">
