@@ -33,10 +33,10 @@
 
 <Header title="Anmeldung" subTitle="Moravian Brass Festival" />
 <p class="hyphen text-justify font-bold">
-	Um gut planen zu können benötigen wir natürlich einige Angaben von euch.
+	Um gut planen zu können, benötigen wir natürlich einige Angaben von euch.
 </p>
 <p>
-	Wichtig ist natürlich welche Stimme ihr spielt und wir wollen natürlich auch wissen wer ihr seid
+	Wichtig ist natürlich, welche Stimme ihr spielt und wir wollen natürlich auch wissen, wer ihr seid
 	und wo ihr herkommt.
 </p>
 <form
@@ -53,7 +53,7 @@
 		<Modal open={modalOpen} on:close={closeModal}>
 			<div slot="body">
 				<h2 class="text-bold pb-2 text-xl">Anmeldung erfolgreich</h2>
-				<p>Danke für deine Anmeldung. Bitte vergiss nicht deine E-Mail Addresse zu bestätigen.</p>
+				<p>Danke für deine Anmeldung. Bitte vergiss nicht, deine E-Mail Adresse zu bestätigen.</p>
 			</div>
 			<button slot="buttons" on:click={closeModal}>Schließen</button>
 		</Modal>
@@ -61,7 +61,7 @@
 
 	<TextInput label="Name" required name="name" {form} />
 	<TextInput label="E-Mail" required name="email" type="email" {form} />
-	<TextInput label="Addresse" required name="address" {form} />
+	<TextInput label="Adresse" required name="address" {form} />
 	<TextInput label="PLZ & Ort" required name="zip_city" {form} />
 	<Dropdown
 		label="Ich bin"
@@ -91,7 +91,7 @@
 	{:else}
 		<div class="h-16" />
 	{/if}
-	{#if dev}
+	{#if !dev}
 		<Captcha bind:captcha />
 	{/if}
 	<button
