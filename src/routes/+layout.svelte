@@ -5,10 +5,10 @@
 </script>
 
 <svelte:head>
-	<title>Moravian Brass Festival Berlin 2023</title>
+	<title>Moravian Brass Festival Berlin 2023 - 39. Brüderisches Bläsertreffen</title>
 	<meta
 		name="description"
-		content="A get together of ~250 musician of the moravian church of Germany and all over the world."
+		content="Das Moravian Brass Festival Berlin findet über Pfingsten 2023 im Böhmischen Dorf statt. Wir freuen uns ca. 250 Blechbläser:innen der Herrnhuter Brüdergemeine aus Deutschland und der ganzen Welt begrüßen zu dürfen."
 	/>
 </svelte:head>
 
