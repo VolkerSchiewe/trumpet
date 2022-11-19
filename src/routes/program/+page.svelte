@@ -1,13 +1,14 @@
 <script lang="ts">
 	import Header from '$lib/components/Header.svelte';
 	import Container from '$lib/components/Container.svelte';
+	import { images } from '$lib/utils/images';
 </script>
 
-<Container
-	color="green"
-	imageLocation="/images/rix_panorama_01.jpeg"
-	imageAlt="Graffiti im Herrnhuter Weg mit der Schrift 'Moravian Brass Festival'"
->
+<svelte:head>
+	<title>Programm - Moravian Brass Festival Berlin 2023</title>
+</svelte:head>
+
+<Container color="green" image={images[0]}>
 	<slot slot="left">
 		<img alt="Bär mit Tuba" src="/bear_green.svg" width="200" height="200" />
 		<p class="hyphen text-justify font-semibold">

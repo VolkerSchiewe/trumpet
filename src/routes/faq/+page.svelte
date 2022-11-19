@@ -1,14 +1,15 @@
 <script lang="ts">
 	import Container from '$lib/components/Container.svelte';
 	import Header from '$lib/components/Header.svelte';
+	import { images } from '$lib/utils/images';
 	import Faq from './Faq.svelte';
 </script>
 
-<Container
-	color="blue"
-	imageLocation="/images/rix_02.jpeg"
-	imageAlt="Rixdorf mit einem Aufkleber des Logos des Bläsertreffens an einem Straßenschild"
->
+<svelte:head>
+	<title>Häufige Fragen - Moravian Brass Festival Berlin 2023</title>
+</svelte:head>
+
+<Container color="blue" image={images[1]}>
 	<slot slot="left">
 		<img alt="Bär mit Trompete" src="/bear_blue.svg" width="200" height="200" />
 		<Header color={'blue'} title="Fragen und Antworten" subTitle="Alle Informationen" />

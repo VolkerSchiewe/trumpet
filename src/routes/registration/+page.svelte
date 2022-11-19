@@ -5,6 +5,7 @@
 	import HotelCard from './HotelCard.svelte';
 	import type { ActionData } from './$types';
 	import RegistrationForm from './RegistrationForm.svelte';
+	import { images } from '$lib/utils/images';
 
 	export let form: ActionData;
 
@@ -101,11 +102,11 @@
 	];
 </script>
 
-<Container
-	color="magenta"
-	imageLocation="/images/herrnhuter_weg_02.jpeg"
-	imageAlt="Straßenschild vom Herrnhuter Weg mit Logoaufkleber"
->
+<svelte:head>
+	<title>Anmeldung - Moravian Brass Festival Berlin 2023</title>
+</svelte:head>
+
+<Container color="magenta" image={images[2]}>
 	<slot slot="left">
 		<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" height="200" />
 		<Header title="Wo kann ich schlafen?" subTitle="Alle Informationen" color={'magenta'} />

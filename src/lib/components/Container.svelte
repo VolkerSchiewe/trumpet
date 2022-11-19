@@ -1,10 +1,10 @@
 <script lang="ts">
 	import type { ThemeColor } from '$lib/types/colors';
 	import { getBgColorClass } from '$lib/utils/color-classes';
+	import type { Image } from '$lib/utils/images';
 	import Footer from './Footer.svelte';
 
-	export let imageLocation: string | undefined = undefined;
-	export let imageAlt: string | undefined = undefined;
+	export let image: Image | undefined = undefined;
 	export let color: ThemeColor;
 </script>
 
@@ -16,4 +16,4 @@
 		<slot name="right" />
 	</div>
 </main>
-<Footer {imageAlt} {imageLocation} />
+<Footer {image} />

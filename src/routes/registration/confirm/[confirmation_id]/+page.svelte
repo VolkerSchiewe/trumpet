@@ -6,6 +6,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Anmeldebestätigung - Moravian Brass Festival Berlin 2023</title>
+</svelte:head>
+
 <Container color="green">
 	<img slot="left" class="max-w-xs self-center pb-10" src="/bear_green.svg" alt="Logo" />
 	<div slot="right" class="py-10">
