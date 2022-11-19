@@ -10,9 +10,8 @@
 	version="1.1"
 	xmlns="http://www.w3.org/2000/svg"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
-	x="0px"
-	y="0px"
-	viewBox="0 0 1300 680"
+	viewBox="0 0 2000 1200"
+	style="enable-background:new 0 0 2000 1200;"
 	xml:space="preserve"
 >
 	{#each colors as color}
@@ -25,8 +24,8 @@
 					class={`stroke-current stroke-075 ${
 						orchestraDistribution[color].includes(index) ? 'fill-current' : 'fill-none'
 					}`}
-					width="15.59"
-					height="15.59"
+					width="37.44"
+					height="37.44"
 				/>
 			{/each}
 		</g>
