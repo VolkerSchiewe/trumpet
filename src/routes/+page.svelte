@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Footer from '$lib/components/Footer.svelte';
+	import FramedNumber from '$lib/components/FramedNumber.svelte';
 	import Orchestra from '$lib/components/orchestra/Orchestra.svelte';
 	import type { PageData } from './$types';
 	import Countdown from './Countdown.svelte';
@@ -22,11 +23,12 @@
 			color="yellow"
 		/>
 	</div>
-	<div class="h-full w-full p-3 md:my-10 md:p-10 md:py-14 xl:w-2/3">
+	<div class="h-full w-full p-3 md:mt-10 md:p-10 md:py-14 xl:w-2/3">
 		<Orchestra orchestraDistribution={data.orchestraDistribution} />
 	</div>
-	<div class="my-5 self-center">
-		<Countdown title="Tage bis Beginn" />
+	<div class="mb-5 flex flex-col gap-5 md:flex-row">
+		<FramedNumber title="Anmeldungen" number={data.registrationCount} />
+		<Countdown targetDate={new Date('2023-05-26')} />
 	</div>
 </main>
 <div class="flex-grow" />

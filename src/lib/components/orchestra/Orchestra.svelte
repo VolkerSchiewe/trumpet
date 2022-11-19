@@ -15,7 +15,6 @@
 	viewBox="0 0 1300 680"
 	xml:space="preserve"
 >
-	<rect x="635" y="610" width="30" height="30" class="stroke-075 fill-gray stroke-current" />
 	{#each colors as color}
 		<g class={getTextColorClass(color)}>
 			{#each orchestraData[color] as item, index}

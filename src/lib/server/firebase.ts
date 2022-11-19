@@ -77,3 +77,12 @@ export async function setUserState(email: string, state: State): Promise<void> {
 	}
 	await db.collection(USER_COLLECTION).doc(email).update({ state });
 }
+
+export async function getRegistrationCount() {
+	const queryResult = await db
+		.collection(USER_COLLECTION)
+		.where('state', '==', State.EMAIL_VERIFIED)
+		.count()
+		.get();
+	return queryResult.data().count;
+}
