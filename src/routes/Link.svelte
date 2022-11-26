@@ -11,15 +11,15 @@
 
 <a
 	{href}
-	class={`relative flex h-36 w-36 md:h-56 md:w-56 xl:h-72 xl:w-72 flex-col justify-end p-2 py-6 text-white ${getBgColorClass(
+	class={`relative flex h-36 w-36 md:h-[20vw] md:w-[20vw] flex-col justify-end p-2 py-6 md:p-[1vw] md:py-[2vw] text-white ${getBgColorClass(
 		color
 	)}`}
 >
-	<span class="font-bold uppercase md:text-3xl xl:text-4xl">{header}</span>
-	<span class="text-sm font-light md:text-2xl xl:text-3xl">{subHeader}</span>
+	<span class="text-md font-bold uppercase md:text-[2.5vw] md:leading-[3vw]">{header}</span>
+	<span class="text-sm font-light md:text-[2vw] md:leading-[2.5vw]">{subHeader}</span>
 
 	<span
-		class="absolute -top-1 -right-1 h-10 w-10 text-theme-purple md:h-14 md:w-14 xl:-top-2 xl:-right-2 xl:h-20 xl:w-20"
+		class="absolute -top-1 -right-1 h-10 w-10 text-theme-purple md:-top-[0.5vw] md:-right-[0.5vw] md:h-[5vw] md:w-[5vw]"
 	>
 		<ArrowUp />
 	</span>

@@ -15,7 +15,7 @@
 
 <div class="glide">
 	<div data-glide-el="track" class="glide__track">
-		<div class="glide__slides h-[16rem] md:h-[30rem] lg:h-[40rem] xl:h-[50rem]">
+		<div class="glide__slides h-[16rem] md:h-[50vw]">
 			{#each images as image}
 				<img class={`object-cover`} src={image.src} alt={image.alt} />
 			{/each}
