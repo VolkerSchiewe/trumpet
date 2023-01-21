@@ -7,8 +7,9 @@ const config: PlaywrightTestConfig = {
 		reuseExistingServer: !process.env.CI
 	},
 	use: {
+		browserName: 'chromium',
 		baseURL: 'http://localhost:5173/',
-		screenshot: 'only-on-failure'
+		screenshot: { mode: 'only-on-failure', fullPage: true }
 	}
 };
 
