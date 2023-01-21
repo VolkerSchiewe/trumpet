@@ -15,7 +15,7 @@
 		<Header color={'blue'} title="Fragen und Antworten" subTitle="Alle Informationen" />
 		<div class="my-8 flex flex-col">
 			<Faq question="Wann findet das Bläsertreffen statt?">
-				26.05.2023 (Anreise) bis 29.05.2023 (Abreise)
+				Fr. 26.05.2023 (Anreise) bis Mo. 29.05.2023 (Abreise)
 			</Faq>
 			<Faq question="Wo findet das Bläsertreffen statt?">
 				Wir freuen uns, euch ins Böhmische Dorf in Berlin einladen zu dürfen. Den Großteil der Zeit
@@ -43,6 +43,9 @@
 			Darin enthalten ist die Verpflegung auf dem Festivalgelände sowie die Teilnahme an allen Programmpunkten.
 			Nicht enthalten ist die Unterkunft (und Frühstück), da diese dieses Mal selbst organisiert werden
 			muss.
+			<br />
+			Da das Programm sich für Gäste, bis auf die Proben, nicht unterscheidet, wird es hier auch keinen
+			preislichen Unterschied geben.
 		</Faq>
 		<Faq question="Wo werden wir untergebracht?">
 			Das Vorbereitungsteam hat dieses Mal entschieden, dass es einfacher für alle ist, wenn jeder
@@ -50,6 +53,9 @@
 				href="/registration"
 				class="text-blue-50">Anmeldungsseite</a
 			>.
+			<br />
+			Zurzeit versuchen wir noch ein Massenquartier für Jugendliche zu organisieren, um eine kostengünstige
+			Teilnahme zu ermöglichen. Details hierzu folgen in Kürze.
 		</Faq>
 	</div>
 </Container>

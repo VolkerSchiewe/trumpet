@@ -126,6 +126,9 @@
 			der Unterkünfte pro Chor macht natürlich Sinn. Alle Mahlzeiten, bis aufs Frühstück, nehmen wir
 			dann auf dem Festivalgelände ein.
 			<br />
+			Des Weiteren sind wir gerade dabei, ein Massenquartier für Jugendliche zu organisieren. Details
+			dazu folgen in Kürze.
+			<br />
 			<br />
 			Hier einige Links zu möglichen Unterkünften in der Nähe:
 		</p>
