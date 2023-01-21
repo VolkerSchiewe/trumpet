@@ -11,6 +11,7 @@ const guestSchema = z.object({
 	zip_city: z.string(),
 	type: z.enum(guestTypes),
 	choir: z.string().optional(),
+	departure: z.string(),
 	'frc-captcha-solution': z.string().optional()
 });
 const playerSchema = guestSchema.extend({

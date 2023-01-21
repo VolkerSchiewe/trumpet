@@ -91,6 +91,16 @@
 	{:else}
 		<div class="h-16" />
 	{/if}
+	<Dropdown
+		label="Abreise am"
+		name="departure"
+		required
+		values={[
+			{ label: 'Sonntag', value: 'sunday' },
+			{ label: 'Montag', value: 'moday' }
+		]}
+		{form}
+	/>
 	{#if !dev}
 		<Captcha bind:captcha />
 	{/if}
