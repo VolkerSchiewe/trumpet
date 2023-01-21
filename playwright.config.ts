@@ -2,8 +2,13 @@ import type { PlaywrightTestConfig } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
 	webServer: {
-		command: 'npm run build && npm run preview',
-		port: 4173
+		command: 'yarn dev --host',
+		port: 5173,
+		reuseExistingServer: !process.env.CI
+	},
+	use: {
+		baseURL: 'http://localhost:5173/',
+		screenshot: 'only-on-failure'
 	}
 };
 

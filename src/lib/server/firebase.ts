@@ -86,3 +86,8 @@ export async function getRegistrationCount() {
 		.get();
 	return queryResult.data().count;
 }
+
+export async function deleteTestData(): Promise<void> {
+	const testEmail = 'blaesertag2023@example.com';
+	await db.collection(USER_COLLECTION).doc(testEmail).delete();
+}
