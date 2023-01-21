@@ -18,9 +18,9 @@
 		/>
 	</a>
 
-	<h1 class={`mx-14 lg:mx-24 text-2xl lg:text-4xl uppercase `}>{title}</h1>
+	<h1 class={`mx-14 text-2xl uppercase lg:mx-24 lg:text-4xl `}>{title}</h1>
 	<h2
-		class={`mx-14 lg:mx-24 text-2xl lg:text-4xl uppercase ${
+		class={`mx-14 text-2xl uppercase lg:mx-24 lg:text-4xl ${
 			color ? getTextColorClass(color) : 'text-white'
 		}`}
 	>

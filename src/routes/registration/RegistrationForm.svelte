@@ -22,7 +22,7 @@
 		return ({ update }) => {
 			loading = false;
 			update();
-			captcha.reset();
+			captcha?.reset();
 		};
 	}
 

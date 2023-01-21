@@ -5,7 +5,7 @@
 	export let required = false;
 </script>
 
-<fieldset type="radiogroup" class="flex items-start gap-5">
+<fieldset class="flex items-start gap-5">
 	<legend class={`text-white ${required ? "after:ml-1 after:content-['*']" : ''}`}>{label}</legend>
 	{#each values as { label, value }}
 		<label class="relative">
@@ -17,7 +17,7 @@
 				{required}
 			/>
 			<span
-				class={`peer-checked:bg-theme-magenta peer-checked:text-white bg-white text-theme-magenta flex w-10 h-10  border-white border-2 items-center justify-center font-bold text-xl`}
+				class={`flex h-10 w-10 items-center justify-center border-2 border-white  bg-white text-xl font-bold text-theme-magenta peer-checked:bg-theme-magenta peer-checked:text-white`}
 			>
 				{label}
 			</span>

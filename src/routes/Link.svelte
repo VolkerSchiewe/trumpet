@@ -11,7 +11,7 @@
 
 <a
 	{href}
-	class={`relative flex h-36 w-36 md:h-[20vw] md:w-[20vw] flex-col justify-end p-2 py-6 md:p-[1vw] md:py-[2vw] text-white ${getBgColorClass(
+	class={`relative flex h-36 w-36 flex-col justify-end p-2 py-6 text-white md:h-[20vw] md:w-[20vw] md:p-[1vw] md:py-[2vw] ${getBgColorClass(
 		color
 	)}`}
 >

@@ -2,16 +2,15 @@
 <html lang="de">
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 
-		<link rel="manifest" href="manifest.json" />
+		<link rel="manifest" href="%sveltekit.assets%/manifest.json" />
 		<meta name="theme-color" content="#270937" />
-		<link rel="icon" href="/favicon.ico" sizes="any" />
-		<link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.ico" sizes="any" />
+		<link rel="apple-touch-icon" href="%sveltekit.assets%/icons/apple-touch-icon.png" />
 		%sveltekit.head%
 	</head>
 	<body class="flex min-h-screen flex-col">
-		%sveltekit.body%
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

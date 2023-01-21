@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { ActionFormData } from 'src/routes/registration/+page.server';
+	import type { ActionFormData } from '../../../routes/registration/+page.server';
 
 	export let label: string;
 	export let name: string;
 	export let required = false;
 	export let type = 'text';
-	export let form: ActionFormData | undefined;
+	export let form: ActionFormData | null;
 </script>
 
 <label>

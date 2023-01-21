@@ -21,7 +21,7 @@
 					x={item.x}
 					y={item.y}
 					transform={item.transform}
-					class={`stroke-current stroke-075 ${
+					class={`stroke-075 stroke-current ${
 						orchestraDistribution[color].includes(index) ? 'fill-current' : 'fill-none'
 					}`}
 					width="37.44"

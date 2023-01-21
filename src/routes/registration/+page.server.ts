@@ -3,7 +3,7 @@ import { verifyCaptcha } from '$lib/server/captcha';
 import { createUser, findUserByEmail, setUserState, State } from '$lib/server/firebase';
 import { sendEmailConfirmation } from '$lib/server/mail';
 import { userSchema, type User } from '$lib/userSchema';
-import { invalid, type Actions } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 
 export type FormError = Record<string, { value: FormDataEntryValue; message?: string }>;
 function generateFailureData(data: Record<string, FormDataEntryValue>): FormError {
@@ -24,7 +24,7 @@ export const actions: Actions = {
 		const result = userSchema.safeParse(data);
 		if (!result.success) {
 			console.error('registration_schema_error', result.error);
-			return invalid(400, {
+			return fail(400, {
 				success: false,
 				data: generateFailureData(data),
 				message: 'Etwas stimmt nicht. Bitte überprüfe deine Eingaben.'
@@ -35,14 +35,14 @@ export const actions: Actions = {
 		try {
 			if (!dev) await verifyCaptcha(userData['frc-captcha-solution'] as string);
 		} catch (e) {
-			return invalid(400, {
+			return fail(400, {
 				success: false,
 				message: 'Etwas stimmt nicht. Bitte versuch es erneut oder melde dich bei uns.'
 			});
 		}
 		const user = await findUserByEmail(userData.email);
 		if (user) {
-			return invalid(400, {
+			return fail(400, {
 				success: false,
 				data: {
 					...generateFailureData(userData),
