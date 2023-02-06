@@ -33,14 +33,17 @@
 
 <Header title="Anmeldung" subTitle="Moravian Brass Festival" />
 <p class="hyphen text-justify font-bold">
-	Um gut planen zu können, benötigen wir natürlich einige Angaben von euch.
+	Um gut planen zu können, benötigen wir einige Angaben von euch.
 </p>
 <p>
-	Wichtig ist natürlich, welche Stimme ihr spielt und wir wollen natürlich auch wissen, wer ihr seid
-	und wo ihr herkommt.
+	Wichtig ist, welche Stimme ihr spielt und wir wollen natürlich auch wissen, wer ihr seid und wo
+	ihr herkommt.
 	<br />
 	Für die bessere Planung müssen wir außerdem wissen, wann ihr wieder abreist. Wenn ihr Montag sehr früh
 	abreist gebt bitte Sonntag an.
+	<br />
+	<br />
+	Die Anmeldung endet am 19.02.2023.
 </p>
 <form
 	id="registration-form"

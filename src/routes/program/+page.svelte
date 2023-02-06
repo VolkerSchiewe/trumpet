@@ -48,7 +48,7 @@
 		<ul class="mb-8 list-disc">
 			<li>Gottesdienst</li>
 			<li>Ausflug (Schifffahrt ca. 3 Std.)</li>
-			<li>Verabschiedung vorher für die die eher abfahren oder im Anschluss</li>
+			<li>Verabschiedung vorher für die, die eher abfahren oder im Anschluss</li>
 		</ul>
 	</slot>
 </Container>

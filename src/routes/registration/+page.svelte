@@ -113,7 +113,7 @@
 
 		<p class="hyphen text-justify font-semibold">
 			Für das Bläsertreffen 2023 in Berlin wird es eine entscheidende Neuerung geben: Wir bitten
-			diesmal alle Teilnehmer:innen, sich selbst, um ein Quartier zu kümmern.
+			diesmal alle Teilnehmer:innen, sich selbst um ein Quartier zu kümmern.
 		</p>
 
 		<p class="word-break hyphens text-justify">
@@ -121,13 +121,11 @@
 			dem Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher
 			ist, wenn sich alle Teilnehmer selbst um ein Quartier kümmern. Im Blick auf Vorfinanzierung,
 			Bezahlung oder Stornierung macht sich dies unkomplizierter und das Vorbereitungsteam hat mehr
-			Zeit sich um das eigentliche Ereignis zu kümmern. Wer Interesse hat am Moravian Brass Festival
-			Berlin 2023 teilzunehmen, wende sich am besten an seinen Chorleiter, eine gemeinsame Buchung
-			der Unterkünfte pro Chor macht natürlich Sinn. Alle Mahlzeiten, bis aufs Frühstück, nehmen wir
-			dann auf dem Festivalgelände ein.
+			Zeit sich um das eigentliche Ereignis zu kümmern. Alle Mahlzeiten, bis auf des Frühstück,
+			nehmen wir dann auf dem Festivalgelände ein.
 			<br />
-			Des Weiteren sind wir gerade dabei, ein Massenquartier für Jugendliche zu organisieren. Details
-			dazu folgen in Kürze.
+			Jugendliche ab 14 Jahre können in einem Massenquartier in einer Turnhalle übernachten. Mehr Details
+			dazu auf der Seite <a href="/faq">"Häufige Fragen"</a>
 			<br />
 			<br />
 			Hier einige Links zu möglichen Unterkünften in der Nähe:

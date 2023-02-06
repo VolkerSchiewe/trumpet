@@ -37,25 +37,23 @@
 	<div slot="right" class="my-8 flex flex-col items-start">
 		<Faq question="Wie viel kostet das Bläsertreffen?">
 			Der Teilnehmerbeitrag beträgt für Vollzahler <b>120 €</b> und ermäßigt <b>90 €</b>. Ermäßigt
-			sind Kinder, Jugendliche in Ausbildung und Studierende. <br />
-			Zuschüsse können bei jeder Gemeinde beantragt werden.
+			sind Kinder, Jugendliche in Ausbildung und Studierende. Zuschüsse können bei jeder Gemeinde
+			beantragt werden. Kinder unter 6 Jahren sind frei.
 			<br />
-			Darin enthalten ist die Verpflegung auf dem Festivalgelände sowie die Teilnahme an allen Programmpunkten.
-			Nicht enthalten ist die Unterkunft (und Frühstück), da diese dieses Mal selbst organisiert werden
-			muss.
+			Darin enthalten ist die Verpflegung auf dem Festivalgelände, sowie die Teilnahme an allen Programmpunkten.
+			Die Unterkunft mit Frühstück ist dieses Mal nicht enthalten, sondern muss selbst organisiert werden.
 			<br />
 			Da das Programm sich für Gäste, bis auf die Proben, nicht unterscheidet, wird es hier auch keinen
 			preislichen Unterschied geben.
 		</Faq>
 		<Faq question="Wo werden wir untergebracht?">
-			Das Vorbereitungsteam hat dieses Mal entschieden, dass es einfacher für alle ist, wenn jeder
-			sich selbst ein Quartier sucht. Eine Liste von Hotels in der Umgebung findet ihr auf der <a
-				href="/registration"
-				class="text-blue-50">Anmeldungsseite</a
-			>.
+			Das Vorbereitungsteam hat entschieden, dass es einfacher für alle ist, wenn sich jeder selbst
+			ein Quartier sucht. Eine Liste von Hotels in der Umgebung findet ihr auf der
+			<a href="/registration" class="text-blue-50">Anmeldungsseite</a>.
 			<br />
-			Zurzeit versuchen wir noch ein Massenquartier für Jugendliche zu organisieren, um eine kostengünstige
-			Teilnahme zu ermöglichen. Details hierzu folgen in Kürze.
+			Für Jugendliche wird es ein Massenquartier (inkl. Frühstück) in einer Turnhalle in der Nähe des
+			Geländes geben. Das Mindestalter für das Massenquartier beträgt 14 Jahre. Für die Übernachtung
+			und Frühstück kommen 50€ zum Teilnehmerbeitrag dazu.
 		</Faq>
 	</div>
 </Container>
