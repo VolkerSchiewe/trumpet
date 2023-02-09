@@ -36,9 +36,9 @@
 	</slot>
 	<div slot="right" class="my-8 flex flex-col items-start">
 		<Faq question="Wie viel kostet das Bläsertreffen?">
-			Der Teilnehmerbeitrag beträgt für Vollzahler <b>120 €</b> und ermäßigt <b>90 €</b>. Ermäßigt
-			sind Kinder, Jugendliche in Ausbildung und Studierende. Zuschüsse können bei jeder Gemeinde
-			beantragt werden. Kinder unter 6 Jahren sind frei.
+			Der Teilnehmerbeitrag beträgt für Vollzahler:innen <b>120 €</b> und ermäßigt <b>90 €</b>.
+			Ermäßigt sind Kinder, Jugendliche in Ausbildung und Studierende. Zuschüsse können bei jeder
+			Gemeinde beantragt werden. Kinder unter 6 Jahren sind frei.
 			<br />
 			Darin enthalten ist die Verpflegung auf dem Festivalgelände, sowie die Teilnahme an allen Programmpunkten.
 			Die Unterkunft mit Frühstück ist dieses Mal nicht enthalten, sondern muss selbst organisiert werden.
@@ -47,7 +47,7 @@
 			preislichen Unterschied geben.
 		</Faq>
 		<Faq question="Wo werden wir untergebracht?">
-			Das Vorbereitungsteam hat entschieden, dass es einfacher für alle ist, wenn sich jeder selbst
+			Das Vorbereitungsteam hat entschieden, dass es einfacher für alle ist, wenn sich jede:r selbst
 			ein Quartier sucht. Eine Liste von Hotels in der Umgebung findet ihr auf der
 			<a href="/registration" class="text-blue-50">Anmeldungsseite</a>.
 			<br />

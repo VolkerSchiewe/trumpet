@@ -12,7 +12,7 @@
 	<slot slot="left">
 		<img alt="Bär mit Tuba" src="/bear_green.svg" width="200" height="200" />
 		<p class="hyphen text-justify font-semibold">
-			Hierbei handelt es sich, um ein vorläufiges Programm, um eine grobe Orientierung zu geben. Bis
+			Hierbei handelt es sich um ein vorläufiges Programm, um eine grobe Orientierung zu geben. Bis
 			zum Bläsertreffen werdet ihr hier immer neue Informationen finden.
 		</p>
 		<Header color={'green'} title="Freitag" subTitle="26.05.2023" />
@@ -39,7 +39,7 @@
 	<slot slot="right">
 		<Header title="Sonntag" subTitle="28.05.2023" />
 		<ul class="list-disc">
-			<li>Gottesdienst in verschieden Gemeinden</li>
+			<li>Gottesdienst in verschiedenen Gemeinden</li>
 			<li>Hauptprobe</li>
 			<li>Konzert</li>
 			<li>Bunter Abend</li>

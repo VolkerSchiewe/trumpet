@@ -117,15 +117,15 @@
 		</p>
 
 		<p class="word-break hyphens text-justify">
-			Liebe Bläserinnen und Bläser, nach gründlicher Überlegung im Vorbereitungsteam, sind wir zu
-			dem Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher
-			ist, wenn sich alle Teilnehmer selbst um ein Quartier kümmern. Im Blick auf Vorfinanzierung,
-			Bezahlung oder Stornierung macht sich dies unkomplizierter und das Vorbereitungsteam hat mehr
-			Zeit sich um das eigentliche Ereignis zu kümmern. Alle Mahlzeiten, bis auf des Frühstück,
+			Liebe Bläserinnen und Bläser, nach gründlicher Überlegung im Vorbereitungsteam sind wir zu dem
+			Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher ist,
+			wenn sich alle Teilnehmer:innen selbst um ein Quartier kümmern. Im Blick auf Vorfinanzierung,
+			Bezahlung oder Stornierung macht sich dies unkomplizierter, und das Vorbereitungsteam hat mehr
+			Zeit, sich um das eigentliche Ereignis zu kümmern. Alle Mahlzeiten, bis auf das Frühstück,
 			nehmen wir dann auf dem Festivalgelände ein.
 			<br />
 			Jugendliche ab 14 Jahre können in einem Massenquartier in einer Turnhalle übernachten. Mehr Details
-			dazu auf der Seite <a href="/faq">"Häufige Fragen"</a>
+			dazu auf der Seite <a href="/faq">"Häufige Fragen"</a>.
 			<br />
 			<br />
 			Hier einige Links zu möglichen Unterkünften in der Nähe:
