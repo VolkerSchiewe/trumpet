@@ -34,6 +34,7 @@ type UserDocument = {
 	type: string;
 	choir?: string;
 	voice?: string;
+	notes?: string;
 
 	state: State;
 	confirmation_id: string;
@@ -78,7 +79,7 @@ export async function setUserState(email: string, state: State): Promise<void> {
 	await db.collection(USER_COLLECTION).doc(email).update({ state });
 }
 
-export async function getRegistrationCount() {
+export async function getRegistrationCount(): Promise<number> {
 	const queryResult = await db
 		.collection(USER_COLLECTION)
 		.where('state', '==', State.EMAIL_VERIFIED)
@@ -90,4 +91,13 @@ export async function getRegistrationCount() {
 export async function deleteTestData(): Promise<void> {
 	const testEmail = 'blaesertag2023@example.com';
 	await db.collection(USER_COLLECTION).doc(testEmail).delete();
+}
+
+export async function getAllRegistrations(): Promise<UserDocument[]> {
+	const snapshot = await db.collection(USER_COLLECTION).orderBy('name').get();
+	const data: UserDocument[] = [];
+	snapshot.forEach((doc) => {
+		data.push(doc.data() as UserDocument);
+	});
+	return data;
 }

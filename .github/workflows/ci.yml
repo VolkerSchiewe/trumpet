@@ -23,7 +23,26 @@ jobs:
         run: yarn lint
 
   test:
-    name: 'Test'
+    name: 'Unit Test'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v3
+
+      - name: 'Set node version'
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - name: 'Install dependencies'
+        run: yarn install --frozen-lockfile
+
+      - name: 'Test'
+        run: yarn test
+
+  test-integration:
+    name: 'Integration Test'
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
@@ -51,6 +70,7 @@ jobs:
           HOST_URL: 'http://127.0.0.1:5173'
           TELEGRAM_API_TOKEN: 'invalid_token'
           TELEGRAM_CHAT_ID: '012345'
+          ADMIN_LOGIN: 'admin:admin'
 
       - uses: actions/upload-artifact@v3
         if: always()
