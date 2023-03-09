@@ -81,7 +81,7 @@ jobs:
 
   telegram-notification:
     runs-on: ubuntu-latest
-    needs: [test, lint]
+    needs: [test-integration, test, lint]
     if: ${{ always() && contains(join(needs.*.result, ','), 'failure') }}
     steps:
       - name: 'Telegram Notification'
