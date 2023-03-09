@@ -12,7 +12,7 @@
 		<div class="flex gap-5 font-bold">
 			<a href="mailto:info@blaesertag2023.de"> Kontakt </a>
 			<a href="https://www.herrnhuter-in-berlin.de/impressum"> Impressum </a>
-			<a href="https://www.herrnhuter-in-berlin.de/datenschutz/"> Datenschutz </a>
+			<a href="/data-protection"> Datenschutz </a>
 		</div>
 		<span class="text-sm">© 2022 Evangelische Brüdergemeine Berlin </span>
 	</div>
