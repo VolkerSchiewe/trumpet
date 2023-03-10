@@ -10,19 +10,20 @@
 	<div class="flex gap-5">
 		<details>
 			<summary>Actions</summary>
-			<form action="?/reminder" method="POST">
+			<!-- <form action="?/reminder" method="POST">
 				<button class="rounded border-2 px-2 py-1" type="submit">Send verification reminder</button>
-			</form>
+			</form> -->
 		</details>
 		<details>
 			<summary>Download CSV</summary>
 			<a
-				href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes"
-				><button class="rounded border-2 px-2 py-1">Full List</button></a
+				href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes,confirmation_id"
 			>
-			<a href="/admin/csv-download?header=name,type,choir"
-				><button class="rounded border-2 px-2 py-1">Names</button></a
-			>
+				<button class="rounded border-2 px-2 py-1">Full List</button>
+			</a>
+			<a href="/admin/csv-download?header=name,type,choir">
+				<button class="rounded border-2 px-2 py-1">Names</button>
+			</a>
 		</details>
 		<details>
 			<summary>Chor Verteilung</summary>

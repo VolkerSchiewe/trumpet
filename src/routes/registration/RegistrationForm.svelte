@@ -103,7 +103,7 @@
 		required
 		values={[
 			{ label: 'Sonntag', value: 'sunday' },
-			{ label: 'Montag', value: 'moday' }
+			{ label: 'Montag', value: 'monday' }
 		]}
 		{form}
 	/>
