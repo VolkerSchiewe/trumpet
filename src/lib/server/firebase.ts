@@ -101,3 +101,15 @@ export async function getAllRegistrations(): Promise<UserDocument[]> {
 	});
 	return data;
 }
+
+export async function getNotVerifiedRegistrations(): Promise<UserDocument[]> {
+	const snapshot = await db
+		.collection(USER_COLLECTION)
+		.where('state', '==', 'EMAIL_VERIFICATION_SENT')
+		.get();
+	const data: UserDocument[] = [];
+	snapshot.forEach((doc) => {
+		data.push(doc.data() as UserDocument);
+	});
+	return data;
+}

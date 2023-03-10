@@ -7,17 +7,23 @@
 
 <div class="p-5">
 	<h1 class="text-2xl">Statistics</h1>
-	<details>
-		<summary>Download CSV</summary>
-		<a
-			href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes"
-			><button class="rounded border-2 px-2 py-1">Full List</button></a
-		>
-		<a href="/admin/csv-download?header=name,type,choir"
-			><button class="rounded border-2 px-2 py-1">Names</button></a
-		>
-	</details>
 	<div class="flex gap-5">
+		<details>
+			<summary>Actions</summary>
+			<form action="?/reminder" method="POST">
+				<button class="rounded border-2 px-2 py-1" type="submit">Send verification reminder</button>
+			</form>
+		</details>
+		<details>
+			<summary>Download CSV</summary>
+			<a
+				href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes"
+				><button class="rounded border-2 px-2 py-1">Full List</button></a
+			>
+			<a href="/admin/csv-download?header=name,type,choir"
+				><button class="rounded border-2 px-2 py-1">Names</button></a
+			>
+		</details>
 		<details>
 			<summary>Chor Verteilung</summary>
 			{#each sortedChoirs as choir}

@@ -1,5 +1,6 @@
-import { getAllRegistrations } from '$lib/server/firebase';
-import type { PageServerLoad } from './$types';
+import { getAllRegistrations, getNotVerifiedRegistrations } from '$lib/server/firebase';
+import { sendVerificationReminder } from '$lib/server/mail';
+import type { Actions, PageServerLoad } from './$types';
 
 type Choir = { sopran: number; alt: number; tenor: number; bass: number; total: number };
 export type ChoirDistribution = Record<string, Choir>;
@@ -23,4 +24,13 @@ export const load: PageServerLoad = async (): Promise<ChoirDistribution> => {
 		return acc;
 	}, {} as ChoirDistribution);
 	return distribution;
+};
+
+export const actions: Actions = {
+	reminder: async () => {
+		const data = await getNotVerifiedRegistrations();
+		data.forEach((registration) => {
+			sendVerificationReminder(registration.email, registration.confirmation_id);
+		});
+	}
 };
