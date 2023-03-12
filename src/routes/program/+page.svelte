@@ -62,11 +62,8 @@
 			data={[
 				{ time: '09:00 Uhr', label: 'Aufblasen der Jungbläser' },
 				{ time: '10:00 Uhr ', label: 'Gemeinsame Abendmahlsfeier mit Predigt' },
-				{ time: '13:00 Uhr ', label: 'Ausflug (Schifffahrt ca. 3 Std.) inkl. Mittagsimbiss' },
-				{
-					time: '15:00 Uhr ',
-					label: 'Verabschiedung vorher für die, die eher abfahren oder im Anschluss'
-				}
+				{ time: '12:00 Uhr ', label: 'Mittagessen' },
+				{ time: '14:00 Uhr ', label: 'Verabschiedung' }
 			]}
 		/>
 	</slot>
