@@ -2,7 +2,9 @@
 	import type { PageData } from './$types';
 
 	export let data: PageData;
-	const sortedChoirs = Object.keys(data).sort((a, b) => data[b].total - data[a].total);
+	const sortedChoirs = Object.keys(data.distribution).sort(
+		(a, b) => data.distribution[b].total - data.distribution[a].total
+	);
 </script>
 
 <div class="p-5">
@@ -29,10 +31,18 @@
 			<summary>Chor Verteilung</summary>
 			{#each sortedChoirs as choir}
 				<h2 class="mt-4 text-lg">{choir}</h2>
-				{#each Object.keys(data[choir]) as voice}
-					<span class="mx-2">{voice}: {data[choir][voice]} </span>
+				{#each Object.keys(data.distribution[choir]) as voice}
+					<span class="mx-2">{voice}: {data.distribution[choir][voice]} </span>
 				{/each}
 			{/each}
+		</details>
+		<details>
+			<summary>Preis Übersicht</summary>
+			<div class="flex flex-col">
+				{#each Object.keys(data.prices) as price}
+					<span class="mx-2">{price}: {data.prices[price]} </span>
+				{/each}
+			</div>
 		</details>
 	</div>
 </div>

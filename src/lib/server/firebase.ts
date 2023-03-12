@@ -35,6 +35,7 @@ type UserDocument = {
 	choir?: string;
 	voice?: string;
 	notes?: string;
+	price?: string;
 
 	state: State;
 	confirmation_id: string;
