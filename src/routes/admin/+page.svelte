@@ -5,6 +5,7 @@
 	const sortedChoirs = Object.keys(data.distribution).sort(
 		(a, b) => data.distribution[b].total - data.distribution[a].total
 	);
+	const voices = ['sopran', 'alt', 'tenor', 'bass', 'total'] as const;
 </script>
 
 <div class="p-5">
@@ -19,7 +20,7 @@
 		<details>
 			<summary>Download CSV</summary>
 			<a
-				href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes,confirmation_id"
+				href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes,price,gym,confirmation_id"
 			>
 				<button class="rounded border-2 px-2 py-1">Full List</button>
 			</a>
@@ -31,7 +32,7 @@
 			<summary>Chor Verteilung</summary>
 			{#each sortedChoirs as choir}
 				<h2 class="mt-4 text-lg">{choir}</h2>
-				{#each Object.keys(data.distribution[choir]) as voice}
+				{#each voices as voice}
 					<span class="mx-2">{voice}: {data.distribution[choir][voice]} </span>
 				{/each}
 			{/each}

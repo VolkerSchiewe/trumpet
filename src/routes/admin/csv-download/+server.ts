@@ -11,7 +11,9 @@ const headerTranslations: Record<string, string> = {
 	voice: 'Stimme',
 	departure: 'Abreise',
 	state: 'Status',
-	notes: 'Bemerkungen'
+	notes: 'Bemerkungen',
+	price: 'Preis',
+	gym: 'Massenquartier'
 };
 export const GET: RequestHandler = async ({ url }) => {
 	const data = await getAllRegistrations();
@@ -19,7 +21,7 @@ export const GET: RequestHandler = async ({ url }) => {
 	const header = headerString ? headerString.split(',') : [];
 
 	return new Response(
-		jsonToCsv(data, header, (value) => headerTranslations[value]),
+		jsonToCsv(data, header, (value) => headerTranslations[value] ?? value),
 		{
 			headers: {
 				'Content-Type': 'text/csv',

@@ -66,11 +66,11 @@
 		</p>
 		<h2>Formular</h2>
 		<p>
-			Sofern Sie einen auf unserer Website angebotenen Service nutzen möchten, kann dafür eine
-			Übermittlung Ihrer Daten mittels eines dafür eingerichteten Formulars notwendig werden. Die
-			Datenverarbeitung zum Zwecke der Erfüllung des von uns angebotenen Services erfolgt nach § 6
-			Abs. 1 Pkt. 2 DSG-EKD auf Grundlage Ihrer freiwillig erteilten Einwilligung. Die erhobenen
-			personenbezogenen Daten werden nach Erledigung der von Ihnen gestellten Anfrage gelöscht.
+			Mit Nutzung des Anmeldeformulars auf unserer Webseite willigen Sie einer dafür notwendigen
+			Übermittlung Ihrer Daten ein. Die Datenverarbeitung zum Zwecke der Anmeldung zum Bläsertag
+			erfolgt nach § 6 Abs. 1 Pkt. 2 DSG-EKD auf Grundlage Ihrer freiwillig erteilten Einwilligung
+			durch Betätigung des Anmeldebuttons. Die erhobenen personenbezogenen Daten werden nach Ablauf
+			des Bläsertages und der damit verbundenen Verwaltungstätigkeiten gelöscht.
 		</p>
 
 		<h2>Regelmäßige Informationen</h2>
@@ -243,6 +243,7 @@
 	p {
 		@apply my-1;
 	}
+
 	h2 {
 		@apply mt-4 text-theme-blue;
 	}
