@@ -55,5 +55,46 @@
 			Geländes geben. Das Mindestalter für das Massenquartier beträgt 14 Jahre. Für die Übernachtung
 			und Frühstück kommen 50€ zum Teilnehmerbeitrag dazu.
 		</Faq>
+		<Faq question="Gibt es Bläsertags T-Shirts?">
+			Dieses Jahr gibt es nicht nur T-Shirts sondern auch Hoodies (Pullover). Wenn ihr ein T-Shirt
+			oder einen Hoddie haben wollt, könnt ihr euch diesen einfach nach Hause bestellen. Alle infos
+			findet ihr auf
+			<a
+				class="text-blue-50"
+				href="https://duerninger.com/page/moravian"
+				target="_blank"
+				rel="noreferrer noopener"
+			>
+				duerninger.com
+			</a>
+			<div class="flex flex-col md:flex-row">
+				<a
+					href="https://duerninger.com/shop/view_product/Herren-T-Shirt-Schwarz-Moravian-2023?n=18786121"
+					target="_blank"
+					rel="noreferrer noopener"
+				>
+					<img
+						class="md:max-w-[40%]"
+						src="/images/t-shirt.png"
+						height="1108"
+						width="934"
+						alt="Schwarzes T-Shirt mit dem Logo des Bläsertags"
+					/>
+				</a>
+				<a
+					href="https://duerninger.com/shop/view_product/Damen-Hoodie-Schwarz-Moravian-2023?n=18786136"
+					target="_blank"
+					rel="noreferrer noopener"
+				>
+					<img
+						class="md:max-w-[40%]"
+						src="/images/hoodie.png"
+						height="1104"
+						width="912"
+						alt="Schwarzer Hoodie mit dem Logo des Bläsertags"
+					/>
+				</a>
+			</div>
+		</Faq>
 	</div>
 </Container>
