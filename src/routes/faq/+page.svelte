@@ -74,7 +74,6 @@
 					rel="noreferrer noopener"
 				>
 					<img
-						class="md:max-w-[40%]"
 						src="/images/t-shirt.png"
 						height="1108"
 						width="934"
@@ -87,7 +86,6 @@
 					rel="noreferrer noopener"
 				>
 					<img
-						class="md:max-w-[40%]"
 						src="/images/hoodie.png"
 						height="1104"
 						width="912"
