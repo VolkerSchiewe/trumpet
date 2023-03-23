@@ -1,6 +1,7 @@
 import { getAllRegistrations, getNotVerifiedRegistrations } from '$lib/server/firebase';
 import { sendVerificationReminder } from '$lib/server/mail';
 import type { Actions, PageServerLoad } from './$types';
+import { sendQuestionMail } from '../../lib/server/mail';
 const priceTranslation: Record<string, string> = {
 	full: 'Voll',
 	half: 'Halb',
@@ -48,6 +49,12 @@ export const actions: Actions = {
 		const data = await getNotVerifiedRegistrations();
 		data.forEach((registration) => {
 			sendVerificationReminder(registration.email, registration.confirmation_id);
+		});
+	},
+	sendQuestions: async () => {
+		const data = await getAllRegistrations();
+		data.forEach((registration) => {
+			sendQuestionMail(registration.email);
 		});
 	}
 };

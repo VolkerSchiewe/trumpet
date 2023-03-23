@@ -111,7 +111,7 @@
 		<Captcha bind:captcha />
 	{/if}
 	<button
-		class="mt-3 bg-white p-3 font-bold uppercase text-theme-magenta disabled:text-theme-magenta/50 "
+		class="mt-3 bg-white p-3 font-bold uppercase text-theme-magenta disabled:text-theme-magenta/50"
 		disabled={loading}
 		type="submit"
 	>

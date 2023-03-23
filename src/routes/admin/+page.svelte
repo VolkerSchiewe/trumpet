@@ -13,9 +13,12 @@
 	<div class="flex gap-5">
 		<details>
 			<summary>Actions</summary>
-			<!-- <form action="?/reminder" method="POST">
+			<form action="?/reminder" method="POST">
 				<button class="rounded border-2 px-2 py-1" type="submit">Send verification reminder</button>
-			</form> -->
+			</form>
+			<form action="?/sendQuestions" method="POST">
+				<button class="rounded border-2 px-2 py-1" type="submit">Send Question Email</button>
+			</form>
 		</details>
 		<details>
 			<summary>Download CSV</summary>
