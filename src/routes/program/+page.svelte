@@ -2,7 +2,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import Container from '$lib/components/Container.svelte';
 	import { images } from '$lib/utils/images';
-	import Timetable from '$lib/components/Timetable.svelte';
+	import Timetable from './Timetable.svelte';
 </script>
 
 <svelte:head>
@@ -66,5 +66,6 @@
 				{ time: '14:00 Uhr ', label: 'Verabschiedung' }
 			]}
 		/>
+		<div class="h-4" />
 	</slot>
 </Container>

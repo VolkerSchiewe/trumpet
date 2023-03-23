@@ -4,6 +4,10 @@
 
 <table class="block">
 	{#each data as item}
-		<tr><td class="pr-1 text-right">{item.time}</td><td class="pl-1">{item.label}</td></tr>
+		<tr
+			><td class="whitespace-nowrap pr-1 text-right">{item.time}</td><td class="pl-1"
+				>{item.label}</td
+			></tr
+		>
 	{/each}
 </table>
