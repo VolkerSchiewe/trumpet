@@ -48,13 +48,15 @@ export const actions: Actions = {
 	reminder: async () => {
 		const data = await getNotVerifiedRegistrations();
 		data.forEach((registration) => {
-			sendVerificationReminder(registration.email, registration.confirmation_id);
+			if (registration.email)
+				sendVerificationReminder(registration.email, registration.confirmation_id);
 		});
 	},
 	sendQuestions: async () => {
 		const data = await getAllRegistrations();
 		data.forEach((registration) => {
-			sendQuestionMail(registration.email);
+			if (registration.email) sendQuestionMail(registration.email);
+			else console.info('No email address for ', registration.name);
 		});
 	}
 };

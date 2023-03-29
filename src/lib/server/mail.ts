@@ -41,6 +41,7 @@ export async function sendRegistrationConfirmation(email: string) {
 }
 
 export async function sendQuestionMail(email: string) {
+	console.info('sending question email to ', email);
 	await mailService.send({
 		to: email,
 		from: emailFrom,

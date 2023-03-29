@@ -3,10 +3,7 @@
 	import Header from '$lib/components/Header.svelte';
 	import type { Hotel } from '$lib/types/hotel';
 	import HotelCard from './HotelCard.svelte';
-	import type { ActionData } from './$types';
 	import { images } from '$lib/utils/images';
-
-	export let form: ActionData;
 
 	let hotels: Hotel[] = [
 		{

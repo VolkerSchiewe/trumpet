@@ -28,7 +28,7 @@ export enum State {
 
 type UserDocument = {
 	name: string;
-	email: string;
+	email?: string;
 	address: string;
 	zip_city: string;
 	type: string;
