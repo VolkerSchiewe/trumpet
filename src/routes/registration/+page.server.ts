@@ -3,7 +3,7 @@ import { verifyCaptcha } from '$lib/server/captcha';
 import { createUser, findUserByEmail, setUserState, State } from '$lib/server/firebase';
 import { sendEmailConfirmation } from '$lib/server/mail';
 import { userSchema, type User } from '$lib/userSchema';
-import { fail, type Actions } from '@sveltejs/kit';
+import { fail, type Actions, type ServerLoad, redirect } from '@sveltejs/kit';
 
 export type FormError = Record<string, { value: FormDataEntryValue; message?: string }>;
 function generateFailureData(data: Record<string, FormDataEntryValue>): FormError {
@@ -14,6 +14,9 @@ function generateFailureData(data: Record<string, FormDataEntryValue>): FormErro
 }
 export type ActionFormData = { success: boolean; data?: FormError; message?: string };
 
+export const load: ServerLoad = () => {
+	throw redirect(301, '/information');
+};
 export const actions: Actions = {
 	default: async ({ request }) => {
 		console.info('registration');

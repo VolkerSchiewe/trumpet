@@ -32,6 +32,11 @@
 					In Google Maps anzeigen
 				</a>
 			</Faq>
+			<Faq question="Kann ich mich noch anmelden?">
+				Die Anmeldung für den Bläsertag ist leider schon geschlossen. Falls du dennoch teilnehmen
+				möchtest, kannst du dich gern an das Vorbereitungsteam wenden. Wir müssen dann individuell
+				entscheiden, ob das noch möglich ist.
+			</Faq>
 		</div>
 	</slot>
 	<div slot="right" class="my-8 flex flex-col items-start">
@@ -48,8 +53,8 @@
 		</Faq>
 		<Faq question="Wo werden wir untergebracht?">
 			Das Vorbereitungsteam hat entschieden, dass es einfacher für alle ist, wenn sich jede:r selbst
-			ein Quartier sucht. Eine Liste von Hotels in der Umgebung findet ihr auf der
-			<a href="/registration" class="text-blue-50">Anmeldungsseite</a>.
+			ein Quartier sucht. Eine Liste von Hotels in der Umgebung findet ihr auf der Seite
+			<a href="/information" class="text-blue-50">"Informationen"</a>.
 			<br />
 			Für Jugendliche wird es ein Massenquartier (inkl. Frühstück) in einer Turnhalle in der Nähe des
 			Geländes geben. Das Mindestalter für das Massenquartier beträgt 14 Jahre. Für die Übernachtung

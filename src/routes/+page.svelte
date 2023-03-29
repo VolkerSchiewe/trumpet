@@ -13,7 +13,7 @@
 <main class="flex flex-col items-center">
 	<Landing />
 	<div class="mt-5 grid grid-cols-2 gap-5 md:mt-10 md:grid-cols-4 md:gap-[4vw]">
-		<Link href="/registration" header="Anmeldung" subHeader="alle Informationen" color="magenta" />
+		<Link href="/information" header="Details" subHeader="alle Informationen" color="magenta" />
 		<Link href="/faq" header="Häufige Fragen" subHeader="und die Antworten" color="blue" />
 		<Link href="/program" header="Programm" subHeader="Was, Wann und Wo" color="green" />
 		<Link
