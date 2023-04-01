@@ -36,6 +36,11 @@
 				{ time: '13:30 Uhr', label: '3. Gesamtprobe' },
 				{ time: '15:00 Uhr', label: 'Kaffee/Teepause' },
 				{ time: '15:30 Uhr', label: 'Workshops' },
+				{
+					time: '',
+					label:
+						'Atemübungen, Yoga, Trauermusik, Grundlagen der Pop Musik, Swing, Egerländer, Walk and Talk'
+				},
 				{ time: '18:00 Uhr', label: 'Abendbrot' },
 				{ time: '19:30 Uhr', label: 'Singstunde & Vorstellung der Ergebnisse der Workshops' },
 				{ time: 'anschl.', label: 'gemütliches Beisammensein' }
