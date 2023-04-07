@@ -587,10 +587,10 @@
   dependencies:
     import-meta-resolve "^2.2.0"
 
-"@sveltejs/kit@^1.5.0":
-  version "1.13.0"
-  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.13.0.tgz#7bad68e3fca99754aac057b0419b081988e4ced8"
-  integrity sha512-t44xqlSTn/k+BridiJFTD8dCRPNd9msCSSPLZT+/3P9deNp/al6ed396MSpsskK7r2kevYmmxywK16qtn6Rvjw==
+"@sveltejs/kit@^1.15.2":
+  version "1.15.2"
+  resolved "https://registry.yarnpkg.com/@sveltejs/kit/-/kit-1.15.2.tgz#2d351b15aa39ab792c36c2c236c7e31a2010a6b0"
+  integrity sha512-rLNxZrjbrlPf8AWW8GAU4L/Vvu17e9v8EYl7pUip7x72lTft7RcxeP3z7tsrHpMSBBxC9o4XdKzFvz1vMZyXZw==
   dependencies:
     "@sveltejs/vite-plugin-svelte" "^2.0.0"
     "@types/cookie" "^0.5.1"
@@ -604,7 +604,7 @@
     set-cookie-parser "^2.5.1"
     sirv "^2.0.2"
     tiny-glob "^0.2.9"
-    undici "5.21.0"
+    undici "5.20.0"
 
 "@sveltejs/vite-plugin-svelte@^2.0.0":
   version "2.0.3"
@@ -6137,10 +6137,10 @@ underscore@~1.13.2:
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.13.6.tgz#04786a1f589dc6c09f761fc5f45b89e935136441"
   integrity sha512-+A5Sja4HP1M08MaXya7p5LvjuM7K6q/2EaC0+iovj/wOcMsTzMvDFbasi/oSapiwOlt252IqsKqPjCl7huKS0A==
 
-undici@5.21.0:
-  version "5.21.0"
-  resolved "https://registry.yarnpkg.com/undici/-/undici-5.21.0.tgz#b00dfc381f202565ab7f52023222ab862bb2494f"
-  integrity sha512-HOjK8l6a57b2ZGXOcUsI5NLfoTrfmbOl90ixJDl0AEFG4wgHNDQxtZy15/ZQp7HhjkpaGlp/eneMgtsu1dIlUA==
+undici@5.20.0:
+  version "5.20.0"
+  resolved "https://registry.yarnpkg.com/undici/-/undici-5.20.0.tgz#6327462f5ce1d3646bcdac99da7317f455bcc263"
+  integrity sha512-J3j60dYzuo6Eevbawwp1sdg16k5Tf768bxYK4TUJRH7cBM4kFCbf3mOnM/0E3vQYXvpxITbbWmBafaDbxLDz3g==
   dependencies:
     busboy "^1.6.0"
 
