@@ -1,5 +1,9 @@
 import { getAllRegistrations, getNotVerifiedRegistrations } from '$lib/server/firebase';
-import { sendVerificationReminder } from '$lib/server/mail';
+import {
+	PAYMENT_REMINDER_TEMPLATE,
+	sendTemplateMail,
+	sendVerificationReminder
+} from '$lib/server/mail';
 import type { Actions, PageServerLoad } from './$types';
 import { sendQuestionMail } from '../../lib/server/mail';
 const priceTranslation: Record<string, string> = {
@@ -57,6 +61,15 @@ export const actions: Actions = {
 		data.forEach((registration) => {
 			if (registration.email) sendQuestionMail(registration.email);
 			else console.info('No email address for ', registration.name);
+		});
+	},
+	paymentReminder: async ({ request }) => {
+		const data = await request.formData();
+		const emails = data.get('emails') as string;
+		emails.split(' ').forEach((email) => {
+			if (email) {
+				sendTemplateMail(PAYMENT_REMINDER_TEMPLATE, email);
+			}
 		});
 	}
 };

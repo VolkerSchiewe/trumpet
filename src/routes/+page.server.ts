@@ -8,6 +8,6 @@ export const load: PageServerLoad = async ({ setHeaders }) => {
 	});
 	return {
 		registrationCount: registrationCount,
-		orchestraDistribution: distributeOrchestraData(250)
+		orchestraDistribution: distributeOrchestraData(178)
 	};
 };

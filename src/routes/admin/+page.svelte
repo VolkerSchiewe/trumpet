@@ -11,15 +11,17 @@
 <div class="p-5">
 	<h1 class="text-2xl">Statistics</h1>
 	<div class="flex gap-5">
-		<details>
-			<summary>Actions</summary>
-			<form action="?/reminder" method="POST">
+		<div class="flex flex-col">
+			<h1>Actions</h1>
+			<!-- <form action="?/reminder" method="POST">
 				<button class="rounded border-2 px-2 py-1" type="submit">Send verification reminder</button>
+			</form> -->
+			<form action="?/paymentReminder" method="POST" class="flex flex-col">
+				<input type="text" name="emails" placeholder="Emails" />
+				<button class="rounded border-2 px-2 py-1" type="submit">Send Payment Reminder Email</button
+				>
 			</form>
-			<!--			<form action="?/sendQuestions" method="POST">-->
-			<!--				<button class="rounded border-2 px-2 py-1" type="submit">Send Question Email</button>-->
-			<!--			</form>-->
-		</details>
+		</div>
 		<details>
 			<summary>Download CSV</summary>
 			<a
