@@ -16,16 +16,16 @@
 			<form action="?/reminder" method="POST">
 				<button class="rounded border-2 px-2 py-1" type="submit">Send verification reminder</button>
 			</form>
-			<form action="?/sendQuestions" method="POST">
-				<button class="rounded border-2 px-2 py-1" type="submit">Send Question Email</button>
-			</form>
+			<!--			<form action="?/sendQuestions" method="POST">-->
+			<!--				<button class="rounded border-2 px-2 py-1" type="submit">Send Question Email</button>-->
+			<!--			</form>-->
 		</details>
 		<details>
 			<summary>Download CSV</summary>
 			<a
-				href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes,price,gym,confirmation_id"
+				href="/admin/csv-download?header=name,email,address,zip_city,type,choir,voice,departure,state,notes,price,gym,diet,confirmation_id"
 			>
-				<button class="rounded border-2 px-2 py-1">Full List</button>
+				<button class="rounded border-2 px-2 py-1">Full Data</button>
 			</a>
 			<a href="/admin/csv-download?header=name,type,choir">
 				<button class="rounded border-2 px-2 py-1">Names</button>

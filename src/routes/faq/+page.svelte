@@ -50,6 +50,10 @@
 			<br />
 			Da das Programm sich für Gäste, bis auf die Proben, nicht unterscheidet, wird es hier auch keinen
 			preislichen Unterschied geben.
+			<br />
+			<br />
+			Da wir schon verbindliche Zusagen gemacht haben, behalten wir bei Absagen 50 % des Teilnehmerbeitrags
+			ein. Wenn du erst 2 Wochen vor dem Bläsertreffen absagst, müssen wir den gesamten Beitrag einbehalten.
 		</Faq>
 		<Faq question="Wo werden wir untergebracht?">
 			Das Vorbereitungsteam hat entschieden, dass es einfacher für alle ist, wenn sich jede:r selbst

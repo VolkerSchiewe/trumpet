@@ -36,6 +36,8 @@ type UserDocument = {
 	voice?: string;
 	notes?: string;
 	price?: string;
+	gym?: boolean;
+	diet?: boolean;
 
 	state: State;
 	confirmation_id: string;
