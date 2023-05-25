@@ -23,6 +23,22 @@
 			color="yellow"
 		/>
 	</div>
+	<div class="w-full p-10">
+		<h2 class="mb-3 text-xl">Die Festschrift</h2>
+		<object
+			title="Festschrift Bläsertag 2023 Berlin"
+			height="500px"
+			width="100%"
+			type="application/pdf"
+			data="festschrift.pdf#toolbar=0&amp;navpanes=0&amp;scrollbar=1&amp;page=1&amp;view=FitH"
+		>
+			<p>
+				It appears you don't have a PDF plugin for this browser. No biggie... you can <a
+					href="/festschrift.pdf">click here to download the PDF file.</a
+				>
+			</p>
+		</object>
+	</div>
 	<div class="h-full w-full p-3 md:mt-10 md:p-10 md:py-14 xl:w-2/3">
 		<Orchestra orchestraDistribution={data.orchestraDistribution} />
 	</div>
