@@ -127,7 +127,7 @@
 			bitte bis zum <b>02.05.2023</b>
 			an das Konto der Brüdergemeine Berlin zu überweisen:<br />
 		</p>
-		<p class="ml-2 -mt-3 md:ml-3">
+		<p class="-mt-3 ml-2 md:ml-3">
 			IBAN: <b>DE34 3506 0190 1566 9530 10</b> (KD-Bank)<br />
 			Verwendungszweck: <b>Dein Name</b> <br />
 		</p>

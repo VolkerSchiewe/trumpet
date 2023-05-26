@@ -19,7 +19,7 @@
 	<span class="text-sm font-light md:text-[2vw] md:leading-[2.5vw]">{subHeader}</span>
 
 	<span
-		class="absolute -top-1 -right-1 h-10 w-10 text-theme-purple md:-top-[0.5vw] md:-right-[0.5vw] md:h-[5vw] md:w-[5vw]"
+		class="absolute -right-1 -top-1 h-10 w-10 text-theme-purple md:-right-[0.5vw] md:-top-[0.5vw] md:h-[5vw] md:w-[5vw]"
 	>
 		<ArrowUp />
 	</span>

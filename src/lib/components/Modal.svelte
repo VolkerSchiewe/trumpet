@@ -33,7 +33,7 @@
 					on:click|stopPropagation
 					class="relative transform overflow-hidden bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl"
 				>
-					<div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+					<div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
 						<slot name="body" />
 					</div>
 					<div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
