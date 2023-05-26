@@ -9,8 +9,8 @@ test('index page renders correctly', async ({ page }) => {
 	).toBeVisible();
 
 	await expect(page.getByRole('link', { name: /Details/ })).toHaveAttribute('href', '/information');
-	await expect(page.getByRole('link', { name: 'Berlin unsere Gemeinde' })).toHaveAttribute(
+	await expect(page.getByRole('link', { name: 'Festschrift' })).toHaveAttribute(
 		'href',
-		'https://www.herrnhuter-in-berlin.de/'
+		'/publication'
 	);
 });

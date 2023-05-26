@@ -11,6 +11,7 @@
 	<div class="flex flex-col items-center gap-5 bg-theme-purple py-10 text-white">
 		<div class="flex gap-5 font-bold">
 			<a href="mailto:info@blaesertag2023.de"> Kontakt </a>
+			<a href="https://www.herrnhuter-in-berlin.de/"> Brüdergemeine Berlin </a>
 			<a href="https://www.herrnhuter-in-berlin.de/impressum"> Impressum </a>
 			<a href="/data-protection"> Datenschutz </a>
 		</div>
