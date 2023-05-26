@@ -134,6 +134,12 @@
 		<p>
 			Alternativ könnt ihr die Beiträge auch im Chor sammeln und dann gemeinsam an uns überweisen.
 		</p>
+		<Header title="Festgelände" subTitle="" color="magenta" />
+		<img src="/images/gelaende.svg" alt="Übersichtskarte des Geländes des Bläsertags" />
+
+		<Header title="Umgebung" subTitle="" color="magenta" />
+		<img src="/images/umgebung.svg" alt="Übersichtskarte der Umgebung des Bläsertags" />
+
 		<div class="h-10" />
 	</slot>
 	<slot slot="right">
@@ -160,7 +166,7 @@
 			<br />
 			Hier einige Links zu möglichen Unterkünften in der Nähe:
 		</p>
-		<div class="flex max-h-64 min-h-[400px] flex-col gap-5 overflow-y-auto">
+		<div class="flex max-h-64 min-h-[800px] flex-col gap-5 overflow-y-auto">
 			{#each hotels as hotel}
 				<HotelCard {hotel} />
 			{/each}
