@@ -21,6 +21,7 @@
 			{/each}
 		</div>
 		<div class="glide__bullets" data-glide-el="controls[nav]">
+			<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 			{#each images as _, i}
 				<button
 					class="slider_bullet glide__bullet"
