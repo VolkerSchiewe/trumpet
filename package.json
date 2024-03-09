@@ -47,7 +47,7 @@
 	"type": "module",
 	"dependencies": {
 		"@glidejs/glide": "^3.6.0",
-		"@sendgrid/mail": "^7.7.0",
+		"@sendgrid/mail": "^8.1.1",
 		"firebase-admin": "^11.1.0",
 		"friendly-challenge": "^0.9.8",
 		"telegraf": "^4.10.0",
