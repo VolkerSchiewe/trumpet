@@ -18,3 +18,11 @@ jobs:
         env:
           PLAYWRIGHT_TEST_BASE_URL: ${{ github.event.deployment_status.environment_url }}
           CI: true
+
+      - name: 'Upload screenshots'
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-screenshots
+          path: test-results/*
+          retention-days: 30
