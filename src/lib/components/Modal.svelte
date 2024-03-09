@@ -20,7 +20,9 @@
 	>
 		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
 
+		<!-- svelte-ignore a11y-interactive-supports-focus -->
 		<div
+			role="button"
 			class="fixed inset-0 z-10 overflow-y-auto"
 			on:click={close}
 			on:keyup={(e) => {
@@ -30,6 +32,7 @@
 			<div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
 				<!-- svelte-ignore a11y-click-events-have-key-events -->
 				<div
+					role="button"
 					on:click|stopPropagation
 					class="relative transform overflow-hidden bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl"
 				>

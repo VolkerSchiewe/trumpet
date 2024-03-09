@@ -21,7 +21,7 @@
 				Wir freuen uns, euch ins Böhmische Dorf in Berlin einladen zu dürfen. Den Großteil der Zeit
 				werden wir auf dem Gelände der Gemeinde verbringen. Es wird aber auch Gelegenheiten geben,
 				die Stadt etwas kennenzulernen.
-
+				<br />
 				<a
 					href="https://goo.gl/maps/FJaHy7ys4AEAhd9p6"
 					class="mt-2 inline-flex items-center border-2 p-3"
@@ -63,45 +63,6 @@
 			Für Jugendliche wird es ein Massenquartier (inkl. Frühstück) in einer Turnhalle in der Nähe des
 			Geländes geben. Das Mindestalter für das Massenquartier beträgt 14 Jahre. Für die Übernachtung
 			und Frühstück kommen 50€ zum Teilnehmerbeitrag dazu.
-		</Faq>
-		<Faq question="Gibt es Bläsertags T-Shirts?">
-			Dieses Jahr gibt es nicht nur T-Shirts sondern auch Hoodies (Pullover). Wenn ihr ein T-Shirt
-			oder einen Hoddie haben wollt, könnt ihr euch diesen einfach nach Hause bestellen. Alle infos
-			findet ihr auf
-			<a
-				class="text-blue-50"
-				href="https://duerninger.com/page/moravian"
-				target="_blank"
-				rel="noreferrer noopener"
-			>
-				duerninger.com
-			</a>
-			<div class="flex flex-col md:flex-row">
-				<a
-					href="https://duerninger.com/shop/view_product/Herren-T-Shirt-Schwarz-Moravian-2023?n=18786121"
-					target="_blank"
-					rel="noreferrer noopener"
-				>
-					<img
-						src="/images/t-shirt.png"
-						height="1108"
-						width="934"
-						alt="Schwarzes T-Shirt mit dem Logo des Bläsertags"
-					/>
-				</a>
-				<a
-					href="https://duerninger.com/shop/view_product/Damen-Hoodie-Schwarz-Moravian-2023?n=18786136"
-					target="_blank"
-					rel="noreferrer noopener"
-				>
-					<img
-						src="/images/hoodie.png"
-						height="1104"
-						width="912"
-						alt="Schwarzer Hoodie mit dem Logo des Bläsertags"
-					/>
-				</a>
-			</div>
 		</Faq>
 	</div>
 </Container>
