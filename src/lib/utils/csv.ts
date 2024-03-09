@@ -1,5 +1,5 @@
 export function jsonToCsv(
-	data: Array<Record<string, string>>,
+	data: Array<Record<string, unknown>>,
 	header: Array<string> | undefined = undefined,
 	headerTranslation: (header: string) => string = (value: string) => value
 ): string {

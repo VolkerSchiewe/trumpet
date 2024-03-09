@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ params }): Promise<{ email: string }> => {
 	console.info('email_confirmation', { confirmation_id: params.confirmation_id });
 	const user = await findUserByConfirmationId(params.confirmation_id);
-	if (!user) throw error(404, 'Ungültiger Link');
+	if (!user) return error(404, 'Ungültiger Link');
 
 	if (user.state === State.EMAIL_VERIFICATION_SENT) {
 		await sendRegistrationConfirmation(user.email);

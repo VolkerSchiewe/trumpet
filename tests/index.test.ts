@@ -11,6 +11,6 @@ test('index page renders correctly', async ({ page }) => {
 	await expect(page.getByRole('link', { name: /Details/ })).toHaveAttribute('href', '/information');
 	await expect(page.getByRole('link', { name: 'Festschrift' })).toHaveAttribute(
 		'href',
-		'/publication'
+		'https://docs.google.com/viewer?url=https%3A%2F%2Fblaesertag2023.de%2Ffestschrift.pdf&embedded=true'
 	);
 });

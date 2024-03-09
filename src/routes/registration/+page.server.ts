@@ -15,7 +15,7 @@ function generateFailureData(data: Record<string, FormDataEntryValue>): FormErro
 export type ActionFormData = { success: boolean; data?: FormError; message?: string };
 
 export const load: ServerLoad = () => {
-	throw redirect(301, '/information');
+	redirect(301, '/information');
 };
 export const actions: Actions = {
 	default: async ({ request }) => {
