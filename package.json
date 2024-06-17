@@ -51,7 +51,7 @@
 		"firebase-admin": "^12.1.0",
 		"friendly-challenge": "^0.9.15",
 		"telegraf": "^4.10.0",
-		"uuid": "^9.0.0",
+		"uuid": "^10.0.0",
 		"zod": "^3.23.8"
 	},
 	"lint-staged": {
