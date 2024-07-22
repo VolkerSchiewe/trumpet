@@ -2788,10 +2788,10 @@ firebase-admin@^12.2.0:
     "@google-cloud/firestore" "^7.7.0"
     "@google-cloud/storage" "^7.7.0"
 
-firebase-tools@^13.13.0:
-  version "13.13.0"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-13.13.0.tgz#826187059b09a61d25f370285b5c0ea2797f255c"
-  integrity sha512-AkeVW+wVg8Ys+VoaYHk7+5fzvLfS9CErot/CKxGDvMee6Dfv6FW+eoNgEO1HhK5MElvZ353Yekn/afQIO35Tfw==
+firebase-tools@^13.13.3:
+  version "13.13.3"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-13.13.3.tgz#bf42717df878adbbc18d54a9dde07b15b175b6f8"
+  integrity sha512-xTlaEhIGkfsMPsJkvjir/AeOQryuRTcoXSlqJO2CZR+IzZCoYPMHO8zMKwEIc1ZEb6nYdRl14gjM8DpGCRpm2A==
   dependencies:
     "@google-cloud/cloud-sql-connector" "^1.2.3"
     "@google-cloud/pubsub" "^4.4.0"
