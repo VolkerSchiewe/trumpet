@@ -204,10 +204,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.57.0.tgz#a5417ae8427873f1dd08b70b3574b453e67b5f7f"
   integrity sha512-Ys+3g2TaW7gADOJzPt83SJtCDhMjndcDMFVQ/Tj9iA1BfJzFKD9mAUXT3OenpuPHbI6P/myECxRJrofUsDx/5g==
 
-"@fastify/busboy@^2.1.0":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-2.1.1.tgz#b9da6a878a371829a0502c9b6c1c143ef6663f4d"
-  integrity sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==
+"@fastify/busboy@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@fastify/busboy/-/busboy-3.0.0.tgz#328a4639cdd9282c1d1f56aa84943f153df8839d"
+  integrity sha512-83rnH2nCvclWaPQQKvkJ2pdOjG4TZyEVuFDnlOF6KP08lDaaceVyw/W63mDuafQT+MKHCvXIPpE5uYWeM0rT4w==
 
 "@firebase/app-check-interop-types@0.3.0":
   version "0.3.0"
@@ -892,12 +892,12 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-1.3.5.tgz#1ef302e01cf7d2b5a0fa526790c9123bf1d06690"
   integrity sha512-/pyBZWSLD2n0dcHE3hq8s8ZvcETHtEuF+3E7XVt0Ig2nvsVQXdghHVcEkIWjy9A0wKfTn97a/PSDYohKIlnP/w==
 
-"@types/node@*", "@types/node@>=13.7.0", "@types/node@^20.10.3":
-  version "20.11.25"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.25.tgz#0f50d62f274e54dd7a49f7704cc16bfbcccaf49f"
-  integrity sha512-TBHyJxk2b7HceLVGFcpAUjsa5zIdsPWlR6XHfyGzd0SFu+/NFgQgMAl96MSDZgQDvJAvV6BKsFOrt6zIL09JDw==
+"@types/node@*", "@types/node@>=13.7.0", "@types/node@^22.0.1":
+  version "22.6.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.6.0.tgz#b604c9a628760221905c1b272fd6aee661f45042"
+  integrity sha512-QyR8d5bmq+eR72TwQDfujwShHMcIrWIYsaQFtXRE58MHPTEKUNxjxvl0yS0qPMds5xbSDWtp7ZpvGFtd7dfMdQ==
   dependencies:
-    undici-types "~5.26.4"
+    undici-types "~6.19.2"
 
 "@types/pug@^2.0.6":
   version "2.0.10"
@@ -2782,19 +2782,18 @@ find-up@^5.0.0:
     locate-path "^6.0.0"
     path-exists "^4.0.0"
 
-firebase-admin@^12.2.0:
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-12.2.0.tgz#915e9f4b745f132b541008616f9b90a00fdb255d"
-  integrity sha512-R9xxENvPA/19XJ3mv0Kxfbz9kPXd9/HrM4083LZWOO0qAQGheRzcCQamYRe+JSrV2cdKXP3ZsfFGTYMrFM0pJg==
+firebase-admin@^12.5.0:
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/firebase-admin/-/firebase-admin-12.5.0.tgz#fed378b8b8ee6d7793ba23a5b8e1f43740de8bdb"
+  integrity sha512-ad8vnlPcuuZN9scSgY8UnAxPI4mzP2/Q+dsrVLTf+j3h7bIq0FOelDCDGz4StgKJdk244v2kpOxqJjPG3grBHg==
   dependencies:
-    "@fastify/busboy" "^2.1.0"
+    "@fastify/busboy" "^3.0.0"
     "@firebase/database-compat" "^1.0.2"
     "@firebase/database-types" "^1.0.0"
-    "@types/node" "^20.10.3"
+    "@types/node" "^22.0.1"
     farmhash-modern "^1.1.0"
     jsonwebtoken "^9.0.0"
     jwks-rsa "^3.1.0"
-    long "^5.2.3"
     node-forge "^1.3.1"
     uuid "^10.0.0"
   optionalDependencies:
@@ -4053,7 +4052,7 @@ logform@^2.3.2, logform@^2.4.0:
     safe-stable-stringify "^2.3.1"
     triple-beam "^1.3.0"
 
-long@^5.0.0, long@^5.2.3:
+long@^5.0.0:
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/long/-/long-5.2.3.tgz#a3ba97f3877cf1d778eccbcb048525ebb77499e1"
   integrity sha512-lcHwpNoggQTObv5apGNCTdJrO69eHOZMi4BNC+rTLER8iHAqGrUVeLh/irVIM7zTw2bOXA8T6uNPeujwOLg/2Q==
@@ -6354,10 +6353,10 @@ ufo@^1.3.2:
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-1.4.0.tgz#39845b31be81b4f319ab1d99fd20c56cac528d32"
   integrity sha512-Hhy+BhRBleFjpJ2vchUNN40qgkh0366FWJGqVLYBHev0vpHTrXSA0ryT+74UiW6KWsldNurQMKGqCm1M2zBciQ==
 
-undici-types@~5.26.4:
-  version "5.26.5"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-5.26.5.tgz#bcd539893d00b56e964fd2657a4866b221a65617"
-  integrity sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==
+undici-types@~6.19.2:
+  version "6.19.8"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
+  integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
 
 unicode-emoji-modifier-base@^1.0.0:
   version "1.0.0"
