@@ -27,7 +27,7 @@
 		"autoprefixer": "^10.4.20",
 		"eslint": "^8.16.0",
 		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte": "^2.43.0",
+		"eslint-plugin-svelte": "^2.46.1",
 		"firebase-tools": "^13.22.0",
 		"husky": "^9.1.7",
 		"lint-staged": "^15.2.10",
