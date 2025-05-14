@@ -1,8 +1,12 @@
 <script lang="ts">
-	export let name: string;
-	export let label: string;
-	export let values: Array<{ label: string; value: string }>;
-	export let required = false;
+	interface Props {
+		name: string;
+		label: string;
+		values: Array<{ label: string; value: string }>;
+		required?: boolean;
+	}
+
+	let { name, label, values, required = false }: Props = $props();
 </script>
 
 <fieldset class="flex items-start gap-5">

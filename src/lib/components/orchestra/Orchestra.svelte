@@ -3,7 +3,11 @@
 	import { colors, orchestraData } from './data';
 	import type { DistributionArray } from './distribute-orchestra-data';
 
-	export let orchestraDistribution: DistributionArray;
+	interface Props {
+		orchestraDistribution: DistributionArray;
+	}
+
+	let { orchestraDistribution }: Props = $props();
 </script>
 
 <svg

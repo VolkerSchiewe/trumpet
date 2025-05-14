@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 	const sortedChoirs = Object.keys(data.distribution).sort(
 		(a, b) => data.distribution[b].total - data.distribution[a].total
 	);

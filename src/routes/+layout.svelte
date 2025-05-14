@@ -1,7 +1,13 @@
-<script>
+<!-- @migration task: review uses of `navigating` -->
+<script lang="ts">
 	import '../app.css';
-	import { navigating } from '$app/stores';
+	import { navigating } from '$app/state';
 	import LoadingHorizontal from '$lib/components/LoadingHorizontal.svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <svelte:head>
@@ -12,9 +18,9 @@
 	/>
 </svelte:head>
 
-{#if $navigating}
+{#if navigating}
 	<div class="fixed top-0 z-50 h-[5px] w-screen">
 		<LoadingHorizontal />
 	</div>
 {/if}
-<slot />
+{@render children?.()}

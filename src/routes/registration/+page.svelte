@@ -7,7 +7,12 @@
 	import RegistrationForm from './RegistrationForm.svelte';
 	import { images } from '$lib/utils/images';
 
-	export let form: ActionData;
+	interface Props {
+		form: ActionData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { form, children }: Props = $props();
 
 	let hotels: Hotel[] = [
 		{
@@ -107,40 +112,44 @@
 </svelte:head>
 
 <Container color="magenta" image={images[2]}>
-	<slot slot="left">
-		<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" height="200" />
-		<Header title="Wo kann ich schlafen?" subTitle="Alle Informationen" color={'magenta'} />
+	{#snippet left()}
+		{#if children}{@render children()}{:else}
+			<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" height="200" />
+			<Header title="Wo kann ich schlafen?" subTitle="Alle Informationen" color={'magenta'} />
 
-		<p class="hyphen text-justify font-semibold">
-			Für das Bläsertreffen 2023 in Berlin wird es eine entscheidende Neuerung geben: Wir bitten
-			diesmal alle Teilnehmer:innen, sich selbst um ein Quartier zu kümmern.
-		</p>
+			<p class="hyphen text-justify font-semibold">
+				Für das Bläsertreffen 2023 in Berlin wird es eine entscheidende Neuerung geben: Wir bitten
+				diesmal alle Teilnehmer:innen, sich selbst um ein Quartier zu kümmern.
+			</p>
 
-		<p class="word-break hyphens text-justify">
-			Liebe Bläserinnen und Bläser, nach gründlicher Überlegung im Vorbereitungsteam sind wir zu dem
-			Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher ist,
-			wenn sich alle Teilnehmer:innen selbst um ein Quartier kümmern. Im Blick auf Vorfinanzierung,
-			Bezahlung oder Stornierung macht sich dies unkomplizierter, und das Vorbereitungsteam hat mehr
-			Zeit, sich um das eigentliche Ereignis zu kümmern. Alle Mahlzeiten, bis auf das Frühstück,
-			nehmen wir dann auf dem Festivalgelände ein.
-			<br />
-			Jugendliche ab 14 Jahre können in einem Massenquartier in einer Turnhalle übernachten. Mehr Details
-			dazu auf der Seite <a href="/faq">"Häufige Fragen"</a>.
-			<br />
-			<br />
-			Hier einige Links zu möglichen Unterkünften in der Nähe:
-		</p>
-		<div class="flex max-h-64 min-h-[400px] flex-col gap-5 overflow-y-auto">
-			{#each hotels as hotel}
-				<HotelCard {hotel} />
-			{/each}
-		</div>
-		<div class="h-20" />
-	</slot>
-	<slot slot="right">
-		<div class="h-40" />
-		<RegistrationForm {form} />
-	</slot>
+			<p class="word-break hyphens text-justify">
+				Liebe Bläserinnen und Bläser, nach gründlicher Überlegung im Vorbereitungsteam sind wir zu
+				dem Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher
+				ist, wenn sich alle Teilnehmer:innen selbst um ein Quartier kümmern. Im Blick auf
+				Vorfinanzierung, Bezahlung oder Stornierung macht sich dies unkomplizierter, und das
+				Vorbereitungsteam hat mehr Zeit, sich um das eigentliche Ereignis zu kümmern. Alle
+				Mahlzeiten, bis auf das Frühstück, nehmen wir dann auf dem Festivalgelände ein.
+				<br />
+				Jugendliche ab 14 Jahre können in einem Massenquartier in einer Turnhalle übernachten. Mehr Details
+				dazu auf der Seite <a href="/faq">"Häufige Fragen"</a>.
+				<br />
+				<br />
+				Hier einige Links zu möglichen Unterkünften in der Nähe:
+			</p>
+			<div class="flex max-h-64 min-h-[400px] flex-col gap-5 overflow-y-auto">
+				{#each hotels as hotel}
+					<HotelCard {hotel} />
+				{/each}
+			</div>
+			<div class="h-20"></div>
+		{/if}
+	{/snippet}
+	{#snippet right()}
+		{#if children}{@render children()}{:else}
+			<div class="h-40"></div>
+			<RegistrationForm {form} />
+		{/if}
+	{/snippet}
 </Container>
 
 <style>

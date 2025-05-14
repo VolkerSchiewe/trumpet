@@ -4,6 +4,11 @@
 	import type { Hotel } from '$lib/types/hotel';
 	import HotelCard from './HotelCard.svelte';
 	import { images } from '$lib/utils/images';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	let hotels: Hotel[] = [
 		{
@@ -103,76 +108,81 @@
 </svelte:head>
 
 <Container color="magenta" image={images[2]}>
-	<slot slot="left">
-		<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" height="200" />
-		<Header title="Details" subTitle="Alle Informationen" color="magenta" />
-		<p>
-			Der Bläsertag 2023 in Berlin findet von Fr. 26.05.2023 bis zum Mo. 29.05.2023 statt. Wir
-			freuen uns schon darauf, euch in unserer <a
-				href="https://goo.gl/maps/FJaHy7ys4AEAhd9p6"
-				class="text-theme-magenta"
-				target="_blank"
-				rel="noreferrer">Gemeinde in Neukölln</a
-			> begrüßen zu dürfen.
-		</p>
-		<p>
-			Wir haben ein tolles Programm vorbereitet, mit spannenden Workshops. Den aktuellen Stand
-			unseres Programms findest du immer auf der Seite <a href="/program" class="text-theme-magenta"
-				>"Programm"</a
-			>. Bitte beachte, dass es sich dabei um ein vorläufiges Programm handelt, welches wir ständig
-			aktualisieren.
-		</p>
-		<p>
-			Der Teilnehmerbeitrag beträgt 120€ für Vollzahler:innen und 90€ für ermäßigte. Dieser ist
-			bitte bis zum <b>02.05.2023</b>
-			an das Konto der Brüdergemeine Berlin zu überweisen:<br />
-		</p>
-		<p class="-mt-3 ml-2 md:ml-3">
-			IBAN: <b>DE34 3506 0190 1566 9530 10</b> (KD-Bank)<br />
-			Verwendungszweck: <b>Dein Name</b> <br />
-		</p>
-		<p>
-			Alternativ könnt ihr die Beiträge auch im Chor sammeln und dann gemeinsam an uns überweisen.
-		</p>
-		<Header title="Festgelände" subTitle="" color="magenta" />
-		<img src="/images/gelaende.svg" alt="Übersichtskarte des Geländes des Bläsertags" />
+	{#snippet left()}
+		{#if children}{@render children()}{:else}
+			<img alt="Bär mit Waldhorn" src="/bear-magenta.svg" width="200" height="200" />
+			<Header title="Details" subTitle="Alle Informationen" color="magenta" />
+			<p>
+				Der Bläsertag 2023 in Berlin findet von Fr. 26.05.2023 bis zum Mo. 29.05.2023 statt. Wir
+				freuen uns schon darauf, euch in unserer <a
+					href="https://goo.gl/maps/FJaHy7ys4AEAhd9p6"
+					class="text-theme-magenta"
+					target="_blank"
+					rel="noreferrer">Gemeinde in Neukölln</a
+				> begrüßen zu dürfen.
+			</p>
+			<p>
+				Wir haben ein tolles Programm vorbereitet, mit spannenden Workshops. Den aktuellen Stand
+				unseres Programms findest du immer auf der Seite <a
+					href="/program"
+					class="text-theme-magenta">"Programm"</a
+				>. Bitte beachte, dass es sich dabei um ein vorläufiges Programm handelt, welches wir
+				ständig aktualisieren.
+			</p>
+			<p>
+				Der Teilnehmerbeitrag beträgt 120€ für Vollzahler:innen und 90€ für ermäßigte. Dieser ist
+				bitte bis zum <b>02.05.2023</b>
+				an das Konto der Brüdergemeine Berlin zu überweisen:<br />
+			</p>
+			<p class="-mt-3 ml-2 md:ml-3">
+				IBAN: <b>DE34 3506 0190 1566 9530 10</b> (KD-Bank)<br />
+				Verwendungszweck: <b>Dein Name</b> <br />
+			</p>
+			<p>
+				Alternativ könnt ihr die Beiträge auch im Chor sammeln und dann gemeinsam an uns überweisen.
+			</p>
+			<Header title="Festgelände" subTitle="" color="magenta" />
+			<img src="/images/gelaende.svg" alt="Übersichtskarte des Geländes des Bläsertags" />
 
-		<Header title="Umgebung" subTitle="" color="magenta" />
-		<img src="/images/umgebung.svg" alt="Übersichtskarte der Umgebung des Bläsertags" />
+			<Header title="Umgebung" subTitle="" color="magenta" />
+			<img src="/images/umgebung.svg" alt="Übersichtskarte der Umgebung des Bläsertags" />
 
-		<div class="h-10" />
-	</slot>
-	<slot slot="right">
-		<div class="xl:h-40" />
+			<div class="h-10"></div>
+		{/if}
+	{/snippet}
+	{#snippet right()}
+		{#if children}{@render children()}{:else}
+			<div class="xl:h-40"></div>
 
-		<Header title="Unterbringung" subTitle="Alle Informationen" />
+			<Header title="Unterbringung" subTitle="Alle Informationen" />
 
-		<p class="hyphen text-justify font-semibold">
-			Für das Bläsertreffen 2023 in Berlin wird es eine entscheidende Neuerung geben: Wir bitten
-			diesmal alle Teilnehmer:innen, sich selbst um ein Quartier zu kümmern.
-		</p>
+			<p class="hyphen text-justify font-semibold">
+				Für das Bläsertreffen 2023 in Berlin wird es eine entscheidende Neuerung geben: Wir bitten
+				diesmal alle Teilnehmer:innen, sich selbst um ein Quartier zu kümmern.
+			</p>
 
-		<p class="word-break hyphens text-justify">
-			Liebe Bläserinnen und Bläser, nach gründlicher Überlegung im Vorbereitungsteam sind wir zu dem
-			Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher ist,
-			wenn sich alle Teilnehmer:innen selbst um ein Quartier kümmern. Im Blick auf Vorfinanzierung,
-			Bezahlung oder Stornierung macht sich dies unkomplizierter, und das Vorbereitungsteam hat mehr
-			Zeit, sich um das eigentliche Ereignis zu kümmern. Alle Mahlzeiten, bis auf das Frühstück,
-			nehmen wir dann auf dem Festivalgelände ein.
-			<br />
-			Jugendliche ab 14 Jahre können in einem Massenquartier in einer Turnhalle übernachten. Mehr Details
-			dazu auf der Seite <a class="text-theme-magenta-50" href="/faq">"Häufige Fragen"</a>.
-			<br />
-			<br />
-			Hier einige Links zu möglichen Unterkünften in der Nähe:
-		</p>
-		<div class="flex max-h-64 min-h-[800px] flex-col gap-5 overflow-y-auto">
-			{#each hotels as hotel}
-				<HotelCard {hotel} />
-			{/each}
-		</div>
-		<div class="h-20" />
-	</slot>
+			<p class="word-break hyphens text-justify">
+				Liebe Bläserinnen und Bläser, nach gründlicher Überlegung im Vorbereitungsteam sind wir zu
+				dem Entschluss gekommen, dass es für die gesamte Organisation des Bläsertreffens einfacher
+				ist, wenn sich alle Teilnehmer:innen selbst um ein Quartier kümmern. Im Blick auf
+				Vorfinanzierung, Bezahlung oder Stornierung macht sich dies unkomplizierter, und das
+				Vorbereitungsteam hat mehr Zeit, sich um das eigentliche Ereignis zu kümmern. Alle
+				Mahlzeiten, bis auf das Frühstück, nehmen wir dann auf dem Festivalgelände ein.
+				<br />
+				Jugendliche ab 14 Jahre können in einem Massenquartier in einer Turnhalle übernachten. Mehr Details
+				dazu auf der Seite <a class="text-theme-magenta-50" href="/faq">"Häufige Fragen"</a>.
+				<br />
+				<br />
+				Hier einige Links zu möglichen Unterkünften in der Nähe:
+			</p>
+			<div class="flex max-h-64 min-h-[800px] flex-col gap-5 overflow-y-auto">
+				{#each hotels as hotel}
+					<HotelCard {hotel} />
+				{/each}
+			</div>
+			<div class="h-20"></div>
+		{/if}
+	{/snippet}
 </Container>
 
 <style>

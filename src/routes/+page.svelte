@@ -7,7 +7,11 @@
 	import Landing from './Landing.svelte';
 	import Link from './Link.svelte';
 
-	export let data: PageData;
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
 </script>
 
 <main class="flex flex-col items-center">
@@ -32,5 +36,5 @@
 		<Countdown targetDate={new Date('2023-05-26')} />
 	</div>
 </main>
-<div class="flex-grow" />
+<div class="flex-grow"></div>
 <Footer />

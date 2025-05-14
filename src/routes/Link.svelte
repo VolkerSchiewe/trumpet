@@ -3,11 +3,15 @@
 	import { getBgColorClass } from '$lib/utils/color-classes';
 	import ArrowUp from '../lib/components/ArrowUp.svelte';
 
-	export let header: string;
-	export let subHeader: string;
-	export let href: string;
-	export let target = '';
-	export let color: ThemeColor;
+	interface Props {
+		header: string;
+		subHeader: string;
+		href: string;
+		target?: string;
+		color: ThemeColor;
+	}
+
+	let { header, subHeader, href, target = '', color }: Props = $props();
 </script>
 
 <a

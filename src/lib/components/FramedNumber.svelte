@@ -1,6 +1,10 @@
 <script lang="ts">
-	export let title: string;
-	export let number: number;
+	interface Props {
+		title: string;
+		number: number;
+	}
+
+	let { title, number }: Props = $props();
 </script>
 
 <div class="relative mb-2 min-w-[200px] border-2 border-b-0 border-theme-blue px-12 py-5">

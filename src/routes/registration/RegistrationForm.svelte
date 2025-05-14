@@ -10,12 +10,16 @@
 	import Loading from '$lib/components/Loading.svelte';
 	import Modal from '$lib/components/Modal.svelte';
 
-	export let form: ActionData;
-	$: modalOpen = Boolean(form?.success);
+	interface Props {
+		form: ActionData;
+	}
 
-	let captcha: { reset: () => void };
-	let type: 'blaeser' | 'jungblaeser' | 'gast';
-	let loading = false;
+	let { form }: Props = $props();
+	let modalOpen = $derived(Boolean(form?.success));
+
+	let captcha: { reset: () => void } = $state();
+	let type: 'blaeser' | 'jungblaeser' | 'gast' = $state();
+	let loading = $state(false);
 
 	function formEnhancement(): ({ update }: { update: () => void }) => void {
 		loading = true;
@@ -57,11 +61,15 @@
 	{/if}
 	{#if form?.success}
 		<Modal open={modalOpen} on:close={closeModal}>
-			<div slot="body">
-				<h2 class="text-bold pb-2 text-xl">Anmeldung erfolgreich</h2>
-				<p>Danke für deine Anmeldung. Bitte vergiss nicht, deine E-Mail Adresse zu bestätigen.</p>
-			</div>
-			<button slot="buttons" on:click={closeModal}>Schließen</button>
+			{#snippet body()}
+				<div>
+					<h2 class="text-bold pb-2 text-xl">Anmeldung erfolgreich</h2>
+					<p>Danke für deine Anmeldung. Bitte vergiss nicht, deine E-Mail Adresse zu bestätigen.</p>
+				</div>
+			{/snippet}
+			{#snippet buttons()}
+				<button onclick={closeModal}>Schließen</button>
+			{/snippet}
 		</Modal>
 	{/if}
 
@@ -95,7 +103,7 @@
 			]}
 		/>
 	{:else}
-		<div class="h-16" />
+		<div class="h-16"></div>
 	{/if}
 	<Dropdown
 		label="Abreise am"

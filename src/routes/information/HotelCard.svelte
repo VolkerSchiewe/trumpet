@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { Hotel } from '$lib/types/hotel';
 
-	export let hotel: Hotel;
+	interface Props {
+		hotel: Hotel;
+	}
+
+	let { hotel }: Props = $props();
 </script>
 
 <div class="flex items-center justify-between border p-2 px-5">
@@ -58,7 +62,12 @@
 		</div>
 	</div>
 
-	<a href={hotel.website} target="_blank" rel="noopener noreferrer">
+	<a
+		href={hotel.website}
+		target="_blank"
+		rel="noopener noreferrer"
+		aria-label="Link to {hotel.name}"
+	>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"

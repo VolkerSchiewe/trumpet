@@ -27,7 +27,7 @@
 					class="slider_bullet glide__bullet"
 					data-glide-dir={`=${i}`}
 					aria-label={`Bild ${i + 1}`}
-				/>
+				></button>
 			{/each}
 		</div>
 	</div>

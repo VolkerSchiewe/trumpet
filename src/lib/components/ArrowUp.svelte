@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let clazz = '';
+	interface Props {
+		clazz?: string;
+	}
+
+	let { clazz = '' }: Props = $props();
 </script>
 
 <svg

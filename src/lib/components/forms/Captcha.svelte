@@ -8,7 +8,7 @@
 		}
 	};
 
-	let container: HTMLDivElement;
+	let container: HTMLDivElement = $state();
 	let widget: WidgetInstance;
 	onMount(() => {
 		widget = new WidgetInstance(container);
@@ -19,4 +19,4 @@
 	});
 </script>
 
-<div bind:this={container} class="frc-captcha" data-sitekey="FCMU8T2TH41K5TK7" />
+<div bind:this={container} class="frc-captcha" data-sitekey="FCMU8T2TH41K5TK7"></div>
