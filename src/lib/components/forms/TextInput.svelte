@@ -1,11 +1,15 @@
 <script lang="ts">
 	import type { ActionFormData } from '../../../routes/registration/+page.server';
 
-	export let label: string;
-	export let name: string;
-	export let required = false;
-	export let type = 'text';
-	export let form: ActionFormData | null;
+	interface Props {
+		label: string;
+		name: string;
+		required?: boolean;
+		type?: string;
+		form: ActionFormData | null;
+	}
+
+	let { label, name, required = false, type = 'text', form }: Props = $props();
 </script>
 
 <label>

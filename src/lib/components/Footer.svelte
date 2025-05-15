@@ -1,7 +1,11 @@
 <script lang="ts">
 	import type { Image } from '$lib/utils/images';
 
-	export let image: Image | undefined = undefined;
+	interface Props {
+		image?: Image | undefined;
+	}
+
+	let { image = undefined }: Props = $props();
 </script>
 
 <footer>

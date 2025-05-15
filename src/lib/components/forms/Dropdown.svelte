@@ -1,13 +1,23 @@
 <script lang="ts">
 	import type { ActionFormData } from '../../../routes/registration/+page.server';
 
-	export let form: ActionFormData | null;
+	interface Props {
+		form: ActionFormData | null;
+		label: string;
+		name: string;
+		value?: string | File;
+		values: Array<{ label: string; value: string }>;
+		required?: boolean;
+	}
 
-	export let label: string;
-	export let name: string;
-	export let value = form?.data?.[name]?.value ?? '';
-	export let values: Array<{ label: string; value: string }>;
-	export let required = false;
+	let {
+		form,
+		label,
+		name,
+		value = $bindable(form?.data?.[name]?.value ?? ''),
+		values,
+		required = false
+	}: Props = $props();
 </script>
 
 <label class="flex flex-col">

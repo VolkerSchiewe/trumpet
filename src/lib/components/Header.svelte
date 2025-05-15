@@ -3,10 +3,14 @@
 	import { getTextColorClass } from '$lib/utils/color-classes';
 	import ArrowUp from './ArrowUp.svelte';
 
-	export let title: string;
-	export let subTitle: string;
-	export let link = '/';
-	export let color: ThemeColor | null = null;
+	interface Props {
+		title: string;
+		subTitle: string;
+		link?: string;
+		color?: ThemeColor | null;
+	}
+
+	let { title, subTitle, link = '/', color = null }: Props = $props();
 </script>
 
 <div class="relative -mx-14 font-bold lg:-mx-24">

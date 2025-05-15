@@ -1,8 +1,17 @@
 <script lang="ts">
-	export let open: boolean;
+	import { createBubbler, stopPropagation } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 
 	import { createEventDispatcher } from 'svelte';
 	import { fade } from 'svelte/transition';
+	interface Props {
+		open: boolean;
+		body?: import('svelte').Snippet;
+		buttons?: import('svelte').Snippet;
+	}
+
+	let { open, body, buttons }: Props = $props();
 	const dispatch = createEventDispatcher();
 
 	function close() {
@@ -18,29 +27,29 @@
 		aria-modal="true"
 		transition:fade={{ duration: 50 }}
 	>
-		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+		<div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
-		<!-- svelte-ignore a11y-interactive-supports-focus -->
+		<!-- svelte-ignore a11y_interactive_supports_focus -->
 		<div
 			role="button"
 			class="fixed inset-0 z-10 overflow-y-auto"
-			on:click={close}
-			on:keyup={(e) => {
+			onclick={close}
+			onkeyup={(e) => {
 				if (e.key === 'Escape') close();
 			}}
 		>
 			<div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-				<!-- svelte-ignore a11y-click-events-have-key-events -->
+				<!-- svelte-ignore a11y_click_events_have_key_events -->
 				<div
 					role="button"
-					on:click|stopPropagation
+					onclick={stopPropagation(bubble('click'))}
 					class="relative transform overflow-hidden bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-xl"
 				>
 					<div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-						<slot name="body" />
+						{@render body?.()}
 					</div>
 					<div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-						<slot name="buttons" />
+						{@render buttons?.()}
 					</div>
 				</div>
 			</div>

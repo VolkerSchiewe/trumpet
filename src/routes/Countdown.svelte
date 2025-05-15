@@ -1,6 +1,10 @@
 <script lang="ts">
 	import FramedNumber from '$lib/components/FramedNumber.svelte';
-	export let targetDate: Date;
+	interface Props {
+		targetDate: Date;
+	}
+
+	let { targetDate }: Props = $props();
 	function calculateDaysLeft(start: Date): number {
 		const distance = start.getTime() - new Date().getTime();
 		const days = Math.floor(distance / (1000 * 60 * 60 * 24));

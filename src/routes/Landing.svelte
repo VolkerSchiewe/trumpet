@@ -17,7 +17,7 @@
 			src="logo.svg"
 			alt="Logo mit 4 Berliner Bären die Waldhorn, Trompete, Posaune und Tuba spielen"
 		/>
-		<div class="hidden flex-grow md:block" />
+		<div class="hidden flex-grow md:block"></div>
 		<img
 			class="max-w-xl md:mb-[3vw] xl:max-w-5xl"
 			src="/slogan.svg"
